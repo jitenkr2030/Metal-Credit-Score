@@ -1,0 +1,1171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MCS Dashboard - India's First Asset-Backed Credit Scoring</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/chart.js/3.9.1/chart.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #1a365d;
+            --secondary-color: #2d5a8e;
+            --accent-color: #ffd700;
+            --success-color: #28a745;
+            --warning-color: #ffc107;
+            --danger-color: #dc3545;
+            --light-bg: #f8f9fa;
+            --dark-text: #2c3e50;
+        }
+
+        body {
+            background-color: var(--light-bg);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .navbar {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .sidebar {
+            background: linear-gradient(180deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            min-height: calc(100vh - 76px);
+            box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+        }
+
+        .sidebar .nav-link {
+            color: rgba(255,255,255,0.8);
+            padding: 12px 20px;
+            margin: 5px 10px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .sidebar .nav-link:hover,
+        .sidebar .nav-link.active {
+            background-color: rgba(255,255,255,0.2);
+            color: white;
+            transform: translateX(5px);
+        }
+
+        .main-content {
+            padding: 20px;
+        }
+
+        .dashboard-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            padding: 25px;
+            margin-bottom: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .dashboard-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .metric-card {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .metric-value {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .metric-label {
+            font-size: 1rem;
+            color: #6c757d;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .score-excellent { color: var(--success-color); }
+        .score-very-good { color: #20c997; }
+        .score-good { color: #17a2b8; }
+        .score-average { color: var(--warning-color); }
+        .score-fair { color: #fd7e14; }
+        .score-poor { color: var(--danger-color); }
+        .score-very-poor { color: #6f42c1; }
+
+        .user-table {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .user-table th {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 15px;
+            font-weight: 600;
+        }
+
+        .user-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #eee;
+            vertical-align: middle;
+        }
+
+        .user-table tr:hover {
+            background-color: #f8f9fa;
+        }
+
+        .btn-mcs {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-mcs:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            color: white;
+        }
+
+        .badge {
+            padding: 8px 12px;
+            font-size: 0.85rem;
+            border-radius: 6px;
+        }
+
+        .chart-container {
+            position: relative;
+            height: 300px;
+            padding: 20px;
+        }
+
+        .loan-calculator {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 12px;
+            padding: 25px;
+        }
+
+        .form-control {
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            padding: 12px 15px;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.2rem rgba(26, 54, 93, 0.25);
+        }
+
+        .platform-status {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+
+        .status-online { background-color: var(--success-color); }
+        .status-offline { background-color: var(--danger-color); }
+        .status-warning { background-color: var(--warning-color); }
+
+        .footer {
+            background: var(--primary-color);
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .spinner-border {
+            color: var(--primary-color);
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                min-height: auto;
+            }
+            
+            .main-content {
+                padding: 10px;
+            }
+            
+            .metric-value {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-chart-line me-2"></i>
+                <strong>MCS Dashboard</strong>
+            </a>
+            <div class="navbar-nav ms-auto">
+                <div class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
+                        <i class="fas fa-user-circle me-1"></i>
+                        NBFC Admin
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#"><i class="fas fa-user me-2"></i>Profile</a></li>
+                        <li><a class="dropdown-item" href="#"><i class="fas fa-cog me-2"></i>Settings</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt me-2"></i>Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-md-2 p-0">
+                <div class="sidebar">
+                    <nav class="nav flex-column mt-3">
+                        <a class="nav-link active" href="#dashboard" data-section="dashboard">
+                            <i class="fas fa-tachometer-alt me-2"></i>Dashboard
+                        </a>
+                        <a class="nav-link" href="#users" data-section="users">
+                            <i class="fas fa-users me-2"></i>User Scores
+                        </a>
+                        <a class="nav-link" href="#analytics" data-section="analytics">
+                            <i class="fas fa-chart-bar me-2"></i>Analytics
+                        </a>
+                        <a class="nav-link" href="#calculator" data-section="calculator">
+                            <i class="fas fa-calculator me-2"></i>Loan Calculator
+                        </a>
+                        <a class="nav-link" href="#platforms" data-section="platforms">
+                            <i class="fas fa-server me-2"></i>Platform Health
+                        </a>
+                        <a class="nav-link" href="#reports" data-section="reports">
+                            <i class="fas fa-file-alt me-2"></i>Reports
+                        </a>
+                    </nav>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="col-md-10">
+                <div class="main-content">
+                    <!-- Dashboard Section -->
+                    <section id="dashboard-section" class="content-section">
+                        <h2 class="mb-4">
+                            <i class="fas fa-tachometer-alt me-2"></i>
+                            MCS Dashboard Overview
+                        </h2>
+
+                        <!-- Key Metrics -->
+                        <div class="row mb-4">
+                            <div class="col-md-3">
+                                <div class="dashboard-card metric-card">
+                                    <div class="metric-value text-primary">15,847</div>
+                                    <div class="metric-label">Total Users</div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="dashboard-card metric-card">
+                                    <div class="metric-value text-success">647</div>
+                                    <div class="metric-label">Average Score</div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="dashboard-card metric-card">
+                                    <div class="metric-value text-warning">892</div>
+                                    <div class="metric-label">High Risk Users</div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="dashboard-card metric-card">
+                                    <div class="metric-value text-info">12,456</div>
+                                    <div class="metric-label">Active Users</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Charts Row -->
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="dashboard-card">
+                                    <h5 class="mb-3">
+                                        <i class="fas fa-chart-pie me-2"></i>
+                                        Score Distribution
+                                    </h5>
+                                    <div class="chart-container">
+                                        <canvas id="scoreDistributionChart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="dashboard-card">
+                                    <h5 class="mb-3">
+                                        <i class="fas fa-chart-donut me-2"></i>
+                                        Asset Allocation
+                                    </h5>
+                                    <div class="chart-container">
+                                        <canvas id="assetAllocationChart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Platform Status -->
+                        <div class="dashboard-card">
+                            <h5 class="mb-3">
+                                <i class="fas fa-server me-2"></i>
+                                Platform Health Status
+                            </h5>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="d-flex align-items-center">
+                                        <span class="platform-status status-online"></span>
+                                        <div>
+                                            <strong>BGT Platform</strong><br>
+                                            <small class="text-muted">Gold Tokenization</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="d-flex align-items-center">
+                                        <span class="platform-status status-online"></span>
+                                        <div>
+                                            <strong>BST Platform</strong><br>
+                                            <small class="text-muted">Silver Tokenization</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="d-flex align-items-center">
+                                        <span class="platform-status status-online"></span>
+                                        <div>
+                                            <strong>BPT Platform</strong><br>
+                                            <small class="text-muted">Platinum Tokenization</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="d-flex align-items-center">
+                                        <span class="platform-status status-online"></span>
+                                        <div>
+                                            <strong>BINR Platform</strong><br>
+                                            <small class="text-muted">Stablecoin</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Users Section -->
+                    <section id="users-section" class="content-section" style="display: none;">
+                        <h2 class="mb-4">
+                            <i class="fas fa-users me-2"></i>
+                            User Credit Scores
+                        </h2>
+
+                        <!-- Filters -->
+                        <div class="dashboard-card mb-4">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <input type="text" class="form-control" placeholder="Search User ID" id="userSearch">
+                                </div>
+                                <div class="col-md-3">
+                                    <select class="form-control" id="categoryFilter">
+                                        <option value="">All Categories</option>
+                                        <option value="Excellent">Excellent</option>
+                                        <option value="Very Good">Very Good</option>
+                                        <option value="Good">Good</option>
+                                        <option value="Average">Average</option>
+                                        <option value="Fair">Fair</option>
+                                        <option value="Poor">Poor</option>
+                                        <option value="Very Poor">Very Poor</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-3">
+                                    <select class="form-control" id="scoreRange">
+                                        <option value="">All Scores</option>
+                                        <option value="800-900">Excellent (800-900)</option>
+                                        <option value="700-799">Good (700-799)</option>
+                                        <option value="600-699">Average (600-699)</option>
+                                        <option value="300-599">Poor (300-599)</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-3">
+                                    <button class="btn btn-mcs w-100" onclick="loadUserScores()">
+                                        <i class="fas fa-search me-1"></i>Search
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Loading Indicator -->
+                        <div class="loading" id="userLoading">
+                            <div class="spinner-border" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                            <div class="mt-2">Loading user scores...</div>
+                        </div>
+
+                        <!-- User Scores Table -->
+                        <div class="user-table">
+                            <table class="table table-hover mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>User ID</th>
+                                        <th>MCS Score</th>
+                                        <th>Category</th>
+                                        <th>Max Loan Amount</th>
+                                        <th>Risk Level</th>
+                                        <th>Last Updated</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="userScoresTable">
+                                    <!-- Dynamic content will be loaded here -->
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- Pagination -->
+                        <nav aria-label="User scores pagination" class="mt-4">
+                            <ul class="pagination justify-content-center" id="pagination">
+                                <!-- Dynamic pagination will be loaded here -->
+                            </ul>
+                        </nav>
+                    </section>
+
+                    <!-- Analytics Section -->
+                    <section id="analytics-section" class="content-section" style="display: none;">
+                        <h2 class="mb-4">
+                            <i class="fas fa-chart-bar me-2"></i>
+                            Advanced Analytics
+                        </h2>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="dashboard-card">
+                                    <h5 class="mb-3">
+                                        <i class="fas fa-chart-line me-2"></i>
+                                        Score Trends Over Time
+                                    </h5>
+                                    <div class="chart-container">
+                                        <canvas id="scoreTrendsChart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="dashboard-card">
+                                    <h5 class="mb-3">
+                                        <i class="fas fa-percentage me-2"></i>
+                                        Risk Distribution
+                                    </h5>
+                                    <div class="chart-container">
+                                        <canvas id="riskDistributionChart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="dashboard-card">
+                                    <h5 class="mb-3">
+                                        <i class="fas fa-table me-2"></i>
+                                        Detailed Analytics Table
+                                    </h5>
+                                    <div class="table-responsive">
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>Metric</th>
+                                                    <th>Current Value</th>
+                                                    <th>Previous Period</th>
+                                                    <th>Change</th>
+                                                    <th>Trend</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>Average Score</td>
+                                                    <td>647</td>
+                                                    <td>641</td>
+                                                    <td class="text-success">+6</td>
+                                                    <td><i class="fas fa-arrow-up text-success"></i></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>High Risk Users</td>
+                                                    <td>892</td>
+                                                    <td>934</td>
+                                                    <td class="text-success">-42</td>
+                                                    <td><i class="fas fa-arrow-down text-success"></i></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Approval Rate</td>
+                                                    <td>78.5%</td>
+                                                    <td>76.2%</td>
+                                                    <td class="text-success">+2.3%</td>
+                                                    <td><i class="fas fa-arrow-up text-success"></i></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Loan Calculator Section -->
+                    <section id="calculator-section" class="content-section" style="display: none;">
+                        <h2 class="mb-4">
+                            <i class="fas fa-calculator me-2"></i>
+                            Loan Eligibility Calculator
+                        </h2>
+
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="loan-calculator">
+                                    <h5 class="mb-3">Calculate Loan Eligibility</h5>
+                                    <form id="loanCalculatorForm">
+                                        <div class="row">
+                                            <div class="col-md-6 mb-3">
+                                                <label class="form-label">MCS Score</label>
+                                                <input type="number" class="form-control" id="calcScore" min="300" max="900" value="700" required>
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label class="form-label">Portfolio Value (₹)</label>
+                                                <input type="number" class="form-control" id="calcPortfolio" min="0" value="50000" required>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6 mb-3">
+                                                <label class="form-label">Monthly Income (₹)</label>
+                                                <input type="number" class="form-control" id="calcIncome" min="0" value="25000">
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label class="form-label">Existing Loans</label>
+                                                <select class="form-control" id="calcExisting">
+                                                    <option value="0">None</option>
+                                                    <option value="1">1-2 Loans</option>
+                                                    <option value="2">3+ Loans</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <button type="submit" class="btn btn-mcs">
+                                            <i class="fas fa-calculator me-1"></i>
+                                            Calculate Eligibility
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="dashboard-card">
+                                    <h5 class="mb-3">Results</h5>
+                                    <div id="calculatorResults">
+                                        <div class="text-center text-muted">
+                                            <i class="fas fa-chart-line fa-3x mb-3"></i>
+                                            <p>Enter details and click calculate to see results</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Platforms Section -->
+                    <section id="platforms-section" class="content-section" style="display: none;">
+                        <h2 class="mb-4">
+                            <i class="fas fa-server me-2"></i>
+                            Platform Health Monitoring
+                        </h2>
+
+                        <div class="dashboard-card">
+                            <h5 class="mb-3">Real-time Platform Status</h5>
+                            <div class="row" id="platformStatus">
+                                <!-- Platform status cards will be loaded here -->
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Reports Section -->
+                    <section id="reports-section" class="content-section" style="display: none;">
+                        <h2 class="mb-4">
+                            <i class="fas fa-file-alt me-2"></i>
+                            Reports & Export
+                        </h2>
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="dashboard-card text-center">
+                                    <i class="fas fa-file-pdf fa-3x text-danger mb-3"></i>
+                                    <h5>Generate PDF Report</h5>
+                                    <p class="text-muted">Download comprehensive score analysis</p>
+                                    <button class="btn btn-mcs">
+                                        <i class="fas fa-download me-1"></i>
+                                        Download PDF
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="dashboard-card text-center">
+                                    <i class="fas fa-file-excel fa-3x text-success mb-3"></i>
+                                    <h5>Export to Excel</h5>
+                                    <p class="text-muted">Download user scores in Excel format</p>
+                                    <button class="btn btn-mcs">
+                                        <i class="fas fa-download me-1"></i>
+                                        Export Excel
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="dashboard-card text-center">
+                                    <i class="fas fa-chart-line fa-3x text-primary mb-3"></i>
+                                    <h5>Analytics Report</h5>
+                                    <p class="text-muted">Detailed analytics and trends</p>
+                                    <button class="btn btn-mcs">
+                                        <i class="fas fa-download me-1"></i>
+                                        Generate Report
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <strong>Metal Credit Score (MCS)</strong><br>
+                    India's First Asset-Backed Credit Scoring Engine
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <small>© 2025 MiniMax Agent. All rights reserved.</small><br>
+                    <small>Powered by BGT • BST • BPT • BINR Ecosystem</small>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chart.js/3.9.1/chart.min.js"></script>
+    <script>
+        // Global variables
+        let currentPage = 1;
+        let totalPages = 1;
+        let userScores = [];
+
+        // Initialize dashboard
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeCharts();
+            loadUserScores();
+            loadPlatformStatus();
+            setupEventListeners();
+        });
+
+        function setupEventListeners() {
+            // Navigation
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const section = this.dataset.section;
+                    showSection(section);
+                    
+                    // Update active nav
+                    document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+
+            // Search functionality
+            document.getElementById('userSearch').addEventListener('input', debounce(loadUserScores, 500));
+            document.getElementById('categoryFilter').addEventListener('change', loadUserScores);
+            document.getElementById('scoreRange').addEventListener('change', loadUserScores);
+
+            // Loan calculator
+            document.getElementById('loanCalculatorForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                calculateLoanEligibility();
+            });
+        }
+
+        function showSection(sectionName) {
+            // Hide all sections
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.style.display = 'none';
+            });
+            
+            // Show selected section
+            const targetSection = document.getElementById(sectionName + '-section');
+            if (targetSection) {
+                targetSection.style.display = 'block';
+            }
+        }
+
+        function initializeCharts() {
+            // Score Distribution Chart
+            const scoreCtx = document.getElementById('scoreDistributionChart');
+            if (scoreCtx) {
+                new Chart(scoreCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Excellent', 'Very Good', 'Good', 'Average', 'Fair', 'Poor', 'Very Poor'],
+                        datasets: [{
+                            label: 'Number of Users',
+                            data: [1234, 2156, 3892, 4234, 2678, 1345, 308],
+                            backgroundColor: [
+                                '#28a745', '#20c997', '#17a2b8', '#ffc107', 
+                                '#fd7e14', '#dc3545', '#6f42c1'
+                            ],
+                            borderWidth: 0
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                display: false
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            }
+
+            // Asset Allocation Chart
+            const assetCtx = document.getElementById('assetAllocationChart');
+            if (assetCtx) {
+                new Chart(assetCtx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Gold (BGT)', 'Silver (BST)', 'Platinum (BPT)', 'BINR Stablecoin'],
+                        datasets: [{
+                            data: [45.2, 18.7, 8.1, 28.0],
+                            backgroundColor: [
+                                '#ffd700', '#c0c0c0', '#e5e4e2', '#2d5a8e'
+                            ],
+                            borderWidth: 2,
+                            borderColor: '#fff'
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                position: 'bottom'
+                            }
+                        }
+                    }
+                });
+            }
+
+            // Score Trends Chart
+            const trendsCtx = document.getElementById('scoreTrendsChart');
+            if (trendsCtx) {
+                new Chart(trendsCtx, {
+                    type: 'line',
+                    data: {
+                        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                        datasets: [{
+                            label: 'Average MCS Score',
+                            data: [635, 638, 642, 645, 641, 644, 647, 649, 646, 648, 647, 647],
+                            borderColor: '#1a365d',
+                            backgroundColor: 'rgba(26, 54, 93, 0.1)',
+                            tension: 0.4,
+                            fill: true
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            y: {
+                                beginAtZero: false,
+                                min: 630,
+                                max: 660
+                            }
+                        }
+                    }
+                });
+            }
+
+            // Risk Distribution Chart
+            const riskCtx = document.getElementById('riskDistributionChart');
+            if (riskCtx) {
+                new Chart(riskCtx, {
+                    type: 'pie',
+                    data: {
+                        labels: ['Low Risk', 'Medium Risk', 'High Risk'],
+                        datasets: [{
+                            data: [68, 25, 7],
+                            backgroundColor: ['#28a745', '#ffc107', '#dc3545'],
+                            borderWidth: 2,
+                            borderColor: '#fff'
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                position: 'bottom'
+                            }
+                        }
+                    }
+                });
+            }
+        }
+
+        async function loadUserScores() {
+            const loading = document.getElementById('userLoading');
+            const table = document.getElementById('userScoresTable');
+            
+            loading.style.display = 'block';
+            table.innerHTML = '';
+
+            try {
+                // Mock data - in real implementation, this would call the API
+                userScores = generateMockUserScores(50);
+                
+                // Apply filters
+                const searchTerm = document.getElementById('userSearch').value.toLowerCase();
+                const categoryFilter = document.getElementById('categoryFilter').value;
+                const scoreRangeFilter = document.getElementById('scoreRange').value;
+
+                let filteredScores = userScores.filter(score => {
+                    const matchesSearch = score.userId.toLowerCase().includes(searchTerm);
+                    const matchesCategory = !categoryFilter || score.category === categoryFilter;
+                    
+                    let matchesScoreRange = true;
+                    if (scoreRangeFilter) {
+                        const [min, max] = scoreRangeFilter.split('-').map(Number);
+                        matchesScoreRange = score.score >= min && score.score <= max;
+                    }
+                    
+                    return matchesSearch && matchesCategory && matchesScoreRange;
+                });
+
+                // Paginate
+                const pageSize = 10;
+                const startIndex = (currentPage - 1) * pageSize;
+                const endIndex = startIndex + pageSize;
+                const paginatedScores = filteredScores.slice(startIndex, endIndex);
+
+                // Update table
+                paginatedScores.forEach(score => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td><strong>${score.userId}</strong></td>
+                        <td><span class="badge bg-primary">${score.score}</span></td>
+                        <td><span class="badge ${getScoreBadgeClass(score.category)}">${score.category}</span></td>
+                        <td>₹${score.maxLoanAmount.toLocaleString()}</td>
+                        <td><span class="badge ${getRiskBadgeClass(score.riskLevel)}">${score.riskLevel}</span></td>
+                        <td>${new Date(score.lastUpdated).toLocaleDateString()}</td>
+                        <td>
+                            <button class="btn btn-sm btn-outline-primary" onclick="viewUserDetails('${score.userId}')">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                            <button class="btn btn-sm btn-outline-success" onclick="calculateUserLoan('${score.userId}', ${score.score}, ${score.portfolioValue})">
+                                <i class="fas fa-calculator"></i>
+                            </button>
+                        </td>
+                    `;
+                    table.appendChild(row);
+                });
+
+                // Update pagination
+                totalPages = Math.ceil(filteredScores.length / pageSize);
+                updatePagination();
+
+            } catch (error) {
+                console.error('Error loading user scores:', error);
+                table.innerHTML = '<tr><td colspan="7" class="text-center text-danger">Error loading user scores</td></tr>';
+            } finally {
+                loading.style.display = 'none';
+            }
+        }
+
+        function generateMockUserScores(count) {
+            const scores = [];
+            const categories = ['Excellent', 'Very Good', 'Good', 'Average', 'Fair', 'Poor', 'Very Poor'];
+            const riskLevels = ['Low', 'Medium', 'High'];
+            
+            for (let i = 0; i < count; i++) {
+                const score = Math.floor(Math.random() * 600) + 300;
+                const category = score >= 800 ? 'Excellent' :
+                               score >= 750 ? 'Very Good' :
+                               score >= 700 ? 'Good' :
+                               score >= 650 ? 'Average' :
+                               score >= 600 ? 'Fair' :
+                               score >= 550 ? 'Poor' : 'Very Poor';
+                
+                const riskLevel = score >= 700 ? 'Low' : score >= 600 ? 'Medium' : 'High';
+                const portfolioValue = Math.floor(Math.random() * 100000) + 10000;
+                const maxLoanAmount = Math.floor(portfolioValue * (0.4 + (score / 1000) * 0.3));
+                
+                scores.push({
+                    userId: `user_${String(i + 1).padStart(4, '0')}`,
+                    score: score,
+                    category: category,
+                    riskLevel: riskLevel,
+                    maxLoanAmount: maxLoanAmount,
+                    portfolioValue: portfolioValue,
+                    lastUpdated: new Date(Date.now() - Math.random() * 30 * 24 * 60 * 60 * 1000)
+                });
+            }
+            
+            return scores.sort((a, b) => b.score - a.score);
+        }
+
+        function getScoreBadgeClass(category) {
+            const classMap = {
+                'Excellent': 'bg-success',
+                'Very Good': 'bg-info',
+                'Good': 'bg-primary',
+                'Average': 'bg-warning',
+                'Fair': 'bg-warning',
+                'Poor': 'bg-danger',
+                'Very Poor': 'bg-dark'
+            };
+            return classMap[category] || 'bg-secondary';
+        }
+
+        function getRiskBadgeClass(riskLevel) {
+            const classMap = {
+                'Low': 'bg-success',
+                'Medium': 'bg-warning',
+                'High': 'bg-danger'
+            };
+            return classMap[riskLevel] || 'bg-secondary';
+        }
+
+        function updatePagination() {
+            const pagination = document.getElementById('pagination');
+            pagination.innerHTML = '';
+
+            // Previous button
+            const prevLi = document.createElement('li');
+            prevLi.className = `page-item ${currentPage === 1 ? 'disabled' : ''}`;
+            prevLi.innerHTML = `<a class="page-link" href="#" onclick="changePage(${currentPage - 1})">Previous</a>`;
+            pagination.appendChild(prevLi);
+
+            // Page numbers
+            for (let i = 1; i <= totalPages; i++) {
+                const li = document.createElement('li');
+                li.className = `page-item ${i === currentPage ? 'active' : ''}`;
+                li.innerHTML = `<a class="page-link" href="#" onclick="changePage(${i})">${i}</a>`;
+                pagination.appendChild(li);
+            }
+
+            // Next button
+            const nextLi = document.createElement('li');
+            nextLi.className = `page-item ${currentPage === totalPages ? 'disabled' : ''}`;
+            nextLi.innerHTML = `<a class="page-link" href="#" onclick="changePage(${currentPage + 1})">Next</a>`;
+            pagination.appendChild(nextLi);
+        }
+
+        function changePage(page) {
+            if (page >= 1 && page <= totalPages) {
+                currentPage = page;
+                loadUserScores();
+            }
+        }
+
+        async function loadPlatformStatus() {
+            const container = document.getElementById('platformStatus');
+            
+            try {
+                // Mock platform status
+                const platforms = [
+                    { name: 'BGT Platform', status: 'online', responseTime: '145ms', uptime: '99.9%', color: 'success' },
+                    { name: 'BST Platform', status: 'online', responseTime: '132ms', uptime: '99.8%', color: 'success' },
+                    { name: 'BPT Platform', status: 'warning', responseTime: '289ms', uptime: '99.5%', color: 'warning' },
+                    { name: 'BINR Platform', status: 'online', responseTime: '98ms', uptime: '99.9%', color: 'success' }
+                ];
+
+                container.innerHTML = platforms.map(platform => `
+                    <div class="col-md-6 mb-3">
+                        <div class="dashboard-card">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <h6 class="mb-1">${platform.name}</h6>
+                                    <small class="text-muted">
+                                        <span class="platform-status status-${platform.status}"></span>
+                                        ${platform.status.charAt(0).toUpperCase() + platform.status.slice(1)}
+                                    </small>
+                                </div>
+                                <div class="text-end">
+                                    <div class="small">
+                                        <i class="fas fa-tachometer-alt me-1"></i>
+                                        ${platform.responseTime}
+                                    </div>
+                                    <div class="small text-muted">
+                                        <i class="fas fa-clock me-1"></i>
+                                        ${platform.uptime} uptime
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+            } catch (error) {
+                console.error('Error loading platform status:', error);
+            }
+        }
+
+        function calculateLoanEligibility() {
+            const score = parseInt(document.getElementById('calcScore').value);
+            const portfolioValue = parseInt(document.getElementById('calcPortfolio').value);
+            const monthlyIncome = parseInt(document.getElementById('calcIncome').value) || 0;
+            const existingLoans = parseInt(document.getElementById('calcExisting').value);
+
+            // Calculate eligibility based on MCS algorithm
+            let maxLoanPercentage;
+            let baseAmount;
+
+            if (score >= 800) {
+                maxLoanPercentage = 0.75;
+                baseAmount = 50000;
+            } else if (score >= 750) {
+                maxLoanPercentage = 0.70;
+                baseAmount = 40000;
+            } else if (score >= 700) {
+                maxLoanPercentage = 0.65;
+                baseAmount = 35000;
+            } else if (score >= 650) {
+                maxLoanPercentage = 0.60;
+                baseAmount = 25000;
+            } else if (score >= 600) {
+                maxLoanPercentage = 0.55;
+                baseAmount = 20000;
+            } else if (score >= 550) {
+                maxLoanPercentage = 0.50;
+                baseAmount = 15000;
+            } else {
+                maxLoanPercentage = 0.40;
+                baseAmount = 10000;
+            }
+
+            const assetBasedLoan = portfolioValue * maxLoanPercentage;
+            const recommendedAmount = Math.min(assetBasedLoan, baseAmount);
+
+            // Adjust for existing loans
+            const adjustedAmount = recommendedAmount * (1 - existingLoans * 0.2);
+
+            const interestRate = score >= 800 ? "12-14%" :
+                               score >= 750 ? "14-16%" :
+                               score >= 700 ? "16-18%" :
+                               score >= 650 ? "18-20%" :
+                               score >= 600 ? "20-22%" :
+                               score >= 550 ? "22-24%" : "24-26%";
+
+            const tenure = score >= 750 ? "36 months" :
+                          score >= 700 ? "24 months" :
+                          score >= 650 ? "18 months" :
+                          score >= 600 ? "12 months" : "6 months";
+
+            const eligibility = score >= 550 ? 'Eligible' : 'Not Eligible';
+
+            // Display results
+            const resultsDiv = document.getElementById('calculatorResults');
+            resultsDiv.innerHTML = `
+                <div class="row text-center">
+                    <div class="col-12 mb-3">
+                        <h4 class="text-${eligibility === 'Eligible' ? 'success' : 'danger'}">
+                            ${eligibility}
+                        </h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <small class="text-muted">Recommended Amount</small>
+                        <h5 class="text-primary">₹${Math.round(adjustedAmount).toLocaleString()}</h5>
+                    </div>
+                    <div class="col-6">
+                        <small class="text-muted">Max Percentage</small>
+                        <h5>${(maxLoanPercentage * 100).toFixed(0)}%</h5>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-6">
+                        <small class="text-muted">Interest Rate</small>
+                        <h6>${interestRate}</h6>
+                    </div>
+                    <div class="col-6">
+                        <small class="text-muted">Tenure</small>
+                        <h6>${tenure}</h6>
+                    </div>
+                </div>
+                <div class="mt-3">
+                    <div class="progress">
+                        <div class="progress-bar ${eligibility === 'Eligible' ? 'bg-success' : 'bg-danger'}" 
+                             style="width: ${(score / 900) * 100}%">
+                            Score: ${score}
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function viewUserDetails(userId) {
+            // Mock user details modal
+            alert(`Viewing details for ${userId}\n\nThis would open a detailed user profile with:\n- Complete portfolio breakdown\n- Transaction history\n- Score calculation details\n- Risk analysis`);
+        }
+
+        function calculateUserLoan(userId, score, portfolioValue) {
+            // Pre-fill calculator with user data
+            document.getElementById('calcScore').value = score;
+            document.getElementById('calcPortfolio').value = portfolioValue;
+            
+            // Switch to calculator section
+            showSection('calculator');
+            
+            // Trigger calculation
+            setTimeout(calculateLoanEligibility, 100);
+        }
+
+        // Utility function for debouncing
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
+
+        // Auto-refresh platform status every 30 seconds
+        setInterval(loadPlatformStatus, 30000);
+    </script>
+</body>
+</html>

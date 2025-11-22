@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Features - Metal Credit Score (MCS) | Asset-Backed Credit Scoring</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.1/aos.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #1a365d;
+            --secondary-color: #2d5a8e;
+            --accent-color: #ffd700;
+            --success-color: #28a745;
+            --warning-color: #ffc107;
+            --danger-color: #dc3545;
+            --gradient-primary: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            --gradient-gold: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Navigation */
+        .navbar {
+            background: rgba(26, 54, 93, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-brand {
+            font-weight: 800;
+            font-size: 1.8rem;
+            color: var(--accent-color) !important;
+        }
+
+        .nav-link {
+            color: white !important;
+            font-weight: 500;
+            margin: 0 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--accent-color) !important;
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 120px 0 80px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Feature Section */
+        .feature-section {
+            padding: 80px 0;
+            background: #f8f9fa;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Technical Section */
+        .tech-section {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .tech-item {
+            padding: 2rem;
+            border-left: 4px solid var(--accent-color);
+            margin-bottom: 2rem;
+            background: #f8f9fa;
+            border-radius: 0 10px 10px 0;
+        }
+
+        /* API Section */
+        .api-section {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        }
+
+        .code-block {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 1.5rem;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+
+        .api-endpoint {
+            background: #4a5568;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            display: inline-block;
+            margin: 0.5rem 0;
+            font-weight: 600;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 80px 0;
+            background: var(--gradient-primary);
+            color: white;
+            text-align: center;
+        }
+
+        /* Footer */
+        .footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 60px 0 30px;
+        }
+
+        .footer a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer a:hover {
+            color: var(--accent-color);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="fas fa-coins me-2"></i>MCS
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="features.html">Features</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="pricing.html">Pricing</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="get-started.html">Get Started</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="dashboard/index.html" target="_blank">
+                            <i class="fas fa-tachometer-alt me-1"></i>Dashboard
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h1 data-aos="fade-up">Advanced Features</h1>
+                    <p class="lead" data-aos="fade-up" data-aos-delay="100">
+                        Explore the comprehensive capabilities that make MCS the most advanced asset-backed credit scoring system.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Features Section -->
+    <section class="feature-section">
+        <div class="container">
+            <div class="row text-center mb-5">
+                <div class="col-lg-8 mx-auto">
+                    <h2 data-aos="fade-up">Core Features</h2>
+                    <p class="lead" data-aos="fade-up" data-aos-delay="100">
+                        Cutting-edge technology meets financial innovation.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-6 mb-4">
+                    <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="feature-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <h4>AI-Powered Scoring Engine</h4>
+                        <p>Advanced machine learning algorithms analyze your asset portfolio in real-time, considering market volatility, asset correlation, and economic indicators to provide the most accurate credit assessment.</p>
+                        <ul class="mt-3">
+                            <li>Real-time market data integration</li>
+                            <li>Predictive analytics for asset performance</li>
+                            <li>Adaptive scoring based on economic conditions</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6 mb-4">
+                    <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="feature-icon">
+                            <i class="fas fa-shield-check"></i>
+                        </div>
+                        <h4>Blockchain Security</h4>
+                        <p>Your asset data is secured using advanced blockchain technology, ensuring transparency, immutability, and complete security of your financial information.</p>
+                        <ul class="mt-3">
+                            <li>Immutable transaction records</li>
+                            <li>Decentralized verification system</li>
+                            <li>End-to-end encryption</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6 mb-4">
+                    <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+                        <div class="feature-icon">
+                            <i class="fas fa-sync-alt"></i>
+                        </div>
+                        <h4>Real-Time Portfolio Tracking</h4>
+                        <p>Monitor your asset portfolio with live updates, performance metrics, and credit score changes. Get instant notifications about significant market movements.</p>
+                        <ul class="mt-3">
+                            <li>Live asset price monitoring</li>
+                            <li>Portfolio diversification analysis</li>
+                            <li>Performance benchmarking</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6 mb-4">
+                    <div class="feature-card" data-aos="fade-up" data-aos-delay="400">
+                        <div class="feature-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h4>Comprehensive Risk Assessment</h4>
+                        <p>Advanced risk modeling considers market volatility, liquidity constraints, and correlation analysis to provide a holistic view of your financial position.</p>
+                        <ul class="mt-3">
+                            <li>Multi-factor risk analysis</li>
+                            <li>Stress testing scenarios</li>
+                            <li>Correlation matrix analysis</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Architecture -->
+    <section class="tech-section">
+        <div class="container">
+            <div class="row text-center mb-5">
+                <div class="col-lg-8 mx-auto">
+                    <h2 data-aos="fade-up">Technical Architecture</h2>
+                    <p class="lead" data-aos="fade-up" data-aos-delay="100">
+                        Built on enterprise-grade infrastructure for reliability and scale.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="tech-item" data-aos="fade-right" data-aos-delay="100">
+                        <h5><i class="fas fa-server me-2"></i>Microservices Architecture</h5>
+                        <p>Our platform is built using a microservices architecture with four core services:</p>
+                        <ul>
+                            <li><strong>Portfolio Fetcher:</strong> Real-time asset integration and verification</li>
+                            <li><strong>Behavior Engine:</strong> Transaction pattern analysis and financial behavior scoring</li>
+                            <li><strong>Risk Engine:</strong> Comprehensive risk assessment and fraud detection</li>
+                            <li><strong>Scoring Engine:</strong> Final credit score calculation and reporting</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="tech-item" data-aos="fade-right" data-aos-delay="200">
+                        <h5><i class="fas fa-database me-2"></i>Data Management</h5>
+                        <p>Enterprise-grade data management with MongoDB for flexible document storage and real-time analytics capabilities.</p>
+                        <ul>
+                            <li>Automated data backup and recovery</li>
+                            <li>Real-time data synchronization</li>
+                            <li>Advanced querying and analytics</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="tech-item" data-aos="fade-right" data-aos-delay="300">
+                        <h5><i class="fas fa-cloud me-2"></i>Cloud Infrastructure</h5>
+                        <p>Deployed on scalable cloud infrastructure ensuring 99.9% uptime and global accessibility.</p>
+                        <ul>
+                            <li>Auto-scaling capabilities</li>
+                            <li>Load balancing across multiple regions</li>
+                            <li>DDoS protection and security monitoring</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- API Documentation -->
+    <section class="api-section">
+        <div class="container">
+            <div class="row text-center mb-5">
+                <div class="col-lg-8 mx-auto">
+                    <h2 data-aos="fade-up">Developer API</h2>
+                    <p class="lead" data-aos="fade-up" data-aos-delay="100">
+                        Integrate MCS scoring into your applications with our comprehensive REST API.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+                        <h4>Get Credit Score</h4>
+                        <p>Retrieve the Metal Credit Score for a user based on their asset portfolio.</p>
+                        
+                        <div class="api-endpoint">GET /api/v1/mcs/score/:userId</div>
+                        
+                        <div class="code-block">
+{
+  "userId": "user_123456",
+  "finalScore": 742,
+  "assetScore": 398,
+  "behaviorScore": 287,
+  "riskScore": 57,
+  "components": {
+    "gold": { "value": 125000, "weight": 0.6 },
+    "silver": { "value": 45000, "weight": 0.2 },
+    "binr": { "value": 38000, "weight": 0.2 }
+  },
+  "riskFactors": ["moderate_volatility", "good_liquidity"],
+  "timestamp": "2025-11-21T14:02:32Z"
+}
+                        </div>
+                    </div>
+                    
+                    <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                        <h4>Submit Portfolio Data</h4>
+                        <p>Update user portfolio with current asset holdings.</p>
+                        
+                        <div class="api-endpoint">POST /api/v1/portfolio</div>
+                        
+                        <div class="code-block">
+{
+  "userId": "user_123456",
+  "assets": [
+    {
+      "type": "gold",
+      "amount": 125.5,
+      "value": 125000
+    },
+    {
+      "type": "binr",
+      "amount": 38000,
+      "value": 38000
+    }
+  ]
+}
+                        </div>
+                    </div>
+                    
+                    <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+                        <h4>Authentication</h4>
+                        <p>All API requests require JWT authentication.</p>
+                        
+                        <div class="api-endpoint">Authorization: Bearer &lt;your_jwt_token&gt;</div>
+                        
+                        <p class="mt-3">Get your API credentials by registering at our developer portal.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h2 data-aos="fade-up">Ready to Experience These Features?</h2>
+                    <p class="lead mb-4" data-aos="fade-up" data-aos-delay="100">
+                        Start building your asset-backed credit score today and unlock better financial opportunities.
+                    </p>
+                    <div data-aos="fade-up" data-aos-delay="200">
+                        <a href="get-started.html" class="btn btn-primary-custom me-3">
+                            <i class="fas fa-rocket me-2"></i>Get Started
+                        </a>
+                        <a href="dashboard/index.html" class="btn btn-outline-custom" target="_blank">
+                            <i class="fas fa-tachometer-alt me-2"></i>Try Dashboard
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <h5><i class="fas fa-coins me-2"></i>MCS</h5>
+                    <p class="mb-3">India's first asset-backed credit scoring system.</p>
+                    <div>
+                        <a href="#" class="me-3"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="me-3"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="me-3"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h6>Product</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="features.html">Features</a></li>
+                        <li><a href="pricing.html">Pricing</a></li>
+                        <li><a href="get-started.html">Get Started</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h6>Resources</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">API Reference</a></li>
+                        <li><a href="#">Support</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h6>Company</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Press</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h6>Legal</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Cookie Policy</a></li>
+                        <li><a href="#">Compliance</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="my-4" style="border-color: #333;">
+            <div class="row">
+                <div class="col-md-6">
+                    <p class="mb-0">&copy; 2025 Metal Credit Score (MCS). All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p class="mb-0">Powered by RWA Tokenization Ecosystem</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.1/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
+        });
+    </script>
+</body>
+</html>

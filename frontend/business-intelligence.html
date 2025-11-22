@@ -1,0 +1,1698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Intelligence - Metal Credit Score Platform</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="assets/css/main.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #1e40af;
+            --secondary-color: #3b82f6;
+            --accent-color: #06b6d4;
+            --success-color: #059669;
+            --warning-color: #d97706;
+            --danger-color: #dc2626;
+            --light-color: #f8fafc;
+            --dark-color: #0f172a;
+            --gradient-primary: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+            --gradient-secondary: linear-gradient(135deg, #059669 0%, #10b981 100%);
+            --gradient-accent: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
+            --gradient-warning: linear-gradient(135deg, #d97706 0%, #f59e0b 100%);
+            --gradient-danger: linear-gradient(135deg, #dc2626 0%, #ef4444 100%);
+            --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.15);
+            --border-radius: 12px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: var(--dark-color);
+            background: #f8fafc;
+        }
+
+        .hero-section {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 120px 0 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><polygon points="10,10 90,10 80,30 20,30" fill="rgba(255,255,255,0.05)"/><polygon points="20,40 80,40 70,60 30,60" fill="rgba(255,255,255,0.05)"/><polygon points="30,70 70,70 60,90 40,90" fill="rgba(255,255,255,0.05)"/></svg>');
+            animation: slide 30s infinite linear;
+        }
+
+        @keyframes slide {
+            0% { transform: translateX(0) translateY(0); }
+            100% { transform: translateX(-100px) translateY(-100px); }
+        }
+
+        .bi-dashboard {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+            border: 1px solid #e2e8f0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bi-dashboard::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--secondary-color);
+        }
+
+        .bi-dashboard:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .metric-display {
+            display: inline-flex;
+            align-items: center;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .metric-real-time {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .metric-periodic {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .metric-forecast {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+
+        .metric-comparison {
+            background: #f3e8ff;
+            color: #7c3aed;
+        }
+
+        .dashboard-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            color: white;
+            font-size: 24px;
+        }
+
+        .insight-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 8px 16px;
+            background: #f1f5f9;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: var(--dark-color);
+            margin: 5px;
+            border: 1px solid #cbd5e0;
+        }
+
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .kpi-card {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 25px;
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid #e2e8f0;
+            transition: var(--transition);
+        }
+
+        .kpi-card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .kpi-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .kpi-label {
+            color: #64748b;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .kpi-trend {
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+
+        .trend-positive {
+            color: var(--success-color);
+        }
+
+        .trend-negative {
+            color: var(--danger-color);
+        }
+
+        .trend-neutral {
+            color: var(--warning-color);
+        }
+
+        .competitive-analysis {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid #e2e8f0;
+        }
+
+        .competitor-row {
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            border-bottom: 1px solid #f1f5f9;
+            transition: var(--transition);
+        }
+
+        .competitor-row:last-child {
+            border-bottom: none;
+        }
+
+        .competitor-row:hover {
+            background: #f8fafc;
+            margin: 0 -15px;
+            padding: 20px 15px;
+            border-radius: 8px;
+        }
+
+        .competitor-logo {
+            width: 60px;
+            height: 40px;
+            background: linear-gradient(45deg, #f0f0f0, #e0e0e0);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            font-weight: 600;
+            color: #666;
+        }
+
+        .competitor-info {
+            flex: 1;
+        }
+
+        .competitor-name {
+            font-weight: 600;
+            color: var(--dark-color);
+            margin-bottom: 5px;
+        }
+
+        .competitor-metrics {
+            display: flex;
+            gap: 20px;
+            font-size: 0.85rem;
+            color: #64748b;
+        }
+
+        .competitor-score {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .score-ring {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: white;
+        }
+
+        .score-high {
+            background: var(--success-color);
+        }
+
+        .score-medium {
+            background: var(--warning-color);
+        }
+
+        .score-low {
+            background: var(--danger-color);
+        }
+
+        .performance-matrix {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid #e2e8f0;
+            overflow-x: auto;
+        }
+
+        .matrix-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .matrix-table th,
+        .matrix-table td {
+            padding: 15px 12px;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .matrix-table th {
+            background: #f8fafc;
+            font-weight: 600;
+            color: var(--dark-color);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .matrix-table tr:hover {
+            background: #f8fafc;
+        }
+
+        .performance-bar {
+            background: #e2e8f0;
+            border-radius: 10px;
+            height: 8px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .performance-fill {
+            height: 100%;
+            border-radius: 10px;
+            transition: width 1s ease-in-out;
+            position: relative;
+        }
+
+        .fill-excellent {
+            background: var(--success-color);
+        }
+
+        .fill-good {
+            background: var(--secondary-color);
+        }
+
+        .fill-average {
+            background: var(--warning-color);
+        }
+
+        .fill-poor {
+            background: var(--danger-color);
+        }
+
+        .market-position {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid #e2e8f0;
+        }
+
+        .position-indicator {
+            display: inline-flex;
+            align-items: center;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .position-leader {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .position-challenger {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .position-follower {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .strategy-card {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 30px;
+            margin: 20px 0;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid #e2e8f0;
+            transition: var(--transition);
+        }
+
+        .strategy-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .strategy-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .strategy-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            font-size: 20px;
+            color: white;
+        }
+
+        .strategy-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--dark-color);
+        }
+
+        .priority-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-left: auto;
+        }
+
+        .priority-high {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .priority-medium {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .priority-low {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .roi-projection {
+            background: linear-gradient(135deg, #0ea5e9 0%, #06b6d4 100%);
+            color: white;
+            border-radius: var(--border-radius);
+            padding: 25px;
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .projection-value {
+            font-size: 3rem;
+            font-weight: 700;
+            display: block;
+            margin: 15px 0;
+        }
+
+        .projection-timeline {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .data-source-indicator {
+            display: inline-flex;
+            align-items: center;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin: 2px;
+        }
+
+        .source-internal {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+
+        .source-external {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .source-predicted {
+            background: #f3e8ff;
+            color: #7c3aed;
+        }
+
+        .insight-timeline {
+            position: relative;
+            padding: 40px 0;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 60px;
+            margin-bottom: 40px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 25px;
+            top: 0;
+            bottom: -40px;
+            width: 2px;
+            background: #cbd5e0;
+        }
+
+        .timeline-item:last-child::before {
+            display: none;
+        }
+
+        .timeline-marker {
+            position: absolute;
+            left: 18px;
+            top: 8px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .marker-insight {
+            background: var(--secondary-color);
+        }
+
+        .marker-strategy {
+            background: var(--success-color);
+        }
+
+        .marker-alert {
+            background: var(--warning-color);
+        }
+
+        .nav-link.active {
+            color: var(--secondary-color) !important;
+            font-weight: 600;
+        }
+
+        .quadrant-analysis {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid #e2e8f0;
+        }
+
+        .quadrant-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            gap: 20px;
+            height: 400px;
+            margin-top: 20px;
+        }
+
+        .quadrant {
+            border: 2px solid #e2e8f0;
+            border-radius: var(--border-radius);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .quadrant:hover {
+            border-color: var(--secondary-color);
+            transform: scale(1.02);
+        }
+
+        .quadrant-stars {
+            background: #dcfce7;
+            border-color: var(--success-color);
+        }
+
+        .quadrant-question {
+            background: #fef3c7;
+            border-color: var(--warning-color);
+        }
+
+        .quadrant-cash {
+            background: #e0f2fe;
+            border-color: var(--accent-color);
+        }
+
+        .quadrant-dogs {
+            background: #fee2e2;
+            border-color: var(--danger-color);
+        }
+
+        .quadrant-title {
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
+        .quadrant-desc {
+            font-size: 0.9rem;
+            color: #64748b;
+        }
+
+        .alert-strategic {
+            background: linear-gradient(135deg, #dc2626 0%, #ef4444 100%);
+            color: white;
+            border-radius: var(--border-radius);
+            padding: 20px;
+            margin: 20px 0;
+            border: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .alert-strategic::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: white;
+        }
+
+        .benchmark-comparison {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid #e2e8f0;
+        }
+
+        .benchmark-item {
+            display: flex;
+            justify-content: between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .benchmark-item:last-child {
+            border-bottom: none;
+        }
+
+        .benchmark-metric {
+            font-weight: 600;
+            color: var(--dark-color);
+        }
+
+        .benchmark-value {
+            font-family: 'Courier New', monospace;
+            font-weight: 600;
+        }
+
+        .benchmark-target {
+            font-size: 0.85rem;
+            color: var(--success-color);
+            margin-left: 10px;
+        }
+
+        .benchmark-gap {
+            font-size: 0.85rem;
+            color: var(--danger-color);
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background: rgba(30, 64, 175, 0.95); backdrop-filter: blur(10px);">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html">
+                <i class="fas fa-chart-pie me-2"></i>MCS Platform
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Features</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="features.html">Core Features</a></li>
+                            <li><a class="dropdown-item" href="ai-analytics.html">AI/ML Analytics</a></li>
+                            <li><a class="dropdown-item" href="defi-integration.html">DeFi Integration</a></li>
+                            <li><a class="dropdown-item" href="white-label.html">White-Label</a></li>
+                            <li><a class="dropdown-item" href="community.html">Community</a></li>
+                            <li><a class="dropdown-item" href="advanced-security.html">Advanced Security</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle active" href="#" data-bs-toggle="dropdown">Enterprise</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="banking-integrations.html">Banking Integrations</a></li>
+                            <li><a class="dropdown-item" href="compliance-suite.html">Compliance Suite</a></li>
+                            <li><a class="dropdown-item" href="market-intelligence.html">Market Intelligence</a></li>
+                            <li><a class="dropdown-item active" href="business-intelligence.html">Business Intelligence</a></li>
+                            <li><a class="dropdown-item" href="global-expansion.html">Global Expansion</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="api.html">API</a></li>
+                    <li class="nav-item"><a class="nav-link" href="pricing.html">Pricing</a></li>
+                </ul>
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="get-started.html">Get Started</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8" data-aos="fade-up">
+                    <h1 class="display-4 fw-bold mb-4">
+                        <i class="fas fa-chart-line me-3"></i>Business Intelligence
+                    </h1>
+                    <p class="lead mb-4">
+                        Comprehensive business intelligence platform providing strategic insights, competitive analysis, and performance optimization across all business dimensions. Drive growth with data-driven decisions.
+                    </p>
+                    <div class="d-flex flex-wrap gap-3">
+                        <button class="btn btn-light btn-lg px-4 py-3">
+                            <i class="fas fa-rocket me-2"></i>Launch BI Dashboard
+                        </button>
+                        <button class="btn btn-outline-light btn-lg px-4 py-3">
+                            <i class="fas fa-download me-2"></i>Download Report
+                        </button>
+                    </div>
+                </div>
+                <div class="col-lg-4" data-aos="fade-left" data-aos-delay="200">
+                    <div class="text-center">
+                        <div class="kpi-card">
+                            <div class="kpi-value" style="color: var(--secondary-color);">87.5</div>
+                            <div class="kpi-label">Business Health Score</div>
+                            <div class="kpi-trend trend-positive">
+                                <i class="fas fa-arrow-up"></i> +5.2% vs last quarter
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Business Performance Dashboard -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center mb-5">
+                    <h2 class="display-5 fw-bold" data-aos="fade-up">Business Performance Dashboard</h2>
+                    <p class="lead text-muted" data-aos="fade-up" data-aos-delay="100">
+                        Real-time KPI tracking and business metrics monitoring
+                    </p>
+                </div>
+            </div>
+
+            <!-- Key Performance Indicators -->
+            <div class="kpi-grid mb-5">
+                <div class="kpi-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="metric-display metric-real-time">
+                        <i class="fas fa-clock me-1"></i>Live
+                    </div>
+                    <div class="kpi-value" style="color: var(--success-color);">$2.4M</div>
+                    <div class="kpi-label">Monthly Revenue</div>
+                    <div class="kpi-trend trend-positive">
+                        <i class="fas fa-arrow-up"></i> +18.5% MoM
+                    </div>
+                </div>
+
+                <div class="kpi-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="metric-display metric-periodic">
+                        <i class="fas fa-calendar me-1"></i>Quarterly
+                    </div>
+                    <div class="kpi-value" style="color: var(--secondary-color);">23.4%</div>
+                    <div class="kpi-label">Profit Margin</div>
+                    <div class="kpi-trend trend-positive">
+                        <i class="fas fa-arrow-up"></i> +2.1% vs target
+                    </div>
+                </div>
+
+                <div class="kpi-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="metric-display metric-forecast">
+                        <i class="fas fa-crystal-ball me-1"></i>Forecast
+                    </div>
+                    <div class="kpi-value" style="color: var(--accent-color);">156%</div>
+                    <div class="kpi-label">Customer LTV Growth</div>
+                    <div class="kpi-trend trend-positive">
+                        <i class="fas fa-arrow-up"></i> Projected YoY
+                    </div>
+                </div>
+
+                <div class="kpi-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="metric-display metric-comparison">
+                        <i class="fas fa-chart-bar me-1"></i>YoY
+                    </div>
+                    <div class="kpi-value" style="color: var(--warning-color);">4.2x</div>
+                    <div class="kpi-label">ROI Multiple</div>
+                    <div class="kpi-trend trend-positive">
+                        <i class="fas fa-arrow-up"></i> Industry leading
+                    </div>
+                </div>
+
+                <div class="kpi-card" data-aos="fade-up" data-aos-delay="500">
+                    <div class="metric-display metric-real-time">
+                        <i class="fas fa-users me-1"></i>Active
+                    </div>
+                    <div class="kpi-value" style="color: var(--secondary-color);">12,847</div>
+                    <div class="kpi-label">Active Customers</div>
+                    <div class="kpi-trend trend-positive">
+                        <i class="fas fa-arrow-up"></i> +12.3% MoM
+                    </div>
+                </div>
+
+                <div class="kpi-card" data-aos="fade-up" data-aos-delay="600">
+                    <div class="metric-display metric-periodic">
+                        <i class="fas fa-percentage me-1"></i>Conversion
+                    </div>
+                    <div class="kpi-value" style="color: var(--success-color);">68.2%</div>
+                    <div class="kpi-label">Lead Conversion</div>
+                    <div class="kpi-trend trend-positive">
+                        <i class="fas fa-arrow-up"></i> +5.7% improvement
+                    </div>
+                </div>
+            </div>
+
+            <!-- Business Health Score Breakdown -->
+            <div class="bi-dashboard" data-aos="zoom-in">
+                <h4 class="fw-bold mb-4">Business Health Score Breakdown</h4>
+                <div class="row g-4">
+                    <div class="col-md-3">
+                        <div class="benchmark-comparison">
+                            <h6 class="fw-bold mb-3">Revenue Growth</h6>
+                            <div class="benchmark-item">
+                                <span class="benchmark-metric">Current</span>
+                                <span class="benchmark-value">$2.4M</span>
+                                <span class="benchmark-target">Target: $2.2M</span>
+                            </div>
+                            <div class="performance-bar mt-3">
+                                <div class="performance-fill fill-excellent" style="width: 109%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="benchmark-comparison">
+                            <h6 class="fw-bold mb-3">Customer Retention</h6>
+                            <div class="benchmark-item">
+                                <span class="benchmark-metric">Current</span>
+                                <span class="benchmark-value">94.2%</span>
+                                <span class="benchmark-target">Target: 90%</span>
+                            </div>
+                            <div class="performance-bar mt-3">
+                                <div class="performance-fill fill-excellent" style="width: 104.7%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="benchmark-comparison">
+                            <h6 class="fw-bold mb-3">Operating Efficiency</h6>
+                            <div class="benchmark-item">
+                                <span class="benchmark-metric">Current</span>
+                                <span class="benchmark-value">76.8%</span>
+                                <span class="benchmark-gap">Gap: 8.2%</span>
+                            </div>
+                            <div class="performance-bar mt-3">
+                                <div class="performance-fill fill-average" style="width: 90.4%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="benchmark-comparison">
+                            <h6 class="fw-bold mb-3">Innovation Index</h6>
+                            <div class="benchmark-item">
+                                <span class="benchmark-metric">Current</span>
+                                <span class="benchmark-value">82.1%</span>
+                                <span class="benchmark-target">Target: 85%</span>
+                            </div>
+                            <div class="performance-bar mt-3">
+                                <div class="performance-fill fill-good" style="width: 96.6%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Competitive Analysis -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center mb-5">
+                    <h2 class="display-5 fw-bold" data-aos="fade-up">Competitive Analysis</h2>
+                    <p class="lead text-muted" data-aos="fade-up" data-aos-delay="100">
+                        Market positioning and competitive intelligence insights
+                    </p>
+                </div>
+            </div>
+
+            <div class="competitive-analysis" data-aos="fade-up">
+                <h5 class="fw-bold mb-4">Market Position Analysis</h5>
+                
+                <div class="competitor-row">
+                    <div class="competitor-logo" style="background: var(--gradient-primary); color: white;">US</div>
+                    <div class="competitor-info">
+                        <div class="competitor-name">Our Company (MCS Platform)</div>
+                        <div class="competitor-metrics">
+                            <span><strong>Market Share:</strong> 15.8%</span>
+                            <span><strong>Revenue Growth:</strong> +18.5%</span>
+                            <span><strong>Customer Satisfaction:</strong> 4.7/5</span>
+                        </div>
+                    </div>
+                    <div class="competitor-score">
+                        <div class="score-ring score-high">94</div>
+                        <div>
+                            <div class="fw-bold">Overall Score</div>
+                            <small class="text-muted">Industry Leader</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="competitor-row">
+                    <div class="competitor-logo">FX</div>
+                    <div class="competitor-info">
+                        <div class="competitor-name">FinTech Corp</div>
+                        <div class="competitor-metrics">
+                            <span><strong>Market Share:</strong> 22.1%</span>
+                            <span><strong>Revenue Growth:</strong> +12.3%</span>
+                            <span><strong>Customer Satisfaction:</strong> 4.2/5</span>
+                        </div>
+                    </div>
+                    <div class="competitor-score">
+                        <div class="score-ring score-medium">87</div>
+                        <div>
+                            <div class="fw-bold">Overall Score</div>
+                            <small class="text-muted">Market Leader</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="competitor-row">
+                    <div class="competitor-logo">TI</div>
+                    <div class="competitor-info">
+                        <div class="competitor-name">TechInvest Ltd</div>
+                        <div class="competitor-metrics">
+                            <span><strong>Market Share:</strong> 18.7%</span>
+                            <span><strong>Revenue Growth:</strong> +8.9%</span>
+                            <span><strong>Customer Satisfaction:</strong> 4.1/5</span>
+                        </div>
+                    </div>
+                    <div class="competitor-score">
+                        <div class="score-ring score-medium">83</div>
+                        <div>
+                            <div class="fw-bold">Overall Score</div>
+                            <small class="text-muted">Strong Challenger</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="competitor-row">
+                    <div class="competitor-logo">PM</div>
+                    <div class="competitor-info">
+                        <div class="competitor-name">PayMetrics Inc</div>
+                        <div class="competitor-metrics">
+                            <span><strong>Market Share:</strong> 12.4%</span>
+                            <span><strong>Revenue Growth:</strong> +15.7%</span>
+                            <span><strong>Customer Satisfaction:</strong> 4.4/5</span>
+                        </div>
+                    </div>
+                    <div class="competitor-score">
+                        <div class="score-ring score-high">89</div>
+                        <div>
+                            <div class="fw-bold">Overall Score</div>
+                            <small class="text-muted">Fast Growing</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Performance Matrix -->
+            <div class="performance-matrix" data-aos="fade-up" data-aos-delay="200">
+                <h5 class="fw-bold mb-4">Competitive Performance Matrix</h5>
+                <div class="table-responsive">
+                    <table class="matrix-table">
+                        <thead>
+                            <tr>
+                                <th>Company</th>
+                                <th>Product Features</th>
+                                <th>Market Reach</th>
+                                <th>Innovation</th>
+                                <th>Customer Support</th>
+                                <th>Pricing</th>
+                                <th>Overall Score</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>MCS Platform</strong></td>
+                                <td>
+                                    <div class="performance-bar">
+                                        <div class="performance-fill fill-excellent" style="width: 94%;"></div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="performance-bar">
+                                        <div class="performance-fill fill-good" style="width: 78%;"></div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="performance-bar">
+                                        <div class="performance-fill fill-excellent" style="width: 91%;"></div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="performance-bar">
+                                        <div class="performance-fill fill-excellent" style="width: 96%;"></div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="performance-bar">
+                                        <div class="performance-fill fill-good" style="width: 85%;"></div>
+                                    </div>
+                                </td>
+                                <td><strong class="text-success">94/100</strong></td>
+                            </tr>
+                            <tr>
+                                <td>FinTech Corp</td>
+                                <td>
+                                    <div class="performance-bar">
+                                        <div class="performance-fill fill-good" style="width: 87%;"></div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="performance-bar">
+                                        <div class="performance-fill fill-excellent" style="width: 94%;"></div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="performance-bar">
+                                        <div class="performance-fill fill-average" style="width: 72%;"></div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="performance-bar">
+                                        <div class="performance-fill fill-good" style="width: 83%;"></div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="performance-bar">
+                                        <div class="performance-fill fill-average" style="width: 76%;"></div>
+                                    </div>
+                                </td>
+                                <td><strong>87/100</strong></td>
+                            </tr>
+                            <tr>
+                                <td>TechInvest Ltd</td>
+                                <td>
+                                    <div class="performance-bar">
+                                        <div class="performance-fill fill-average" style="width: 79%;"></div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="performance-bar">
+                                        <div class="performance-fill fill-good" style="width: 84%;"></div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="performance-bar">
+                                        <div class="performance-fill fill-good" style="width: 81%;"></div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="performance-bar">
+                                        <div class="performance-fill fill-average" style="width: 78%;"></div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="performance-bar">
+                                        <div class="performance-fill fill-good" style="width: 82%;"></div>
+                                    </div>
+                                </td>
+                                <td><strong>83/100</strong></td>
+                            </tr>
+                            <tr>
+                                <td>PayMetrics Inc</td>
+                                <td>
+                                    <div class="performance-bar">
+                                        <div class="performance-fill fill-good" style="width: 85%;"></div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="performance-bar">
+                                        <div class="performance-fill fill-average" style="width: 71%;"></div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="performance-bar">
+                                        <div class="performance-fill fill-excellent" style="width: 93%;"></div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="performance-bar">
+                                        <div class="performance-fill fill-good" style="width: 88%;"></div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="performance-bar">
+                                        <div class="performance-fill fill-good" style="width: 84%;"></div>
+                                    </div>
+                                </td>
+                                <td><strong>89/100</strong></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BCG Matrix Analysis -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center mb-5">
+                    <h2 class="display-5 fw-bold" data-aos="fade-up">Product Portfolio Analysis</h2>
+                    <p class="lead text-muted" data-aos="fade-up" data-aos-delay="100">
+                        Strategic product positioning using BCG matrix methodology
+                    </p>
+                </div>
+            </div>
+
+            <div class="quadrant-analysis" data-aos="zoom-in">
+                <h5 class="fw-bold mb-4">BCG Matrix - Market Share vs Market Growth</h5>
+                <div class="quadrant-grid">
+                    <div class="quadrant quadrant-stars">
+                        <div class="quadrant-title">STARS</div>
+                        <div class="quadrant-desc">
+                            <strong>AI Analytics Platform</strong><br>
+                            High Growth: 45%<br>
+                            High Share: 32%<br>
+                            <span class="position-indicator position-leader">Leader</span>
+                        </div>
+                    </div>
+                    <div class="quadrant quadrant-question">
+                        <div class="quadrant-title">QUESTION MARKS</div>
+                        <div class="quadrant-desc">
+                            <strong>DeFi Integration</strong><br>
+                            High Growth: 38%<br>
+                            Low Share: 8%<br>
+                            <span class="position-indicator position-challenger">Challenger</span>
+                        </div>
+                    </div>
+                    <div class="quadrant quadrant-cash">
+                        <div class="quadrant-title">CASH COWS</div>
+                        <div class="quadrant-desc">
+                            <strong>Banking APIs</strong><br>
+                            Low Growth: 12%<br>
+                            High Share: 41%<br>
+                            <span class="position-indicator position-leader">Stable</span>
+                        </div>
+                    </div>
+                    <div class="quadrant quadrant-dogs">
+                        <div class="quadrant-title">DOGS</div>
+                        <div class="quadrant-desc">
+                            <strong>Legacy Platform</strong><br>
+                            Low Growth: 5%<br>
+                            Low Share: 6%<br>
+                            <span class="position-indicator position-follower">Review</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-4">
+                    <div class="col-md-6">
+                        <h6 class="fw-bold mb-3">Strategic Recommendations</h6>
+                        <ul class="list-unstyled">
+                            <li class="mb-2"><i class="fas fa-star text-warning me-2"></i><strong>Stars:</strong> Invest heavily in AI Analytics Platform</li>
+                            <li class="mb-2"><i class="fas fa-question-circle text-info me-2"></i><strong>Question Marks:</strong> Decide on DeFi integration investment</li>
+                            <li class="mb-2"><i class="fas fa-dollar-sign text-success me-2"></i><strong>Cash Cows:</strong> Optimize and maintain Banking APIs</li>
+                            <li class="mb-2"><i class="fas fa-times text-danger me-2"></i><strong>Dogs:</strong> Consider divestiture or pivot</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="roi-projection">
+                            <h6 class="fw-bold mb-2">Portfolio ROI Projection</h6>
+                            <div class="projection-value">247%</div>
+                            <div class="projection-timeline">Expected 3-year return</div>
+                            <small class="d-block mt-2">Based on current market positioning and growth trajectory</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Strategic Initiatives -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center mb-5">
+                    <h2 class="display-5 fw-bold" data-aos="fade-up">Strategic Business Initiatives</h2>
+                    <p class="lead text-muted" data-aos="fade-up" data-aos-delay="100">
+                        Data-driven strategic recommendations for business growth
+                    </p>
+                </div>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="strategy-card">
+                        <div class="strategy-header">
+                            <div class="strategy-icon" style="background: var(--gradient-primary);">
+                                <i class="fas fa-rocket"></i>
+                            </div>
+                            <div class="strategy-title">Market Expansion</div>
+                            <span class="priority-badge priority-high">High Priority</span>
+                        </div>
+                        <p class="text-muted mb-3">
+                            Expand into emerging markets with high growth potential. Focus on Southeast Asia and Latin America regions showing 25%+ annual growth.
+                        </p>
+                        <div class="row g-3">
+                            <div class="col-6">
+                                <div class="data-point">
+                                    <div class="data-label">Target Revenue</div>
+                                    <div class="data-value">$8.5M</div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="data-point">
+                                    <div class="data-label">Timeline</div>
+                                    <div class="data-value">18 months</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-3">
+                            <span class="data-source-indicator source-predicted">
+                                <i class="fas fa-chart-line me-1"></i>ROI: 180%
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="strategy-card">
+                        <div class="strategy-header">
+                            <div class="strategy-icon" style="background: var(--gradient-secondary);">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="strategy-title">Customer Acquisition</div>
+                            <span class="priority-badge priority-high">High Priority</span>
+                        </div>
+                        <p class="text-muted mb-3">
+                            Implement targeted acquisition campaigns focusing on enterprise clients. Expected 40% increase in enterprise customer base within 12 months.
+                        </p>
+                        <div class="row g-3">
+                            <div class="col-6">
+                                <div class="data-point">
+                                    <div class="data-label">New Customers</div>
+                                    <div class="data-value">2,400</div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="data-point">
+                                    <div class="data-label">CAC Target</div>
+                                    <div class="data-value">$425</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-3">
+                            <span class="data-source-indicator source-internal">
+                                <i class="fas fa-bullseye me-1"></i>Conversion: 68%
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="strategy-card">
+                        <div class="strategy-header">
+                            <div class="strategy-icon" style="background: var(--gradient-accent);">
+                                <i class="fas fa-cogs"></i>
+                            </div>
+                            <div class="strategy-title">Product Innovation</div>
+                            <span class="priority-badge priority-medium">Medium Priority</span>
+                        </div>
+                        <p class="text-muted mb-3">
+                            Develop next-generation AI-powered features. Focus on predictive analytics and automated decision-making capabilities.
+                        </p>
+                        <div class="row g-3">
+                            <div class="col-6">
+                                <div class="data-point">
+                                    <div class="data-label">New Features</div>
+                                    <div class="data-value">12</div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="data-point">
+                                    <div class="data-label">Development</div>
+                                    <div class="data-value">6 months</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-3">
+                            <span class="data-source-indicator source-predicted">
+                                <i class="fas fa-lightbulb me-1"></i>Innovation Index: 91%
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6" data-aos="fade-up" data-aos-delay="400">
+                    <div class="strategy-card">
+                        <div class="strategy-header">
+                            <div class="strategy-icon" style="background: var(--gradient-warning);">
+                                <i class="fas fa-handshake"></i>
+                            </div>
+                            <div class="strategy-title">Partnership Strategy</div>
+                            <span class="priority-badge priority-medium">Medium Priority</span>
+                        </div>
+                        <p class="text-muted mb-3">
+                            Establish strategic partnerships with leading financial institutions and technology providers to expand market reach and capabilities.
+                        </p>
+                        <div class="row g-3">
+                            <div class="col-6">
+                                <div class="data-point">
+                                    <div class="data-label">Partnerships</div>
+                                    <div class="data-value">15</div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="data-point">
+                                    <div class="data-label">Revenue Impact</div>
+                                    <div class="data-value">+$1.2M</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-3">
+                            <span class="data-source-indicator source-external">
+                                <i class="fas fa-link me-1"></i>Network Value: High
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Business Intelligence Timeline -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center mb-5">
+                    <h2 class="display-5 fw-bold" data-aos="fade-up">Strategic Insights Timeline</h2>
+                    <p class="lead text-muted" data-aos="fade-up" data-aos-delay="100">
+                        Key business intelligence insights and recommendations
+                    </p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-10 mx-auto">
+                    <div class="insight-timeline">
+                        <div class="timeline-item" data-aos="fade-up" data-aos-delay="100">
+                            <div class="timeline-marker marker-insight"></div>
+                            <div class="bi-dashboard">
+                                <div class="metric-display metric-forecast">
+                                    <i class="fas fa-lightbulb me-1"></i>Insight
+                                </div>
+                                <h6 class="fw-bold">Revenue Growth Acceleration Detected</h6>
+                                <p class="text-muted mb-2">AI analysis shows 18.5% monthly growth trend. Opportunity to scale marketing spend by 25% for Q1 2025.</p>
+                                <div class="d-flex align-items-center">
+                                    <small class="text-muted me-3">
+                                        <i class="fas fa-clock me-1"></i>2 hours ago
+                                    </small>
+                                    <span class="insight-badge">
+                                        <i class="fas fa-chart-line me-1"></i>Growth Opportunity
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item" data-aos="fade-up" data-aos-delay="200">
+                            <div class="timeline-marker marker-strategy"></div>
+                            <div class="bi-dashboard">
+                                <div class="metric-display metric-comparison">
+                                    <i class="fas fa-crosshairs me-1"></i>Strategy
+                                </div>
+                                <h6 class="fw-bold">Competitive Advantage Identified</h6>
+                                <p class="text-muted mb-2">Our AI capabilities surpass competitors by 23%. Recommend accelerating product development to maintain lead.</p>
+                                <div class="d-flex align-items-center">
+                                    <small class="text-muted me-3">
+                                        <i class="fas fa-clock me-1"></i>5 hours ago
+                                    </small>
+                                    <span class="insight-badge">
+                                        <i class="fas fa-trophy me-1"></i>Competitive Edge
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item" data-aos="fade-up" data-aos-delay="300">
+                            <div class="timeline-marker marker-alert"></div>
+                            <div class="bi-dashboard">
+                                <div class="metric-display metric-periodic">
+                                    <i class="fas fa-exclamation-triangle me-1"></i>Alert
+                                </div>
+                                <h6 class="fw-bold">Customer Churn Risk Assessment</h6>
+                                <p class="text-muted mb-2">12.3% of enterprise customers showing early churn signals. Immediate retention campaigns recommended.</p>
+                                <div class="d-flex align-items-center">
+                                    <small class="text-muted me-3">
+                                        <i class="fas fa-clock me-1"></i>1 day ago
+                                    </small>
+                                    <span class="insight-badge">
+                                        <i class="fas fa-shield-alt me-1"></i>Risk Mitigation
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item" data-aos="fade-up" data-aos-delay="400">
+                            <div class="timeline-marker marker-strategy"></div>
+                            <div class="bi-dashboard">
+                                <div class="metric-display metric-real-time">
+                                    <i class="fas fa-globe me-1"></i>Opportunity
+                                </div>
+                                <h6 class="fw-bold">Market Expansion Window</h6>
+                                <p class="text-muted mb-2">Southeast Asian markets showing optimal entry conditions. Competitor analysis suggests 6-month first-mover advantage.</p>
+                                <div class="d-flex align-items-center">
+                                    <small class="text-muted me-3">
+                                        <i class="fas fa-clock me-1"></i>2 days ago
+                                    </small>
+                                    <span class="insight-badge">
+                                        <i class="fas fa-compass me-1"></i>Expansion Ready
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Strategic Alert -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="alert-strategic" data-aos="zoom-in">
+                <div class="row align-items-center">
+                    <div class="col-lg-8">
+                        <h4 class="fw-bold mb-3">
+                            <i class="fas fa-exclamation-triangle me-2"></i>Strategic Recommendation
+                        </h4>
+                        <p class="mb-0">Based on comprehensive business intelligence analysis, we recommend immediate investment in AI capabilities and market expansion. Expected combined ROI: 180% within 18 months.</p>
+                    </div>
+                    <div class="col-lg-4 text-lg-end">
+                        <button class="btn btn-light btn-lg px-4">
+                            <i class="fas fa-arrow-right me-2"></i>View Full Report
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-5" style="background: var(--gradient-primary);">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center text-white">
+                    <h2 class="display-5 fw-bold mb-4" data-aos="fade-up">Transform Your Business Intelligence</h2>
+                    <p class="lead mb-4" data-aos="fade-up" data-aos-delay="100">
+                        Join 2,500+ enterprises that leverage our BI platform for strategic decision-making
+                    </p>
+                    <div class="d-flex flex-wrap justify-content-center gap-3" data-aos="fade-up" data-aos-delay="200">
+                        <button class="btn btn-light btn-lg px-5 py-3">
+                            <i class="fas fa-chart-line me-2"></i>Launch BI Suite
+                        </button>
+                        <button class="btn btn-outline-light btn-lg px-5 py-3">
+                            <i class="fas fa-calendar me-2"></i>Schedule Consultation
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-light py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <h5 class="fw-bold mb-3">
+                        <i class="fas fa-chart-pie me-2"></i>MCS Platform
+                    </h5>
+                    <p class="text-muted">Comprehensive business intelligence platform for data-driven decision making.</p>
+                    <div class="d-flex gap-3">
+                        <a href="#" class="text-light"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-light"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="text-light"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h6 class="fw-bold mb-3">Product</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="features.html" class="text-muted text-decoration-none">Features</a></li>
+                        <li><a href="api.html" class="text-muted text-decoration-none">API</a></li>
+                        <li><a href="pricing.html" class="text-muted text-decoration-none">Pricing</a></li>
+                        <li><a href="get-started.html" class="text-muted text-decoration-none">Get Started</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h6 class="fw-bold mb-3">Enterprise</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="banking-integrations.html" class="text-muted text-decoration-none">Banking</a></li>
+                        <li><a href="compliance-suite.html" class="text-muted text-decoration-none">Compliance</a></li>
+                        <li><a href="market-intelligence.html" class="text-muted text-decoration-none">Market Intel</a></li>
+                        <li><a href="global-expansion.html" class="text-muted text-decoration-none">Global</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h6 class="fw-bold mb-3">Support</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-muted text-decoration-none">Documentation</a></li>
+                        <li><a href="#" class="text-muted text-decoration-none">Help Center</a></li>
+                        <li><a href="#" class="text-muted text-decoration-none">Status</a></li>
+                        <li><a href="#" class="text-muted text-decoration-none">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h6 class="fw-bold mb-3">Company</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-muted text-decoration-none">About</a></li>
+                        <li><a href="#" class="text-muted text-decoration-none">Blog</a></li>
+                        <li><a href="#" class="text-muted text-decoration-none">Careers</a></li>
+                        <li><a href="#" class="text-muted text-decoration-none">Press</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <p class="text-muted mb-0">&copy; 2025 MCS Platform. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <a href="#" class="text-muted text-decoration-none me-3">Privacy Policy</a>
+                    <a href="#" class="text-muted text-decoration-none">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100
+        });
+
+        // Interactive elements
+        document.addEventListener('DOMContentLoaded', function() {
+            // KPI card animations
+            const kpiCards = document.querySelectorAll('.kpi-card');
+            kpiCards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.style.animation = 'fadeInUp 0.6s ease-out';
+                }, index * 100);
+            });
+
+            // Competitor row interactions
+            const competitorRows = document.querySelectorAll('.competitor-row');
+            competitorRows.forEach(row => {
+                row.addEventListener('click', function() {
+                    const companyName = this.querySelector('.competitor-name').textContent;
+                    alert(`Detailed analysis for ${companyName} coming soon.`);
+                });
+            });
+
+            // Performance bar animations
+            const performanceBars = document.querySelectorAll('.performance-fill');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const bar = entry.target;
+                        const width = bar.style.width;
+                        bar.style.width = '0%';
+                        setTimeout(() => {
+                            bar.style.width = width;
+                        }, 300);
+                    }
+                });
+            });
+
+            performanceBars.forEach(bar => observer.observe(bar));
+
+            // BCG Matrix quadrant interactions
+            const quadrants = document.querySelectorAll('.quadrant');
+            quadrants.forEach(quadrant => {
+                quadrant.addEventListener('click', function() {
+                    const title = this.querySelector('.quadrant-title').textContent;
+                    const desc = this.querySelector('.quadrant-desc').textContent;
+                    alert(`${title}:\n${desc.trim()}`);
+                });
+            });
+
+            // Strategy card interactions
+            const strategyCards = document.querySelectorAll('.strategy-card');
+            strategyCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    const title = this.querySelector('.strategy-title').textContent;
+                    const priority = this.querySelector('.priority-badge').textContent;
+                    alert(`${title} - ${priority}\n\nDetailed strategy document available.`);
+                });
+            });
+
+            // Timeline marker animations
+            const timelineMarkers = document.querySelectorAll('.timeline-marker');
+            timelineMarkers.forEach((marker, index) => {
+                setTimeout(() => {
+                    marker.style.animation = 'pulse 2s infinite';
+                }, index * 500);
+            });
+
+            // Real-time KPI updates
+            const kpiValues = document.querySelectorAll('.kpi-value');
+            kpiValues.forEach(value => {
+                setInterval(() => {
+                    const currentValue = parseFloat(value.textContent.replace(/[^0-9.-]+/g, ""));
+                    const isPercentage = value.textContent.includes('%');
+                    const change = (Math.random() - 0.5) * 0.02; // Random change between -1% and +1%
+                    const newValue = currentValue * (1 + change);
+                    
+                    if (isPercentage) {
+                        value.textContent = newValue.toFixed(1) + '%';
+                    } else if (value.textContent.includes('$')) {
+                        value.textContent = '$' + newValue.toFixed(1) + 'M';
+                    } else {
+                        value.textContent = newValue.toFixed(1);
+                    }
+                }, 8000);
+            });
+
+            // Priority badge color changes
+            const priorityBadges = document.querySelectorAll('.priority-badge');
+            priorityBadges.forEach(badge => {
+                badge.addEventListener('mouseenter', function() {
+                    this.style.transform = 'scale(1.1)';
+                });
+                badge.addEventListener('mouseleave', function() {
+                    this.style.transform = 'scale(1)';
+                });
+            });
+
+            // Insight badge interactions
+            const insightBadges = document.querySelectorAll('.insight-badge');
+            insightBadges.forEach(badge => {
+                badge.addEventListener('click', function() {
+                    const insight = this.textContent.trim();
+                    alert(`Insight: ${insight}\n\nClick to view detailed analysis.`);
+                });
+            });
+
+            // Benchmark comparison animations
+            const benchmarkItems = document.querySelectorAll('.benchmark-item');
+            benchmarkItems.forEach(item => {
+                item.addEventListener('mouseenter', function() {
+                    this.style.background = '#f8fafc';
+                    this.style.transform = 'translateX(5px)';
+                    this.style.transition = 'all 0.3s ease';
+                });
+                item.addEventListener('mouseleave', function() {
+                    this.style.background = 'transparent';
+                    this.style.transform = 'translateX(0)';
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing - Metal Credit Score (MCS) | Transparent Pricing Plans</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.1/aos.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #1a365d;
+            --secondary-color: #2d5a8e;
+            --accent-color: #ffd700;
+            --success-color: #28a745;
+            --gradient-primary: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            --gradient-gold: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+            --gradient-silver: linear-gradient(135deg, #c0c0c0 0%, #f0f0f0 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Navigation */
+        .navbar {
+            background: rgba(26, 54, 93, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-brand {
+            font-weight: 800;
+            font-size: 1.8rem;
+            color: var(--accent-color) !important;
+        }
+
+        .nav-link {
+            color: white !important;
+            font-weight: 500;
+            margin: 0 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--accent-color) !important;
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 120px 0 80px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Pricing Section */
+        .pricing-section {
+            padding: 80px 0;
+            background: #f8f9fa;
+        }
+
+        .pricing-card {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            height: 100%;
+            position: relative;
+            border: 2px solid transparent;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .pricing-card.featured {
+            border: 2px solid var(--accent-color);
+            transform: scale(1.05);
+        }
+
+        .pricing-card.featured::before {
+            content: 'Most Popular';
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--gradient-gold);
+            color: var(--primary-color);
+            padding: 0.5rem 2rem;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .price {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            margin: 1rem 0;
+        }
+
+        .price-period {
+            font-size: 1rem;
+            color: #666;
+            font-weight: 400;
+        }
+
+        .feature-list {
+            text-align: left;
+            margin: 2rem 0;
+        }
+
+        .feature-item {
+            padding: 0.5rem 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .feature-item i {
+            color: var(--success-color);
+            margin-right: 1rem;
+            width: 20px;
+        }
+
+        /* Comparison Table */
+        .comparison-section {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .comparison-table {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .comparison-table th {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 1.5rem 1rem;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .comparison-table td {
+            padding: 1rem;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+        }
+
+        .comparison-table tr:hover {
+            background: #f8f9fa;
+        }
+
+        .check-mark {
+            color: var(--success-color);
+            font-size: 1.2rem;
+        }
+
+        .cross-mark {
+            color: #dc3545;
+            font-size: 1.2rem;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            padding: 80px 0;
+            background: #f8f9fa;
+        }
+
+        .faq-item {
+            background: white;
+            margin-bottom: 1rem;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .faq-question {
+            background: white;
+            padding: 1.5rem;
+            border: none;
+            width: 100%;
+            text-align: left;
+            font-weight: 600;
+            color: var(--primary-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: #f8f9fa;
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem 1.5rem;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 80px 0;
+            background: var(--gradient-primary);
+            color: white;
+            text-align: center;
+        }
+
+        .btn-primary-custom {
+            background: var(--gradient-gold);
+            color: var(--primary-color);
+            border: none;
+            padding: 15px 35px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+        }
+
+        .btn-primary-custom:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 215, 0, 0.4);
+            color: var(--primary-color);
+        }
+
+        /* Footer */
+        .footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 60px 0 30px;
+        }
+
+        .footer a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .pricing-card.featured {
+                transform: none;
+                margin: 2rem 0;
+            }
+            
+            .comparison-table {
+                font-size: 0.9rem;
+            }
+            
+            .comparison-table th,
+            .comparison-table td {
+                padding: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="fas fa-coins me-2"></i>MCS
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="features.html">Features</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="pricing.html">Pricing</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="get-started.html">Get Started</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="dashboard/index.html" target="_blank">
+                            <i class="fas fa-tachometer-alt me-1"></i>Dashboard
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h1 data-aos="fade-up">Simple, Transparent Pricing</h1>
+                    <p class="lead" data-aos="fade-up" data-aos-delay="100">
+                        Choose the perfect plan for your needs. Start free and scale as you grow.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Plans -->
+    <section class="pricing-section">
+        <div class="container">
+            <div class="row text-center mb-5">
+                <div class="col-lg-8 mx-auto">
+                    <h2 data-aos="fade-up">Choose Your Plan</h2>
+                    <p class="lead" data-aos="fade-up" data-aos-delay="100">
+                        From individuals to enterprises, we have the right solution for you.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="row">
+                <!-- Individual Plan -->
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="pricing-card" data-aos="fade-up" data-aos-delay="100">
+                        <h4>Individual</h4>
+                        <div class="price">
+                            Free
+                            <span class="price-period">/ forever</span>
+                        </div>
+                        <p class="text-muted">Perfect for individuals getting started</p>
+                        
+                        <div class="feature-list">
+                            <div class="feature-item">
+                                <i class="fas fa-check"></i>
+                                <span>Basic credit score checking</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check"></i>
+                                <span>Portfolio tracking for 1 wallet</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check"></i>
+                                <span>Monthly score updates</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check"></i>
+                                <span>Basic risk assessment</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check"></i>
+                                <span>Email support</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-times"></i>
+                                <span>API access</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-times"></i>
+                                <span>Priority support</span>
+                            </div>
+                        </div>
+                        
+                        <a href="get-started.html" class="btn btn-outline-primary w-100">
+                            Get Started Free
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Professional Plan -->
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="pricing-card featured" data-aos="fade-up" data-aos-delay="200">
+                        <h4>Professional</h4>
+                        <div class="price">
+                            ₹999
+                            <span class="price-period">/ month</span>
+                        </div>
+                        <p class="text-muted">For active investors & professionals</p>
+                        
+                        <div class="feature-list">
+                            <div class="feature-item">
+                                <i class="fas fa-check"></i>
+                                <span>Advanced credit score analysis</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check"></i>
+                                <span>Multi-wallet portfolio tracking</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check"></i>
+                                <span>Real-time score updates</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check"></i>
+                                <span>Advanced risk modeling</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check"></i>
+                                <span>Market alerts & notifications</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check"></i>
+                                <span>Basic API access (1000 calls/month)</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check"></i>
+                                <span>Priority email support</span>
+                            </div>
+                        </div>
+                        
+                        <a href="get-started.html" class="btn btn-primary-custom w-100">
+                            Start Professional
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Enterprise Plan -->
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="pricing-card" data-aos="fade-up" data-aos-delay="300">
+                        <h4>Enterprise</h4>
+                        <div class="price">
+                            Custom
+                            <span class="price-period">/ pricing</span>
+                        </div>
+                        <p class="text-muted">For financial institutions & enterprises</p>
+                        
+                        <div class="feature-list">
+                            <div class="feature-item">
+                                <i class="fas fa-check"></i>
+                                <span>Everything in Professional</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check"></i>
+                                <span>Unlimited API access</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check"></i>
+                                <span>Custom scoring models</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check"></i>
+                                <span>White-label solutions</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check"></i>
+                                <span>Dedicated account manager</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check"></i>
+                                <span>24/7 phone support</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check"></i>
+                                <span>SLA guarantees</span>
+                            </div>
+                        </div>
+                        
+                        <a href="mailto:enterprise@mcscredit.com" class="btn btn-outline-primary w-100">
+                            Contact Sales
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Feature Comparison -->
+    <section class="comparison-section">
+        <div class="container">
+            <div class="row text-center mb-5">
+                <div class="col-lg-8 mx-auto">
+                    <h2 data-aos="fade-up">Detailed Comparison</h2>
+                    <p class="lead" data-aos="fade-up" data-aos-delay="100">
+                        Compare features across all plans to find the perfect fit.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="comparison-table" data-aos="fade-up" data-aos-delay="100">
+                        <table class="table mb-0">
+                            <thead>
+                                <tr>
+                                    <th>Feature</th>
+                                    <th>Individual</th>
+                                    <th>Professional</th>
+                                    <th>Enterprise</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Credit Score Checks</strong></td>
+                                    <td>5/month</td>
+                                    <td>Unlimited</td>
+                                    <td>Unlimited</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Portfolio Tracking</strong></td>
+                                    <td>1 wallet</td>
+                                    <td>5 wallets</td>
+                                    <td>Unlimited</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Real-time Updates</strong></td>
+                                    <td><i class="fas fa-times cross-mark"></i></td>
+                                    <td><i class="fas fa-check check-mark"></i></td>
+                                    <td><i class="fas fa-check check-mark"></i></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>API Access</strong></td>
+                                    <td><i class="fas fa-times cross-mark"></i></td>
+                                    <td>1,000 calls/month</td>
+                                    <td>Unlimited</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Risk Assessment</strong></td>
+                                    <td>Basic</td>
+                                    <td>Advanced</td>
+                                    <td>Custom</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Market Alerts</strong></td>
+                                    <td><i class="fas fa-times cross-mark"></i></td>
+                                    <td><i class="fas fa-check check-mark"></i></td>
+                                    <td><i class="fas fa-check check-mark"></i></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Support</strong></td>
+                                    <td>Email</td>
+                                    <td>Priority Email</td>
+                                    <td>24/7 Phone</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>White Label</strong></td>
+                                    <td><i class="fas fa-times cross-mark"></i></td>
+                                    <td><i class="fas fa-times cross-mark"></i></td>
+                                    <td><i class="fas fa-check check-mark"></i></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>SLA Guarantee</strong></td>
+                                    <td><i class="fas fa-times cross-mark"></i></td>
+                                    <td>99.5%</td>
+                                    <td>99.9%</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <div class="row text-center mb-5">
+                <div class="col-lg-8 mx-auto">
+                    <h2 data-aos="fade-up">Frequently Asked Questions</h2>
+                    <p class="lead" data-aos="fade-up" data-aos-delay="100">
+                        Everything you need to know about our pricing and features.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <div class="faq-item" data-aos="fade-up" data-aos-delay="100">
+                        <button class="faq-question" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                            <i class="fas fa-chevron-down me-2"></i>Can I change my plan at any time?
+                        </button>
+                        <div class="collapse" id="faq1">
+                            <div class="faq-answer">
+                                Yes, you can upgrade or downgrade your plan at any time. Changes will be reflected in your next billing cycle, and we'll prorate any differences accordingly.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item" data-aos="fade-up" data-aos-delay="200">
+                        <button class="faq-question" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                            <i class="fas fa-chevron-down me-2"></i>What happens if I exceed my API limits?
+                        </button>
+                        <div class="faq-answer">
+                            You'll receive notifications as you approach your limit. For Professional plans, additional API calls are available at ₹2 per call. Enterprise plans include unlimited API access.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item" data-aos="fade-up" data-aos-delay="300">
+                        <button class="faq-question" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                            <i class="fas fa-chevron-down me-2"></i>Is there a setup fee for Enterprise plans?
+                        </button>
+                        <div class="faq-answer">
+                            Enterprise plans include comprehensive onboarding and setup assistance at no extra cost. This includes API integration support, custom model configuration, and team training.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item" data-aos="fade-up" data-aos-delay="400">
+                        <button class="faq-question" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                            <i class="fas fa-chevron-down me-2"></i>Can I cancel my subscription anytime?
+                        </button>
+                        <div class="faq-answer">
+                            Yes, you can cancel your subscription at any time. You'll continue to have access to your plan's features until the end of your current billing period.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item" data-aos="fade-up" data-aos-delay="500">
+                        <button class="faq-question" type="button" data-bs-toggle="collapse" data-bs-target="#faq5">
+                            <i class="fas fa-chevron-down me-2"></i>Do you offer annual discounts?
+                        </button>
+                        <div class="faq-answer">
+                            Yes, we offer 20% discount on annual subscriptions for Professional plans. Enterprise custom pricing also includes annual billing options with attractive terms.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h2 data-aos="fade-up">Ready to Get Started?</h2>
+                    <p class="lead mb-4" data-aos="fade-up" data-aos-delay="100">
+                        Join thousands of users who are already building better credit with real assets.
+                    </p>
+                    <div data-aos="fade-up" data-aos-delay="200">
+                        <a href="get-started.html" class="btn btn-primary-custom me-3">
+                            <i class="fas fa-rocket me-2"></i>Start Free Today
+                        </a>
+                        <a href="mailto:sales@mcscredit.com" class="btn btn-outline-custom">
+                            <i class="fas fa-phone me-2"></i>Talk to Sales
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <h5><i class="fas fa-coins me-2"></i>MCS</h5>
+                    <p class="mb-3">India's first asset-backed credit scoring system.</p>
+                    <div>
+                        <a href="#" class="me-3"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="me-3"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="me-3"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h6>Product</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="features.html">Features</a></li>
+                        <li><a href="pricing.html">Pricing</a></li>
+                        <li><a href="get-started.html">Get Started</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h6>Resources</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">API Reference</a></li>
+                        <li><a href="#">Support</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h6>Company</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Press</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h6>Legal</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Cookie Policy</a></li>
+                        <li><a href="#">Compliance</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="my-4" style="border-color: #333;">
+            <div class="row">
+                <div class="col-md-6">
+                    <p class="mb-0">&copy; 2025 Metal Credit Score (MCS). All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p class="mb-0">Powered by RWA Tokenization Ecosystem</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.1/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
+        });
+
+        // FAQ accordion functionality
+        document.querySelectorAll('.faq-question').forEach(button => {
+            button.addEventListener('click', function() {
+                const icon = this.querySelector('i');
+                if (icon.classList.contains('fa-chevron-down')) {
+                    icon.classList.remove('fa-chevron-down');
+                    icon.classList.add('fa-chevron-up');
+                } else {
+                    icon.classList.remove('fa-chevron-up');
+                    icon.classList.add('fa-chevron-down');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

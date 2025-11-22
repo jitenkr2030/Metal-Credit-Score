@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Educational Hub - Metal Credit Score (MCS) | Learn Asset-Backed Credit Scoring</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.1/aos.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #1a365d;
+            --secondary-color: #2d5a8e;
+            --accent-color: #ffd700;
+            --success-color: #28a745;
+            --warning-color: #ffc107;
+            --danger-color: #dc3545;
+            --gradient-primary: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            --gradient-gold: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Navigation */
+        .navbar {
+            background: rgba(26, 54, 93, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-brand {
+            font-weight: 800;
+            font-size: 1.8rem;
+            color: var(--accent-color) !important;
+        }
+
+        .nav-link {
+            color: white !important;
+            font-weight: 500;
+            margin: 0 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--accent-color) !important;
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 120px 0 80px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Learning Paths */
+        .learning-paths {
+            padding: 80px 0;
+            background: #f8f9fa;
+        }
+
+        .path-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+
+        .path-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+
+        .path-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .path-progress {
+            margin: 1rem 0;
+        }
+
+        .progress-bar-custom {
+            height: 8px;
+            background: #e9ecef;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background: var(--gradient-gold);
+            transition: width 0.5s ease;
+            border-radius: 4px;
+        }
+
+        /* Module Cards */
+        .modules-section {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .module-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .module-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .module-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .module-number {
+            width: 40px;
+            height: 40px;
+            background: var(--gradient-gold);
+            color: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            margin-right: 1rem;
+        }
+
+        .module-duration {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* Interactive Elements */
+        .quiz-section {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .quiz-question {
+            margin-bottom: 2rem;
+        }
+
+        .quiz-option {
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .quiz-option:hover {
+            border-color: var(--accent-color);
+        }
+
+        .quiz-option.selected {
+            border-color: var(--accent-color);
+            background: rgba(255, 215, 0, 0.1);
+        }
+
+        .quiz-option.correct {
+            border-color: var(--success-color);
+            background: rgba(40, 167, 69, 0.1);
+        }
+
+        .quiz-option.incorrect {
+            border-color: var(--danger-color);
+            background: rgba(220, 53, 69, 0.1);
+        }
+
+        /* Video Player */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 15px;
+            margin: 2rem 0;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Knowledge Check */
+        .knowledge-check {
+            background: var(--gradient-primary);
+            color: white;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .score-badge {
+            width: 80px;
+            height: 80px;
+            background: var(--gradient-gold);
+            color: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin: 0 auto 1rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 80px 0;
+            background: var(--gradient-primary);
+            color: white;
+            text-align: center;
+        }
+
+        /* Footer */
+        .footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 60px 0 30px;
+        }
+
+        .footer a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+
+        /* Language Selector */
+        .language-selector {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .language-btn {
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            border-radius: 25px;
+            padding: 8px 15px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .language-btn:hover {
+            background: var(--accent-color);
+            color: var(--primary-color);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="fas fa-coins me-2"></i>MCS
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="features.html">Features</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="pricing.html">Pricing</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="get-started.html">Get Started</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="education.html">Learn</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="dashboard/index.html" target="_blank">
+                            <i class="fas fa-tachometer-alt me-1"></i>Dashboard
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Language Selector -->
+    <div class="language-selector">
+        <div class="dropdown">
+            <button class="btn language-btn dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                <i class="fas fa-globe me-1"></i>English
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#" onclick="changeLanguage('en')">🇺🇸 English</a></li>
+                <li><a class="dropdown-item" href="#" onclick="changeLanguage('hi')">🇮🇳 हिन्दी (Hindi)</a></li>
+                <li><a class="dropdown-item" href="#" onclick="changeLanguage('ta')">🇮🇳 தமிழ் (Tamil)</a></li>
+                <li><a class="dropdown-item" href="#" onclick="changeLanguage('te')">🇮🇳 తెలుగు (Telugu)</a></li>
+                <li><a class="dropdown-item" href="#" onclick="changeLanguage('bn')">🇮🇳 বাংলা (Bengali)</a></li>
+                <li><a class="dropdown-item" href="#" onclick="changeLanguage('mr')">🇮🇳 मराठी (Marathi)</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h1 data-aos="fade-up">Master Asset-Backed Credit Scoring</h1>
+                    <p class="lead" data-aos="fade-up" data-aos-delay="100">
+                        Comprehensive learning modules to understand how MCS revolutionizes credit assessment through real asset valuation.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Learning Paths -->
+    <section class="learning-paths">
+        <div class="container">
+            <div class="row text-center mb-5">
+                <div class="col-lg-8 mx-auto">
+                    <h2 data-aos="fade-up">Choose Your Learning Path</h2>
+                    <p class="lead" data-aos="fade-up" data-aos-delay="100">
+                        Select the path that best matches your role and interests.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="row">
+                <!-- Individual Path -->
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="path-card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="path-icon">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <h4>Individual Investor</h4>
+                        <p>Learn how to build and optimize your asset-backed credit score for better financial opportunities.</p>
+                        
+                        <div class="path-progress">
+                            <small class="text-muted">Your Progress</small>
+                            <div class="progress-bar-custom">
+                                <div class="progress-bar-fill" style="width: 60%;"></div>
+                            </div>
+                            <small>3 of 5 modules completed</small>
+                        </div>
+                        
+                        <ul class="mt-3">
+                            <li><i class="fas fa-check text-success me-2"></i>Asset Portfolio Basics</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Credit Score Fundamentals</li>
+                            <li><i class="fas fa-clock text-muted me-2"></i>Portfolio Optimization</li>
+                            <li><i class="fas fa-lock text-muted me-2"></i>Advanced Strategies</li>
+                            <li><i class="fas fa-lock text-muted me-2"></i>Real-World Applications</li>
+                        </ul>
+                        
+                        <a href="#modules" class="btn btn-primary-custom w-100 mt-3">
+                            Continue Learning
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Financial Institution Path -->
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="path-card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="path-icon">
+                            <i class="fas fa-university"></i>
+                        </div>
+                        <h4>Financial Institution</h4>
+                        <p>Understand implementation, integration, and best practices for asset-backed lending programs.</p>
+                        
+                        <div class="path-progress">
+                            <small class="text-muted">Your Progress</small>
+                            <div class="progress-bar-custom">
+                                <div class="progress-bar-fill" style="width: 25%;"></div>
+                            </div>
+                            <small>1 of 8 modules completed</small>
+                        </div>
+                        
+                        <ul class="mt-3">
+                            <li><i class="fas fa-check text-success me-2"></i>MCS Overview</li>
+                            <li><i class="fas fa-clock text-muted me-2"></i>API Integration</li>
+                            <li><i class="fas fa-lock text-muted me-2"></i>Risk Assessment</li>
+                            <li><i class="fas fa-lock text-muted me-2"></i>Compliance & Regulation</li>
+                            <li><i class="fas fa-lock text-muted me-2"></i>Implementation Guide</li>
+                        </ul>
+                        
+                        <a href="#modules" class="btn btn-outline-primary w-100 mt-3">
+                            Start Institution Path
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Developer Path -->
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="path-card" data-aos="fade-up" data-aos-delay="300">
+                        <div class="path-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <h4>Developer/Technical</h4>
+                        <p>Deep dive into technical implementation, API usage, and system architecture.</p>
+                        
+                        <div class="path-progress">
+                            <small class="text-muted">Your Progress</small>
+                            <div class="progress-bar-custom">
+                                <div class="progress-bar-fill" style="width: 80%;"></div>
+                            </div>
+                            <small>4 of 5 modules completed</small>
+                        </div>
+                        
+                        <ul class="mt-3">
+                            <li><i class="fas fa-check text-success me-2"></i>API Fundamentals</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Authentication & Security</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Data Models</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Integration Examples</li>
+                            <li><i class="fas fa-clock text-muted me-2"></i>Advanced Topics</li>
+                        </ul>
+                        
+                        <a href="#modules" class="btn btn-outline-primary w-100 mt-3">
+                            Continue Development
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modules Section -->
+    <section id="modules" class="modules-section">
+        <div class="container">
+            <div class="row text-center mb-5">
+                <div class="col-lg-8 mx-auto">
+                    <h2 data-aos="fade-up">Learning Modules</h2>
+                    <p class="lead" data-aos="fade-up" data-aos-delay="100">
+                        Interactive modules with videos, quizzes, and practical examples.
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Module 1: What is Asset-Backed Credit Scoring -->
+            <div class="module-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="module-header">
+                    <div class="module-number">1</div>
+                    <div>
+                        <h4>What is Asset-Backed Credit Scoring?</h4>
+                        <div class="module-duration">
+                            <i class="fas fa-clock me-1"></i>15 minutes • Beginner
+                        </div>
+                    </div>
+                </div>
+                
+                <p>Understanding the revolutionary concept of using real assets instead of traditional credit history for credit assessment.</p>
+                
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
+                </div>
+                
+                <h6>Key Learning Points:</h6>
+                <ul>
+                    <li>Limitations of traditional credit scoring</li>
+                    <li>Benefits of asset-backed assessment</li>
+                    <li>How MCS differs from CIBIL/Experian</li>
+                    <li>Real-world applications and success stories</li>
+                </ul>
+                
+                <button class="btn btn-outline-primary" onclick="startModule(1)">
+                    <i class="fas fa-play me-2"></i>Start Module
+                </button>
+            </div>
+            
+            <!-- Module 2: Supported Asset Classes -->
+            <div class="module-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="module-header">
+                    <div class="module-number">2</div>
+                    <div>
+                        <h4>Supported Asset Classes</h4>
+                        <div class="module-duration">
+                            <i class="fas fa-clock me-1"></i>20 minutes • Beginner
+                        </div>
+                    </div>
+                </div>
+                
+                <p>Deep dive into Gold (BGT), Silver (BST), Platinum (BPT), and BINR stablecoin - how they work and their benefits.</p>
+                
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <h6><i class="fas fa-coins text-warning me-2"></i>Gold (BGT)</h6>
+                                <p class="small">1 BGT = 1 gram 24k gold, vault secured and audited</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <h6><i class="fas fa-medal text-secondary me-2"></i>Silver (BST)</h6>
+                                <p class="small">1 BST = 10 grams 999 fine silver with institutional backing</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <h6><i class="fas fa-gem text-primary me-2"></i>Platinum (BPT)</h6>
+                                <p class="small">Premium precious metal with industrial demand</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <h6><i class="fas fa-coins text-success me-2"></i>BINR Stablecoin</h6>
+                                <p class="small">Fully collateralized stable digital currency</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="btn btn-outline-primary" onclick="startModule(2)">
+                    <i class="fas fa-play me-2"></i>Start Module
+                </button>
+            </div>
+            
+            <!-- Interactive Quiz -->
+            <div class="quiz-section" data-aos="fade-up" data-aos-delay="300">
+                <h4>Quick Knowledge Check</h4>
+                <p>Test your understanding with this interactive quiz.</p>
+                
+                <div class="quiz-question">
+                    <h6>What is the primary advantage of asset-backed credit scoring?</h6>
+                    <div class="quiz-option" onclick="selectAnswer(this, false)">
+                        A) It eliminates the need for documentation
+                    </div>
+                    <div class="quiz-option" onclick="selectAnswer(this, true)">
+                        B) It provides credit access to people without traditional credit history
+                    </div>
+                    <div class="quiz-option" onclick="selectAnswer(this, false)">
+                        C) It requires less technical infrastructure
+                    </div>
+                    <div class="quiz-option" onclick="selectAnswer(this, false)">
+                        D) It works only with cryptocurrency
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Module 3: How MCS Scoring Works -->
+            <div class="module-card" data-aos="fade-up" data-aos-delay="400">
+                <div class="module-header">
+                    <div class="module-number">3</div>
+                    <div>
+                        <h4>How MCS Scoring Algorithm Works</h4>
+                        <div class="module-duration">
+                            <i class="fas fa-clock me-1"></i>25 minutes • Intermediate
+                        </div>
+                    </div>
+                </div>
+                
+                <p>Understanding the three components: Asset Score (400), Behavior Score (300), and Risk Score (200) - totaling 300-900 scale.</p>
+                
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="text-center">
+                            <div class="badge bg-primary p-3 fs-5 mb-2">400</div>
+                            <h6>Asset Score</h6>
+                            <p class="small">Portfolio value, diversification, market performance</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="text-center">
+                            <div class="badge bg-success p-3 fs-5 mb-2">300</div>
+                            <h6>Behavior Score</h6>
+                            <p class="small">Transaction patterns, consistency, SIP history</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="text-center">
+                            <div class="badge bg-warning p-3 fs-5 mb-2">200</div>
+                            <h6>Risk Score</h6>
+                            <p class="small">Volatility, liquidity, correlation analysis</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="alert alert-info">
+                    <i class="fas fa-info-circle me-2"></i>
+                    <strong>Pro Tip:</strong> Higher asset value doesn't always mean higher score. Diversification and behavioral patterns play crucial roles in your final score.
+                </div>
+                
+                <button class="btn btn-outline-primary" onclick="startModule(3)">
+                    <i class="fas fa-play me-2"></i>Start Module
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Knowledge Check Section -->
+    <section class="knowledge-check">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-lg-8 mx-auto">
+                    <h3 data-aos="fade-up">Ready to Test Your Knowledge?</h3>
+                    <p class="mb-4" data-aos="fade-up" data-aos-delay="100">
+                        Complete this comprehensive assessment to earn your MCS certification.
+                    </p>
+                    
+                    <div data-aos="fade-up" data-aos-delay="200">
+                        <div class="score-badge">
+                            <i class="fas fa-certificate"></i>
+                        </div>
+                        <h4>MCS Foundation Certificate</h4>
+                        <p class="mb-4">Upon completion, you'll receive a verifiable certificate showcasing your expertise in asset-backed credit scoring.</p>
+                        
+                        <button class="btn btn-light" onclick="startAssessment()">
+                            <i class="fas fa-graduation-cap me-2"></i>Start Assessment
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h2 data-aos="fade-up">Continue Your Learning Journey</h2>
+                    <p class="lead mb-4" data-aos="fade-up" data-aos-delay="100">
+                        Now that you understand the fundamentals, start building your asset-backed credit score.
+                    </p>
+                    <div data-aos="fade-up" data-aos-delay="200">
+                        <a href="get-started.html" class="btn btn-primary-custom me-3">
+                            <i class="fas fa-rocket me-2"></i>Get Started Now
+                        </a>
+                        <a href="dashboard/index.html" class="btn btn-outline-custom" target="_blank">
+                            <i class="fas fa-tachometer-alt me-2"></i>View Dashboard
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <h5><i class="fas fa-coins me-2"></i>MCS</h5>
+                    <p class="mb-3">India's first asset-backed credit scoring system.</p>
+                    <div>
+                        <a href="#" class="me-3"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="me-3"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="me-3"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h6>Product</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="features.html">Features</a></li>
+                        <li><a href="pricing.html">Pricing</a></li>
+                        <li><a href="get-started.html">Get Started</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h6>Learn</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="education.html">Educational Hub</a></li>
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">API Reference</a></li>
+                        <li><a href="#">Support</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h6>Company</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Press</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h6>Legal</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Cookie Policy</a></li>
+                        <li><a href="#">Compliance</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="my-4" style="border-color: #333;">
+            <div class="row">
+                <div class="col-md-6">
+                    <p class="mb-0">&copy; 2025 Metal Credit Score (MCS). All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p class="mb-0">Powered by RWA Tokenization Ecosystem</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.1/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
+        });
+
+        // Language switching functionality
+        function changeLanguage(lang) {
+            const translations = {
+                'en': {
+                    'title': 'Master Asset-Backed Credit Scoring',
+                    'subtitle': 'Comprehensive learning modules to understand how MCS revolutionizes credit assessment through real asset valuation.',
+                    'button': 'English'
+                },
+                'hi': {
+                    'title': 'एसेट-आधारित क्रेडिट स्कोरिंग में महारत हासिल करें',
+                    'subtitle': 'वास्तविक एसेट मूल्यांकन के माध्यम से क्रेडिट आकलन में क्रांति लाने वाले MCS को समझने के लिए व्यापक शिक्षण मॉड्यूल।',
+                    'button': 'हिन्दी'
+                }
+                // Add more translations as needed
+            };
+
+            if (translations[lang]) {
+                const t = translations[lang];
+                document.querySelector('.hero h1').textContent = t.title;
+                document.querySelector('.hero .lead').textContent = t.subtitle;
+                document.querySelector('.language-btn').innerHTML = `<i class="fas fa-globe me-1"></i>${t.button}`;
+            }
+        }
+
+        // Module start functionality
+        function startModule(moduleId) {
+            // Simulate module start
+            alert(`Starting Module ${moduleId}... This would open the interactive learning content.`);
+        }
+
+        // Quiz functionality
+        function selectAnswer(element, isCorrect) {
+            // Remove previous selections
+            const siblings = element.parentNode.querySelectorAll('.quiz-option');
+            siblings.forEach(sib => {
+                sib.classList.remove('selected', 'correct', 'incorrect');
+            });
+
+            // Mark selected answer
+            element.classList.add('selected');
+            
+            // Show correct/incorrect after a delay
+            setTimeout(() => {
+                if (isCorrect) {
+                    element.classList.add('correct');
+                    showFeedback('Correct! Asset-backed scoring provides credit access to people without traditional credit history.', 'success');
+                } else {
+                    element.classList.add('incorrect');
+                    showFeedback('Not quite. The correct answer is B - it provides credit access to people without traditional credit history.', 'error');
+                }
+            }, 1000);
+        }
+
+        // Assessment functionality
+        function startAssessment() {
+            alert('Starting comprehensive assessment...\n\nThis would include:\n- 25 multiple choice questions\n- Case study analysis\n- Practical scenarios\n- 30 minutes time limit\n- Immediate results and certificate');
+        }
+
+        // Feedback display
+        function showFeedback(message, type) {
+            const alertClass = type === 'success' ? 'alert-success' : 'alert-danger';
+            const feedback = document.createElement('div');
+            feedback.className = `alert ${alertClass} alert-dismissible fade show`;
+            feedback.innerHTML = `
+                ${message}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            `;
+            
+            document.querySelector('.quiz-section').appendChild(feedback);
+            
+            // Auto dismiss after 5 seconds
+            setTimeout(() => {
+                feedback.remove();
+            }, 5000);
+        }
+
+        // Progress tracking
+        function updateProgress() {
+            // Simulate progress update
+            const progressBar = document.querySelector('.progress-bar-fill');
+            if (progressBar) {
+                const currentWidth = parseInt(progressBar.style.width) || 0;
+                const newWidth = Math.min(currentWidth + 10, 100);
+                progressBar.style.width = newWidth + '%';
+            }
+        }
+
+        // Track learning progress
+        document.addEventListener('DOMContentLoaded', function() {
+            // Simulate progress tracking
+            setTimeout(updateProgress, 3000);
+        });
+
+        // Service Worker registration for PWA
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(function(registration) {
+                        console.log('ServiceWorker registration successful');
+                    })
+                    .catch(function(err) {
+                        console.log('ServiceWorker registration failed: ', err);
+                    });
+            });
+        }
+    </script>
+</body>
+</html>

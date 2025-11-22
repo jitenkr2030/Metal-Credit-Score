@@ -1,0 +1,1121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>White-Label Solutions - Enterprise MCS</title>
+    <meta name="description" content="Customizable white-label Metal Credit Score solutions for banks, fintechs, and enterprises">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="assets/css/main.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="fas fa-coins text-warning me-2"></i>MCS Enterprise
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="dashboard/index.html">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="ai-analytics.html">AI Analytics</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="defi-integration.html">DeFi Hub</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="white-label.html">Enterprise</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="community.html">Community</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            <i class="fas fa-globe"></i>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#" onclick="setLanguage('en')">English</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="setLanguage('hi')">हिन्दी</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="setLanguage('ta')">தமிழ்</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="setLanguage('te')">తెలుగు</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="setLanguage('bn')">বাংলা</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="setLanguage('mr')">मराठी</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-warning btn-sm ms-2" href="contact.html">
+                            <i class="fas fa-phone me-1"></i>Contact Sales
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section py-5 mt-5">
+        <div class="container">
+            <div class="row align-items-center min-vh-50">
+                <div class="col-lg-6" data-aos="fade-right">
+                    <h1 class="display-4 fw-bold text-white mb-4">
+                        <i class="fas fa-building text-warning me-3"></i>
+                        White-Label Enterprise Solutions
+                    </h1>
+                    <p class="lead text-light mb-4">
+                        Deploy your own branded Metal Credit Score platform with full customization, 
+                        API access, and enterprise-grade security. Perfect for banks, fintechs, and financial institutions.
+                    </p>
+                    <div class="d-flex gap-3 flex-wrap">
+                        <button class="btn btn-warning btn-lg" onclick="requestDemo()">
+                            <i class="fas fa-calendar me-2"></i>Request Demo
+                        </button>
+                        <button class="btn btn-outline-light btn-lg" onclick="downloadBrochure()">
+                            <i class="fas fa-download me-2"></i>Download Brochure
+                        </button>
+                    </div>
+                </div>
+                <div class="col-lg-6" data-aos="fade-left">
+                    <div class="enterprise-visualization">
+                        <div class="row g-3">
+                            <div class="col-6">
+                                <div class="feature-showcase">
+                                    <i class="fas fa-palette text-warning"></i>
+                                    <h5>Full Branding</h5>
+                                    <p class="small">Custom colors, fonts, logos</p>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="feature-showcase">
+                                    <i class="fas fa-cogs text-info"></i>
+                                    <h5>API Integration</h5>
+                                    <p class="small">RESTful APIs & SDKs</p>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="feature-showcase">
+                                    <i class="fas fa-shield-alt text-success"></i>
+                                    <h5>Enterprise Security</h5>
+                                    <p class="small">Bank-grade encryption</p>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="feature-showcase">
+                                    <i class="fas fa-users text-purple"></i>
+                                    <h5>Multi-tenant</h5>
+                                    <p class="small">Manage multiple clients</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Enterprise Features -->
+    <section class="py-5">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="display-5 fw-bold">Enterprise Features</h2>
+                <p class="lead text-muted">Comprehensive solution for financial institutions</p>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card feature-card h-100">
+                        <div class="card-body text-center p-4">
+                            <div class="feature-icon mb-3">
+                                <i class="fas fa-palette text-primary"></i>
+                            </div>
+                            <h4 class="card-title">Custom Branding</h4>
+                            <p class="card-text">
+                                Complete white-label customization with your brand colors, 
+                                logos, fonts, and UI elements. Full domain ownership and SSL certificates.
+                            </p>
+                            <button class="btn btn-outline-primary mt-auto" onclick="showBrandingDemo()">
+                                <i class="fas fa-eye me-2"></i>View Samples
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card feature-card h-100">
+                        <div class="card-body text-center p-4">
+                            <div class="feature-icon mb-3">
+                                <i class="fas fa-database text-info"></i>
+                            </div>
+                            <h4 class="card-title">Data Sovereignty</h4>
+                            <p class="card-text">
+                                Deploy on your own infrastructure or choose from our secure cloud options. 
+                                Full control over data location, backup, and compliance requirements.
+                            </p>
+                            <button class="btn btn-outline-primary mt-auto" onclick="showDeploymentOptions()">
+                                <i class="fas fa-server me-2"></i>Deployment Options
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="card feature-card h-100">
+                        <div class="card-body text-center p-4">
+                            <div class="feature-icon mb-3">
+                                <i class="fas fa-key text-warning"></i>
+                            </div>
+                            <h4 class="card-title">API Access</h4>
+                            <p class="card-text">
+                                Comprehensive RESTful APIs with webhooks, SDKs, and detailed documentation. 
+                                Real-time data sync and batch processing capabilities.
+                            </p>
+                            <button class="btn btn-outline-primary mt-auto" onclick="viewAPIDocs()">
+                                <i class="fas fa-code me-2"></i>API Documentation
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
+                    <div class="card feature-card h-100">
+                        <div class="card-body text-center p-4">
+                            <div class="feature-icon mb-3">
+                                <i class="fas fa-shield-alt text-success"></i>
+                            </div>
+                            <h4 class="card-title">Advanced Security</h4>
+                            <p class="card-text">
+                                Enterprise-grade security with SOC 2 compliance, end-to-end encryption, 
+                                role-based access control, and comprehensive audit logging.
+                            </p>
+                            <button class="btn btn-outline-primary mt-auto" onclick="showSecurityFeatures()">
+                                <i class="fas fa-lock me-2"></i>Security Details
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="500">
+                    <div class="card feature-card h-100">
+                        <div class="card-body text-center p-4">
+                            <div class="feature-icon mb-3">
+                                <i class="fas fa-users-cog text-purple"></i>
+                            </div>
+                            <h4 class="card-title">Multi-tenant Management</h4>
+                            <p class="card-text">
+                                Manage multiple clients, regions, or subsidiaries with separate data 
+                                environments, custom workflows, and individual branding.
+                            </p>
+                            <button class="btn btn-outline-primary mt-auto" onclick="showMultiTenant()">
+                                <i class="fas fa-layer-group me-2"></i>Tenant Management
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="600">
+                    <div class="card feature-card h-100">
+                        <div class="card-body text-center p-4">
+                            <div class="feature-icon mb-3">
+                                <i class="fas fa-headset text-primary"></i>
+                            </div>
+                            <h4 class="card-title">24/7 Support</h4>
+                            <p class="card-text">
+                                Dedicated enterprise support team with phone, email, and chat support. 
+                                Priority SLAs and dedicated success manager.
+                            </p>
+                            <button class="btn btn-outline-primary mt-auto" onclick="contactSupport()">
+                                <i class="fas fa-phone me-2"></i>Contact Support
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Customization Options -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="display-5 fw-bold">Customization Options</h2>
+                <p class="lead text-muted">Tailor the platform to your specific requirements</p>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-lg-6" data-aos="fade-right">
+                    <div class="card h-100">
+                        <div class="card-header">
+                            <h5 class="mb-0">
+                                <i class="fas fa-palette me-2 text-primary"></i>
+                                Visual Customization
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="customization-item mb-3">
+                                <label class="form-label fw-bold">Primary Color</label>
+                                <div class="d-flex align-items-center">
+                                    <input type="color" class="form-control form-control-color me-2" value="#007bff">
+                                    <span class="text-muted">Choose your brand color</span>
+                                </div>
+                            </div>
+                            <div class="customization-item mb-3">
+                                <label class="form-label fw-bold">Secondary Color</label>
+                                <div class="d-flex align-items-center">
+                                    <input type="color" class="form-control form-control-color me-2" value="#6c757d">
+                                    <span class="text-muted">Accent color for buttons and highlights</span>
+                                </div>
+                            </div>
+                            <div class="customization-item mb-3">
+                                <label class="form-label fw-bold">Logo Upload</label>
+                                <div class="d-flex align-items-center">
+                                    <input type="file" class="form-control" accept="image/*">
+                                    <span class="text-muted ms-2">PNG, SVG up to 2MB</span>
+                                </div>
+                            </div>
+                            <div class="customization-item mb-3">
+                                <label class="form-label fw-bold">Custom Domain</label>
+                                <input type="text" class="form-control" placeholder="yoursite.com">
+                                <div class="form-text">SSL certificate included</div>
+                            </div>
+                            <div class="customization-item">
+                                <label class="form-label fw-bold">Typography</label>
+                                <select class="form-select">
+                                    <option value="inter">Inter (Default)</option>
+                                    <option value="roboto">Roboto</option>
+                                    <option value="open-sans">Open Sans</option>
+                                    <option value="montserrat">Montserrat</option>
+                                    <option value="custom">Custom Font</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6" data-aos="fade-left">
+                    <div class="card h-100">
+                        <div class="card-header">
+                            <h5 class="mb-0">
+                                <i class="fas fa-cogs me-2 text-info"></i>
+                                Functional Configuration
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="customization-item mb-3">
+                                <label class="form-label fw-bold">Supported Asset Types</label>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="bgtAssets" checked>
+                                    <label class="form-check-label" for="bgtAssets">
+                                        BGT Assets
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="bstAssets" checked>
+                                    <label class="form-check-label" for="bstAssets">
+                                        BST Assets
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="bptAssets" checked>
+                                    <label class="form-check-label" for="bptAssets">
+                                        BPT Assets
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="binrAssets" checked>
+                                    <label class="form-check-label" for="binrAssets">
+                                        BINR Assets
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="customization-item mb-3">
+                                <label class="form-label fw-bold">Feature Modules</label>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="aiAnalytics" checked>
+                                    <label class="form-check-label" for="aiAnalytics">
+                                        AI Analytics Module
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="defiIntegration" checked>
+                                    <label class="form-check-label" for="defiIntegration">
+                                        DeFi Integration
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="educationHub" checked>
+                                    <label class="form-check-label" for="educationHub">
+                                        Educational Content
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="apiMarketplace" checked>
+                                    <label class="form-check-label" for="apiMarketplace">
+                                        API Marketplace
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="customization-item mb-3">
+                                <label class="form-label fw-bold">Language Support</label>
+                                <select class="form-select" multiple>
+                                    <option value="en" selected>English</option>
+                                    <option value="hi" selected>Hindi</option>
+                                    <option value="ta" selected>Tamil</option>
+                                    <option value="te" selected>Telugu</option>
+                                    <option value="bn" selected>Bengali</option>
+                                    <option value="mr" selected>Marathi</option>
+                                    <option value="zh">Chinese</option>
+                                    <option value="es">Spanish</option>
+                                    <option value="fr">French</option>
+                                </select>
+                                <div class="form-text">Hold Ctrl/Cmd to select multiple languages</div>
+                            </div>
+                            <div class="customization-item">
+                                <label class="form-label fw-bold">Compliance Requirements</label>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="gdpr" checked>
+                                    <label class="form-check-label" for="gdpr">
+                                        GDPR Compliant
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="sox">
+                                    <label class="form-check-label" for="sox">
+                                        SOX Compliant
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="pci">
+                                    <label class="form-check-label" for="pci">
+                                        PCI DSS Compliant
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-4" data-aos="fade-up" data-aos-delay="300">
+                <button class="btn btn-primary btn-lg me-3" onclick="previewCustomization()">
+                    <i class="fas fa-eye me-2"></i>Preview Changes
+                </button>
+                <button class="btn btn-success btn-lg" onclick="saveConfiguration()">
+                    <i class="fas fa-save me-2"></i>Save Configuration
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Tiers -->
+    <section class="py-5">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="display-5 fw-bold">Enterprise Pricing</h2>
+                <p class="lead text-muted">Flexible pricing for organizations of all sizes</p>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card pricing-card h-100">
+                        <div class="card-header text-center">
+                            <h4>Starter</h4>
+                            <div class="price">
+                                <span class="currency">$</span>
+                                <span class="amount">2,500</span>
+                                <span class="period">/month</span>
+                            </div>
+                            <p class="text-muted">Up to 10,000 users</p>
+                        </div>
+                        <div class="card-body">
+                            <ul class="feature-list">
+                                <li><i class="fas fa-check text-success"></i> Basic branding customization</li>
+                                <li><i class="fas fa-check text-success"></i> Standard API access</li>
+                                <li><i class="fas fa-check text-success"></i> 2 custom domains</li>
+                                <li><i class="fas fa-check text-success"></i> Email support</li>
+                                <li><i class="fas fa-check text-success"></i> Basic analytics</li>
+                                <li><i class="fas fa-check text-success"></i> Monthly backups</li>
+                            </ul>
+                            <div class="text-center mt-4">
+                                <button class="btn btn-outline-primary w-100" onclick="selectPlan('starter')">
+                                    Get Started
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card pricing-card featured h-100">
+                        <div class="badge">Most Popular</div>
+                        <div class="card-header text-center">
+                            <h4>Professional</h4>
+                            <div class="price">
+                                <span class="currency">$</span>
+                                <span class="amount">7,500</span>
+                                <span class="period">/month</span>
+                            </div>
+                            <p class="text-muted">Up to 50,000 users</p>
+                        </div>
+                        <div class="card-body">
+                            <ul class="feature-list">
+                                <li><i class="fas fa-check text-success"></i> Advanced branding options</li>
+                                <li><i class="fas fa-check text-success"></i> Premium API access</li>
+                                <li><i class="fas fa-check text-success"></i> Unlimited custom domains</li>
+                                <li><i class="fas fa-check text-success"></i> Priority support (24/7)</li>
+                                <li><i class="fas fa-check text-success"></i> Advanced analytics & AI</li>
+                                <li><i class="fas fa-check text-success"></i> Daily backups</li>
+                                <li><i class="fas fa-check text-success"></i> Multi-tenant support</li>
+                            </ul>
+                            <div class="text-center mt-4">
+                                <button class="btn btn-primary w-100" onclick="selectPlan('professional')">
+                                    Choose Plan
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="card pricing-card h-100">
+                        <div class="card-header text-center">
+                            <h4>Enterprise</h4>
+                            <div class="price">
+                                <span class="currency">$</span>
+                                <span class="amount">25,000</span>
+                                <span class="period">/month</span>
+                            </div>
+                            <p class="text-muted">Unlimited users</p>
+                        </div>
+                        <div class="card-body">
+                            <ul class="feature-list">
+                                <li><i class="fas fa-check text-success"></i> Full white-label customization</li>
+                                <li><i class="fas fa-check text-success"></i> Enterprise API suite</li>
+                                <li><i class="fas fa-check text-success"></i> Private cloud deployment</li>
+                                <li><i class="fas fa-check text-success"></i> Dedicated account manager</li>
+                                <li><i class="fas fa-check text-success"></i> Custom integrations</li>
+                                <li><i class="fas fa-check text-success"></i> Real-time backups</li>
+                                <li><i class="fas fa-check text-success"></i> SOC 2 compliance</li>
+                                <li><i class="fas fa-check text-success"></i> On-premise deployment</li>
+                            </ul>
+                            <div class="text-center mt-4">
+                                <button class="btn btn-outline-primary w-100" onclick="selectPlan('enterprise')">
+                                    Contact Sales
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-5" data-aos="fade-up" data-aos-delay="400">
+                <p class="text-muted">Need a custom solution? <a href="#" onclick="requestCustomQuote()">Request a custom quote</a></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Case Studies -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="display-5 fw-bold">Success Stories</h2>
+                <p class="lead text-muted">See how enterprises are leveraging our white-label solutions</p>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="case-study-card">
+                        <div class="case-study-header">
+                            <img src="https://via.placeholder.com/300x150/007bff/ffffff?text=Bank+Logo" alt="Bank Logo" class="case-study-logo">
+                            <h5>National Bank of India</h5>
+                            <p class="text-muted">Leading Public Sector Bank</p>
+                        </div>
+                        <div class="case-study-content">
+                            <blockquote class="blockquote">
+                                <p>"The white-label solution allowed us to offer asset-backed credit scoring to our 50 million customers within 3 months. The API integration was seamless."</p>
+                            </blockquote>
+                            <div class="metrics">
+                                <div class="metric">
+                                    <h6>50M</h6>
+                                    <small>Customers</small>
+                                </div>
+                                <div class="metric">
+                                    <h6>3 Months</h6>
+                                    <small>Implementation</small>
+                                </div>
+                                <div class="metric">
+                                    <h6>40%</h6>
+                                    <small>Approval Rate</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="case-study-card">
+                        <div class="case-study-header">
+                            <img src="https://via.placeholder.com/300x150/28a745/ffffff?text=FinTech+Logo" alt="FinTech Logo" class="case-study-logo">
+                            <h5>CryptoCapital</h5>
+                            <p class="text-muted">Digital Banking Platform</p>
+                        </div>
+                        <div class="case-study-content">
+                            <blockquote class="blockquote">
+                                <p>"Integrating DeFi assets into credit scoring was a game-changer. Our customers now include crypto holdings in their credit assessment."</p>
+                            </blockquote>
+                            <div class="metrics">
+                                <div class="metric">
+                                    <h6>$2.4B</h6>
+                                    <small>Assets Tracked</small>
+                                </div>
+                                <div class="metric">
+                                    <h6>2 Months</h6>
+                                    <small>Setup Time</small>
+                                </div>
+                                <div class="metric">
+                                    <h6>65%</h6>
+                                    <small>User Growth</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="case-study-card">
+                        <div class="case-study-header">
+                            <img src="https://via.placeholder.com/300x150/ffc107/ffffff?text=FinCorp+Logo" alt="FinCorp Logo" class="case-study-logo">
+                            <h5>Metro Finance Corp</h5>
+                            <p class="text-muted">Regional Financial Services</p>
+                        </div>
+                        <div class="case-study-content">
+                            <blockquote class="blockquote">
+                                <p>"The multi-language support and regional compliance features helped us expand to 5 new states with localized credit scoring."</p>
+                            </blockquote>
+                            <div class="metrics">
+                                <div class="metric">
+                                    <h6>5 States</h6>
+                                    <small>Expansion</small>
+                                </div>
+                                <div class="metric">
+                                    <h6>6 Languages</h6>
+                                    <small>Support</small>
+                                </div>
+                                <div class="metric">
+                                    <h6>85%</h6>
+                                    <small>Satisfaction</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Implementation Timeline -->
+    <section class="py-5">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="display-5 fw-bold">Implementation Timeline</h2>
+                <p class="lead text-muted">From setup to launch in weeks, not months</p>
+            </div>
+
+            <div class="timeline">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
+                        <div class="timeline-item">
+                            <div class="timeline-icon">
+                                <i class="fas fa-handshake"></i>
+                            </div>
+                            <h5>Week 1</h5>
+                            <h6>Initial Setup</h6>
+                            <ul class="timeline-tasks">
+                                <li>Contract signing</li>
+                                <li>Technical requirements review</li>
+                                <li>Project kickoff meeting</li>
+                                <li>Branding assets collection</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="200">
+                        <div class="timeline-item">
+                            <div class="timeline-icon">
+                                <i class="fas fa-palette"></i>
+                            </div>
+                            <h5>Week 2-3</h5>
+                            <h6>Customization</h6>
+                            <ul class="timeline-tasks">
+                                <li>UI/UX customization</li>
+                                <li>Logo and branding integration</li>
+                                <li>Domain configuration</li>
+                                <li>Testing environment setup</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="300">
+                        <div class="timeline-item">
+                            <div class="timeline-icon">
+                                <i class="fas fa-code"></i>
+                            </div>
+                            <h5>Week 4-5</h5>
+                            <h6>Integration</h6>
+                            <ul class="timeline-tasks">
+                                <li>API integration testing</li>
+                                <li>Data migration setup</li>
+                                <li>Security configuration</li>
+                                <li>Performance optimization</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="400">
+                        <div class="timeline-item">
+                            <div class="timeline-icon">
+                                <i class="fas fa-rocket"></i>
+                            </div>
+                            <h5>Week 6</h5>
+                            <h6>Launch</h6>
+                            <ul class="timeline-tasks">
+                                <li>Final testing & QA</li>
+                                <li>User training sessions</li>
+                                <li>Production deployment</li>
+                                <li>Go-live support</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-5" data-aos="fade-up" data-aos-delay="500">
+                <button class="btn btn-primary btn-lg me-3" onclick="startImplementation()">
+                    <i class="fas fa-calendar me-2"></i>Schedule Implementation
+                </button>
+                <button class="btn btn-outline-primary btn-lg" onclick="downloadTimeline()">
+                    <i class="fas fa-download me-2"></i>Download Plan
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-5 bg-primary text-white">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8" data-aos="fade-right">
+                    <h2 class="display-5 fw-bold mb-3">Ready to Deploy Your Own Credit Scoring Platform?</h2>
+                    <p class="lead mb-0">Get started with our enterprise white-label solution and offer asset-backed credit scoring to your customers in weeks.</p>
+                </div>
+                <div class="col-lg-4 text-lg-end" data-aos="fade-left">
+                    <button class="btn btn-warning btn-lg me-3" onclick="requestDemo()">
+                        <i class="fas fa-calendar me-2"></i>Request Demo
+                    </button>
+                    <button class="btn btn-outline-light btn-lg" onclick="downloadBrochure()">
+                        <i class="fas fa-download me-2"></i>Download Info
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <h5>MCS Enterprise</h5>
+                    <p class="text-muted">White-label solutions for financial institutions and enterprises.</p>
+                </div>
+                <div class="col-lg-2 mb-4">
+                    <h6>Solutions</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="#branding" class="text-muted">Custom Branding</a></li>
+                        <li><a href="#api" class="text-muted">API Integration</a></li>
+                        <li><a href="#security" class="text-muted">Security</a></li>
+                        <li><a href="#support" class="text-muted">Support</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 mb-4">
+                    <h6>Resources</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="docs/enterprise-guide.pdf" class="text-muted">Enterprise Guide</a></li>
+                        <li><a href="docs/api-reference.pdf" class="text-muted">API Reference</a></li>
+                        <li><a href="#" class="text-muted">Case Studies</a></li>
+                        <li><a href="#" class="text-muted">White Papers</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <h6>Contact Sales</h6>
+                    <p class="text-muted">Ready to get started? Our enterprise team is here to help.</p>
+                    <div class="input-group">
+                        <input type="email" class="form-control" placeholder="Enter your email">
+                        <button class="btn btn-warning" type="button">Contact Us</button>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <p class="mb-0">&copy; 2025 Metal Credit Score. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p class="mb-0">Enterprise White-Label Solutions</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="assets/js/i18n.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out'
+        });
+
+        // White Label Solutions JavaScript
+        class WhiteLabelSolutions {
+            constructor() {
+                this.currentConfiguration = {
+                    branding: {},
+                    features: {},
+                    pricing: 'professional'
+                };
+            }
+
+            previewCustomization() {
+                alert('Preview mode would show how your customizations look with real-time updates.');
+            }
+
+            saveConfiguration() {
+                this.currentConfiguration = this.collectConfiguration();
+                alert('Configuration saved! You can now proceed with deployment setup.');
+            }
+
+            collectConfiguration() {
+                return {
+                    branding: {
+                        primaryColor: document.querySelector('input[type="color"]:first-of-type')?.value || '#007bff',
+                        secondaryColor: document.querySelector('input[type="color"]:last-of-type')?.value || '#6c757d',
+                        logo: document.querySelector('input[type="file"]')?.files[0]?.name || null,
+                        domain: document.querySelector('input[type="text"]')?.value || 'yoursite.com',
+                        typography: document.querySelector('select')?.value || 'inter'
+                    },
+                    features: {
+                        assetTypes: {
+                            bgt: document.getElementById('bgtAssets')?.checked || false,
+                            bst: document.getElementById('bstAssets')?.checked || false,
+                            bpt: document.getElementById('bptAssets')?.checked || false,
+                            binr: document.getElementById('binrAssets')?.checked || false
+                        },
+                        modules: {
+                            aiAnalytics: document.getElementById('aiAnalytics')?.checked || false,
+                            defiIntegration: document.getElementById('defiIntegration')?.checked || false,
+                            educationHub: document.getElementById('educationHub')?.checked || false,
+                            apiMarketplace: document.getElementById('apiMarketplace')?.checked || false
+                        },
+                        languages: Array.from(document.querySelectorAll('select[multiple] option:checked')).map(opt => opt.value)
+                    }
+                };
+            }
+        }
+
+        // Initialize White Label Solutions
+        const whiteLabel = new WhiteLabelSolutions();
+
+        // Global functions
+        function requestDemo() {
+            alert('Demo request submitted! Our enterprise team will contact you within 24 hours.');
+        }
+
+        function downloadBrochure() {
+            alert('Enterprise brochure download would start here.');
+        }
+
+        function showBrandingDemo() {
+            alert('Branding samples would show different color schemes, typography, and layout options.');
+        }
+
+        function showDeploymentOptions() {
+            alert('Deployment options would show cloud, on-premise, and hybrid deployment models.');
+        }
+
+        function viewAPIDocs() {
+            window.open('api.html', '_blank');
+        }
+
+        function showSecurityFeatures() {
+            alert('Security features would show SOC 2 compliance, encryption standards, and audit capabilities.');
+        }
+
+        function showMultiTenant() {
+            alert('Multi-tenant management would show how to manage different clients and environments.');
+        }
+
+        function contactSupport() {
+            alert('Support contact form would open with priority enterprise support options.');
+        }
+
+        function previewCustomization() {
+            whiteLabel.previewCustomization();
+        }
+
+        function saveConfiguration() {
+            whiteLabel.saveConfiguration();
+        }
+
+        function selectPlan(plan) {
+            alert(`${plan.charAt(0).toUpperCase() + plan.slice(1)} plan selected! Contact our sales team to finalize your subscription.`);
+        }
+
+        function requestCustomQuote() {
+            alert('Custom quote request form would open with detailed requirements collection.');
+        }
+
+        function startImplementation() {
+            alert('Implementation scheduling would open with calendar integration and team assignment.');
+        }
+
+        function downloadTimeline() {
+            alert('Implementation timeline PDF would download here.');
+        }
+    </script>
+
+    <style>
+        .hero-section {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 50%, #2c3e50 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .enterprise-visualization {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            padding: 2rem;
+        }
+
+        .feature-showcase {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+            color: white;
+            backdrop-filter: blur(10px);
+        }
+
+        .feature-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: none;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+        }
+
+        .pricing-card {
+            border: none;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            position: relative;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .pricing-card.featured {
+            border: 2px solid #007bff;
+            box-shadow: 0 8px 25px rgba(0,123,255,0.15);
+        }
+
+        .pricing-card .badge {
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #007bff;
+            color: white;
+            padding: 0.25rem 1rem;
+            border-radius: 15px;
+            font-size: 0.75rem;
+        }
+
+        .price {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #007bff;
+        }
+
+        .price .currency {
+            font-size: 1.5rem;
+            vertical-align: top;
+        }
+
+        .price .amount {
+            color: #007bff;
+        }
+
+        .price .period {
+            font-size: 1rem;
+            color: #6c757d;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .feature-list li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .feature-list li:last-child {
+            border-bottom: none;
+        }
+
+        .case-study-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .case-study-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .case-study-header {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .case-study-logo {
+            width: 80px;
+            height: 40px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+        }
+
+        .case-study-content {
+            padding: 2rem;
+        }
+
+        .blockquote {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            color: #6c757d;
+        }
+
+        .metrics {
+            display: flex;
+            justify-content: space-around;
+            text-align: center;
+        }
+
+        .metric h6 {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: #007bff;
+            margin-bottom: 0.25rem;
+        }
+
+        .timeline {
+            position: relative;
+        }
+
+        .timeline-item {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            height: 100%;
+        }
+
+        .timeline-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #007bff, #0056b3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .timeline-tasks {
+            list-style: none;
+            padding: 0;
+            text-align: left;
+        }
+
+        .timeline-tasks li {
+            padding: 0.25rem 0;
+            color: #6c757d;
+        }
+
+        .timeline-tasks li:before {
+            content: "✓";
+            color: #28a745;
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+
+        .customization-item {
+            padding: 1rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .customization-item:last-child {
+            border-bottom: none;
+        }
+
+        .text-purple {
+            color: #6f42c1 !important;
+        }
+
+        .min-vh-50 {
+            min-height: 50vh;
+        }
+    </style>
+</body>
+</html>

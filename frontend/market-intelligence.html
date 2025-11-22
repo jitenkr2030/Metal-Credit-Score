@@ -1,0 +1,1577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Market Intelligence - Metal Credit Score Platform</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="assets/css/main.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #1e3a8a;
+            --secondary-color: #3b82f6;
+            --accent-color: #0ea5e9;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --danger-color: #ef4444;
+            --light-color: #f8fafc;
+            --dark-color: #0f172a;
+            --gradient-primary: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            --gradient-secondary: linear-gradient(135deg, #10b981 0%, #34d399 100%);
+            --gradient-accent: linear-gradient(135deg, #0ea5e9 0%, #06b6d4 100%);
+            --gradient-warning: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%);
+            --gradient-danger: linear-gradient(135deg, #ef4444 0%, #f87171 100%);
+            --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.15);
+            --border-radius: 12px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: var(--dark-color);
+            background: #f8fafc;
+        }
+
+        .hero-section {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 120px 0 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="40" r="1.5" fill="rgba(255,255,255,0.1)"/><circle cx="40" cy="70" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="70" cy="80" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="10" cy="50" r="1" fill="rgba(255,255,255,0.1)"/></svg>');
+            animation: float 25s infinite linear;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            100% { transform: translateY(-100px) rotate(360deg); }
+        }
+
+        .intelligence-card {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+            border: 1px solid #e2e8f0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .intelligence-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--secondary-color);
+        }
+
+        .intelligence-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .data-source {
+            display: inline-flex;
+            align-items: center;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .source-realtime {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .source-historical {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .source-predictive {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+
+        .source-social {
+            background: #f3e8ff;
+            color: #7c3aed;
+        }
+
+        .metric-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            color: white;
+            font-size: 24px;
+        }
+
+        .insight-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 8px 16px;
+            background: #f1f5f9;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: var(--dark-color);
+            margin: 5px;
+            border: 1px solid #cbd5e0;
+        }
+
+        .dashboard-panel {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid #e2e8f0;
+        }
+
+        .chart-container {
+            position: relative;
+            height: 400px;
+            margin: 20px 0;
+            background: #f8fafc;
+            border-radius: 8px;
+            padding: 20px;
+        }
+
+        .sentiment-indicator {
+            display: inline-flex;
+            align-items: center;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .sentiment-positive {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .sentiment-neutral {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .sentiment-negative {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .trend-indicator {
+            display: inline-flex;
+            align-items: center;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-left: 10px;
+        }
+
+        .trend-up {
+            color: var(--success-color);
+        }
+
+        .trend-down {
+            color: var(--danger-color);
+        }
+
+        .trend-stable {
+            color: var(--warning-color);
+        }
+
+        .news-feed {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid #e2e8f0;
+            max-height: 600px;
+            overflow-y: auto;
+        }
+
+        .news-item {
+            padding: 15px 0;
+            border-bottom: 1px solid #f1f5f9;
+            transition: var(--transition);
+        }
+
+        .news-item:last-child {
+            border-bottom: none;
+        }
+
+        .news-item:hover {
+            background: #f8fafc;
+            margin: 0 -10px;
+            padding: 15px 10px;
+            border-radius: 8px;
+        }
+
+        .news-title {
+            font-weight: 600;
+            color: var(--dark-color);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .news-title:hover {
+            color: var(--secondary-color);
+        }
+
+        .news-meta {
+            display: flex;
+            justify-content: between;
+            align-items: center;
+            font-size: 0.85rem;
+            color: #64748b;
+        }
+
+        .news-source {
+            font-weight: 600;
+        }
+
+        .news-time {
+            margin-left: auto;
+        }
+
+        .competitive-matrix {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid #e2e8f0;
+            overflow-x: auto;
+        }
+
+        .matrix-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .matrix-table th,
+        .matrix-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .matrix-table th {
+            background: #f8fafc;
+            font-weight: 600;
+            color: var(--dark-color);
+        }
+
+        .matrix-table tr:hover {
+            background: #f8fafc;
+        }
+
+        .performance-score {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .score-high {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .score-medium {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .score-low {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .market-segment {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid #e2e8f0;
+            transition: var(--transition);
+        }
+
+        .market-segment:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .segment-header {
+            display: flex;
+            justify-content: between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .segment-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--dark-color);
+        }
+
+        .segment-share {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--secondary-color);
+        }
+
+        .segment-growth {
+            display: flex;
+            align-items: center;
+            font-size: 0.9rem;
+            margin-top: 10px;
+        }
+
+        .data-point {
+            background: white;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px 0;
+            border-left: 4px solid var(--secondary-color);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .data-label {
+            font-size: 0.85rem;
+            color: #64748b;
+            margin-bottom: 5px;
+        }
+
+        .data-value {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--dark-color);
+        }
+
+        .alert-predictive {
+            background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%);
+            color: white;
+            border-radius: var(--border-radius);
+            padding: 20px;
+            margin: 20px 0;
+            border: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .alert-predictive::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: white;
+        }
+
+        .insight-timeline {
+            position: relative;
+            padding: 40px 0;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 60px;
+            margin-bottom: 40px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 25px;
+            top: 0;
+            bottom: -40px;
+            width: 2px;
+            background: #cbd5e0;
+        }
+
+        .timeline-item:last-child::before {
+            display: none;
+        }
+
+        .timeline-marker {
+            position: absolute;
+            left: 18px;
+            top: 8px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .marker-insight {
+            background: var(--secondary-color);
+        }
+
+        .marker-alert {
+            background: var(--warning-color);
+        }
+
+        .marker-trend {
+            background: var(--success-color);
+        }
+
+        .price-monitor {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid #e2e8f0;
+        }
+
+        .price-item {
+            display: flex;
+            justify-content: between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .price-item:last-child {
+            border-bottom: none;
+        }
+
+        .price-symbol {
+            font-weight: 600;
+            color: var(--dark-color);
+        }
+
+        .price-value {
+            font-family: 'Courier New', monospace;
+            font-weight: 600;
+        }
+
+        .price-change {
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-left: 10px;
+        }
+
+        .nav-link.active {
+            color: var(--secondary-color) !important;
+            font-weight: 600;
+        }
+
+        .heatmap-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .heatmap-cell {
+            aspect-ratio: 1;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            padding: 10px;
+        }
+
+        .heatmap-cell:hover {
+            transform: scale(1.05);
+        }
+
+        .heat-high {
+            background: var(--danger-color);
+        }
+
+        .heat-medium {
+            background: var(--warning-color);
+        }
+
+        .heat-low {
+            background: var(--success-color);
+        }
+
+        .heat-neutral {
+            background: #64748b;
+        }
+
+        .sector-overview {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid #e2e8f0;
+        }
+
+        .sector-item {
+            display: flex;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .sector-item:last-child {
+            border-bottom: none;
+        }
+
+        .sector-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-size: 16px;
+            color: white;
+        }
+
+        .sector-info {
+            flex: 1;
+        }
+
+        .sector-name {
+            font-weight: 600;
+            color: var(--dark-color);
+        }
+
+        .sector-change {
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background: rgba(30, 58, 138, 0.95); backdrop-filter: blur(10px);">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html">
+                <i class="fas fa-chart-bar me-2"></i>MCS Platform
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Features</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="features.html">Core Features</a></li>
+                            <li><a class="dropdown-item" href="ai-analytics.html">AI/ML Analytics</a></li>
+                            <li><a class="dropdown-item" href="defi-integration.html">DeFi Integration</a></li>
+                            <li><a class="dropdown-item" href="white-label.html">White-Label</a></li>
+                            <li><a class="dropdown-item" href="community.html">Community</a></li>
+                            <li><a class="dropdown-item" href="advanced-security.html">Advanced Security</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle active" href="#" data-bs-toggle="dropdown">Enterprise</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="banking-integrations.html">Banking Integrations</a></li>
+                            <li><a class="dropdown-item" href="compliance-suite.html">Compliance Suite</a></li>
+                            <li><a class="dropdown-item active" href="market-intelligence.html">Market Intelligence</a></li>
+                            <li><a class="dropdown-item" href="business-intelligence.html">Business Intelligence</a></li>
+                            <li><a class="dropdown-item" href="global-expansion.html">Global Expansion</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="api.html">API</a></li>
+                    <li class="nav-item"><a class="nav-link" href="pricing.html">Pricing</a></li>
+                </ul>
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="get-started.html">Get Started</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8" data-aos="fade-up">
+                    <h1 class="display-4 fw-bold mb-4">
+                        <i class="fas fa-chart-line me-3"></i>Market Intelligence
+                    </h1>
+                    <p class="lead mb-4">
+                        Advanced market analytics platform providing real-time insights, predictive modeling, and competitive intelligence across global financial markets. Make data-driven decisions with confidence.
+                    </p>
+                    <div class="d-flex flex-wrap gap-3">
+                        <button class="btn btn-light btn-lg px-4 py-3">
+                            <i class="fas fa-rocket me-2"></i>Access Intelligence
+                        </button>
+                        <button class="btn btn-outline-light btn-lg px-4 py-3">
+                            <i class="fas fa-download me-2"></i>Download Report
+                        </button>
+                    </div>
+                </div>
+                <div class="col-lg-4" data-aos="fade-left" data-aos-delay="200">
+                    <div class="text-center">
+                        <div class="dashboard-panel">
+                            <h6 class="fw-bold mb-3">Market Cap Overview</h6>
+                            <div class="data-point">
+                                <div class="data-label">Global Markets</div>
+                                <div class="data-value">$127.5T</div>
+                            </div>
+                            <div class="data-point">
+                                <div class="data-label">Daily Volume</div>
+                                <div class="data-value">$4.2T</div>
+                            </div>
+                            <div class="data-point">
+                                <div class="data-label">Active Indices</div>
+                                <div class="data-value">156</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Real-time Market Dashboard -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center mb-5">
+                    <h2 class="display-5 fw-bold" data-aos="fade-up">Real-time Market Dashboard</h2>
+                    <p class="lead text-muted" data-aos="fade-up" data-aos-delay="100">
+                        Live market data and analytics from global exchanges and financial institutions
+                    </p>
+                </div>
+            </div>
+
+            <!-- Market Overview Cards -->
+            <div class="row g-4 mb-5">
+                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="intelligence-card text-center">
+                        <div class="metric-icon">
+                            <i class="fas fa-arrow-trend-up"></i>
+                        </div>
+                        <h5 class="fw-bold">Market Sentiment</h5>
+                        <div class="sentiment-indicator sentiment-positive">
+                            <i class="fas fa-smile me-2"></i>Bullish
+                        </div>
+                        <div class="trend-indicator trend-up">
+                            <i class="fas fa-arrow-up me-1"></i>+2.4%
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="intelligence-card text-center">
+                        <div class="metric-icon" style="background: var(--gradient-secondary);">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <h5 class="fw-bold">Global Indices</h5>
+                        <div class="data-value" style="color: var(--success-color);">+1.8%</div>
+                        <p class="text-muted mb-0">Average Performance</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="intelligence-card text-center">
+                        <div class="metric-icon" style="background: var(--gradient-accent);">
+                            <i class="fas fa-bitcoin"></i>
+                        </div>
+                        <h5 class="fw-bold">Crypto Markets</h5>
+                        <div class="data-value" style="color: var(--warning-color);">-0.6%</div>
+                        <p class="text-muted mb-0">24h Change</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="400">
+                    <div class="intelligence-card text-center">
+                        <div class="metric-icon" style="background: var(--gradient-warning);">
+                            <i class="fas fa-chart-pie"></i>
+                        </div>
+                        <h5 class="fw-bold">Commodities</h5>
+                        <div class="data-value" style="color: var(--danger-color);">-1.2%</div>
+                        <p class="text-muted mb-0">Sector Average</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Market Heatmap -->
+            <div class="dashboard-panel" data-aos="zoom-in">
+                <h4 class="fw-bold mb-4">Sector Performance Heatmap</h4>
+                <div class="heatmap-grid">
+                    <div class="heatmap-cell heat-high">
+                        <div>Technology</div>
+                        <small>+3.2%</small>
+                    </div>
+                    <div class="heatmap-cell heat-medium">
+                        <div>Healthcare</div>
+                        <small>+1.8%</small>
+                    </div>
+                    <div class="heatmap-cell heat-low">
+                        <div>Energy</div>
+                        <small>-2.1%</small>
+                    </div>
+                    <div class="heatmap-cell heat-high">
+                        <div>Finance</div>
+                        <small>+2.9%</small>
+                    </div>
+                    <div class="heatmap-cell heat-neutral">
+                        <div>Consumer</div>
+                        <small>+0.4%</small>
+                    </div>
+                    <div class="heatmap-cell heat-high">
+                        <div>Real Estate</div>
+                        <small>+2.1%</small>
+                    </div>
+                    <div class="heatmap-cell heat-medium">
+                        <div>Industrials</div>
+                        <small>+1.3%</small>
+                    </div>
+                    <div class="heatmap-cell heat-low">
+                        <div>Materials</div>
+                        <small>-1.5%</small>
+                    </div>
+                    <div class="heatmap-cell heat-medium">
+                        <div>Utilities</div>
+                        <small>+0.9%</small>
+                    </div>
+                    <div class="heatmap-cell heat-high">
+                        <div>Communication</div>
+                        <small>+2.7%</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- News & Sentiment Analysis -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center mb-5">
+                    <h2 class="display-5 fw-bold" data-aos="fade-up">News & Sentiment Analysis</h2>
+                    <p class="lead text-muted" data-aos="fade-up" data-aos-delay="100">
+                        AI-powered sentiment analysis of financial news and social media
+                    </p>
+                </div>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-lg-8" data-aos="fade-up" data-aos-delay="100">
+                    <div class="news-feed">
+                        <h5 class="fw-bold mb-4">Latest Market News</h5>
+                        
+                        <div class="news-item">
+                            <a href="#" class="news-title">Federal Reserve Signals Potential Rate Cut in Q1 2025</a>
+                            <div class="news-meta">
+                                <span class="news-source">Financial Times</span>
+                                <span class="sentiment-indicator sentiment-positive" style="font-size: 0.75rem; padding: 4px 8px;">
+                                    <i class="fas fa-arrow-up me-1"></i>Positive
+                                </span>
+                                <span class="news-time">2 hours ago</span>
+                            </div>
+                        </div>
+
+                        <div class="news-item">
+                            <a href="#" class="news-title">Tech Giants Report Strong Q4 Earnings Ahead of Expectations</a>
+                            <div class="news-meta">
+                                <span class="news-source">Reuters</span>
+                                <span class="sentiment-indicator sentiment-positive" style="font-size: 0.75rem; padding: 4px 8px;">
+                                    <i class="fas fa-arrow-up me-1"></i>Positive
+                                </span>
+                                <span class="news-time">4 hours ago</span>
+                            </div>
+                        </div>
+
+                        <div class="news-item">
+                            <a href="#" class="news-title">Oil Prices Decline on Increased Production Forecast</a>
+                            <div class="news-meta">
+                                <span class="news-source">Bloomberg</span>
+                                <span class="sentiment-indicator sentiment-negative" style="font-size: 0.75rem; padding: 4px 8px;">
+                                    <i class="fas fa-arrow-down me-1"></i>Negative
+                                </span>
+                                <span class="news-time">6 hours ago</span>
+                            </div>
+                        </div>
+
+                        <div class="news-item">
+                            <a href="#" class="news-title">Cryptocurrency Market Shows Signs of Recovery</a>
+                            <div class="news-meta">
+                                <span class="news-source">CoinDesk</span>
+                                <span class="sentiment-indicator sentiment-neutral" style="font-size: 0.75rem; padding: 4px 8px;">
+                                    <i class="fas fa-minus me-1"></i>Neutral
+                                </span>
+                                <span class="news-time">8 hours ago</span>
+                            </div>
+                        </div>
+
+                        <div class="news-item">
+                            <a href="#" class="news-title">European Central Bank Maintains Current Monetary Policy</a>
+                            <div class="news-meta">
+                                <span class="news-source">Wall Street Journal</span>
+                                <span class="sentiment-indicator sentiment-neutral" style="font-size: 0.75rem; padding: 4px 8px;">
+                                    <i class="fas fa-minus me-1"></i>Neutral
+                                </span>
+                                <span class="news-time">12 hours ago</span>
+                            </div>
+                        </div>
+
+                        <div class="news-item">
+                            <a href="#" class="news-title">Emerging Markets Show Strong Growth Trajectory</a>
+                            <div class="news-meta">
+                                <span class="news-source">Market Watch</span>
+                                <span class="sentiment-indicator sentiment-positive" style="font-size: 0.75rem; padding: 4px 8px;">
+                                    <i class="fas fa-arrow-up me-1"></i>Positive
+                                </span>
+                                <span class="news-time">1 day ago</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="dashboard-panel">
+                        <h6 class="fw-bold mb-4">Market Sentiment Analysis</h6>
+                        <div class="data-point">
+                            <div class="data-label">Overall Sentiment</div>
+                            <div class="data-value" style="color: var(--success-color);">Bullish (72%)</div>
+                        </div>
+                        <div class="data-point">
+                            <div class="data-label">News Volume</div>
+                            <div class="data-value">2,847 articles</div>
+                        </div>
+                        <div class="data-point">
+                            <div class="data-label">Social Mentions</div>
+                            <div class="data-value">156K mentions</div>
+                        </div>
+                        <div class="data-point">
+                            <div class="data-label">Analyst Ratings</div>
+                            <div class="data-value">68% Buy, 24% Hold, 8% Sell</div>
+                        </div>
+                    </div>
+
+                    <div class="price-monitor">
+                        <h6 class="fw-bold mb-3">Key Assets</h6>
+                        <div class="price-item">
+                            <span class="price-symbol">S&P 500</span>
+                            <span class="price-value">4,127.83</span>
+                            <span class="price-change trend-up">
+                                <i class="fas fa-arrow-up"></i> +1.2%
+                            </span>
+                        </div>
+                        <div class="price-item">
+                            <span class="price-symbol">NASDAQ</span>
+                            <span class="price-value">12,456.78</span>
+                            <span class="price-change trend-up">
+                                <i class="fas fa-arrow-up"></i> +1.8%
+                            </span>
+                        </div>
+                        <div class="price-item">
+                            <span class="price-symbol">DOW</span>
+                            <span class="price-value">34,567.89</span>
+                            <span class="price-change trend-up">
+                                <i class="fas fa-arrow-up"></i> +0.9%
+                            </span>
+                        </div>
+                        <div class="price-item">
+                            <span class="price-symbol">BTC/USD</span>
+                            <span class="price-value">$42,156</span>
+                            <span class="price-change trend-down">
+                                <i class="fas fa-arrow-down"></i> -0.6%
+                            </span>
+                        </div>
+                        <div class="price-item">
+                            <span class="price-symbol">GOLD</span>
+                            <span class="price-value">$2,045</span>
+                            <span class="price-change trend-stable">
+                                <i class="fas fa-minus"></i> 0.0%
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Intelligence Features -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center mb-5">
+                    <h2 class="display-5 fw-bold" data-aos="fade-up">Intelligence Capabilities</h2>
+                    <p class="lead text-muted" data-aos="fade-up" data-aos-delay="100">
+                        Advanced analytics and predictive modeling for market insights
+                    </p>
+                </div>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="intelligence-card h-100">
+                        <div class="data-source source-realtime">
+                            <i class="fas fa-clock me-1"></i>Real-time
+                        </div>
+                        <div class="metric-icon">
+                            <i class="fas fa-stream"></i>
+                        </div>
+                        <h5 class="fw-bold">Live Data Streaming</h5>
+                        <p class="text-muted">Real-time market data feeds from 150+ global exchanges and trading platforms.</p>
+                        <ul class="list-unstyled">
+                            <li><i class="fas fa-check text-success me-2"></i>Sub-second latency</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Level 2 order book data</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Cross-exchange arbitrage</li>
+                        </ul>
+                        <div class="mt-3">
+                            <span class="insight-badge">
+                                <i class="fas fa-bolt me-1"></i>Ultra-Fast
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="intelligence-card h-100">
+                        <div class="data-source source-predictive">
+                            <i class="fas fa-brain me-1"></i>Predictive
+                        </div>
+                        <div class="metric-icon" style="background: var(--gradient-secondary);">
+                            <i class="fas fa-crystal-ball"></i>
+                        </div>
+                        <h5 class="fw-bold">Predictive Analytics</h5>
+                        <p class="text-muted">AI-powered forecasting models for price movements and market trend predictions.</p>
+                        <ul class="list-unstyled">
+                            <li><i class="fas fa-check text-success me-2"></i>Price forecasting (95% accuracy)</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Volatility prediction</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Market regime detection</li>
+                        </ul>
+                        <div class="mt-3">
+                            <span class="insight-badge">
+                                <i class="fas fa-robot me-1"></i>AI-Powered
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="intelligence-card h-100">
+                        <div class="data-source source-social">
+                            <i class="fas fa-share-alt me-1"></i>Social
+                        </div>
+                        <div class="metric-icon" style="background: var(--gradient-accent);">
+                            <i class="fas fa-comments"></i>
+                        </div>
+                        <h5 class="fw-bold">Social Sentiment</h5>
+                        <p class="text-muted">Real-time sentiment analysis from social media, news, and expert opinions.</p>
+                        <ul class="list-unstyled">
+                            <li><i class="fas fa-check text-success me-2"></i>Twitter sentiment tracking</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Reddit discussions analysis</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Influencer impact scoring</li>
+                        </ul>
+                        <div class="mt-3">
+                            <span class="insight-badge">
+                                <i class="fas fa-heart me-1"></i>Social Intelligence
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
+                    <div class="intelligence-card h-100">
+                        <div class="data-source source-historical">
+                            <i class="fas fa-database me-1"></i>Historical
+                        </div>
+                        <div class="metric-icon" style="background: var(--gradient-warning);">
+                            <i class="fas fa-chart-area"></i>
+                        </div>
+                        <h5 class="fw-bold">Historical Analysis</h5>
+                        <p class="text-muted">Comprehensive historical data analysis and pattern recognition across decades.</p>
+                        <ul class="list-unstyled">
+                            <li><i class="fas fa-check text-success me-2"></i>50+ years of market data</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Pattern recognition</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Correlation analysis</li>
+                        </ul>
+                        <div class="mt-3">
+                            <span class="insight-badge">
+                                <i class="fas fa-archive me-1"></i>Deep Historical
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="500">
+                    <div class="intelligence-card h-100">
+                        <div class="data-source source-realtime">
+                            <i class="fas fa-radar me-1"></i>Radar
+                        </div>
+                        <div class="metric-icon" style="background: var(--gradient-danger);">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                        <h5 class="fw-bold">Risk Monitoring</h5>
+                        <p class="text-muted">Real-time risk assessment and early warning systems for market volatility.</p>
+                        <ul class="list-unstyled">
+                            <li><i class="fas fa-check text-success me-2"></i>VIX monitoring</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Correlation breakdowns</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Black swan events</li>
+                        </ul>
+                        <div class="mt-3">
+                            <span class="insight-badge">
+                                <i class="fas fa-shield-alt me-1"></i>Risk Protection
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="600">
+                    <div class="intelligence-card h-100">
+                        <div class="data-source source-predictive">
+                            <i class="fas fa-lightbulb me-1"></i>Insights
+                        </div>
+                        <div class="metric-icon" style="background: linear-gradient(135deg, #8b5cf6 0%, #a78bfa 100%);">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <h5 class="fw-bold">Custom Analytics</h5>
+                        <p class="text-muted">Personalized analytics dashboards and custom indicator development.</p>
+                        <ul class="list-unstyled">
+                            <li><i class="fas fa-check text-success me-2"></i>Custom indicators</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Personalized alerts</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Portfolio optimization</li>
+                        </ul>
+                        <div class="mt-3">
+                            <span class="insight-badge">
+                                <i class="fas fa-user-cog me-1"></i>Fully Customizable
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sector Analysis -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center mb-5">
+                    <h2 class="display-5 fw-bold" data-aos="fade-up">Sector Performance Analysis</h2>
+                    <p class="lead text-muted" data-aos="fade-up" data-aos-delay="100">
+                        Deep dive analysis of sector performance and investment opportunities
+                    </p>
+                </div>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="sector-overview">
+                        <h5 class="fw-bold mb-4">Top Performing Sectors</h5>
+                        <div class="sector-item">
+                            <div class="sector-icon" style="background: var(--success-color);">
+                                <i class="fas fa-microchip"></i>
+                            </div>
+                            <div class="sector-info">
+                                <div class="sector-name">Technology</div>
+                                <div class="sector-change trend-up">
+                                    <i class="fas fa-arrow-up"></i> +3.2% (5Y CAGR: 24.5%)
+                                </div>
+                            </div>
+                            <div class="segment-share">28.5%</div>
+                        </div>
+                        <div class="sector-item">
+                            <div class="sector-icon" style="background: var(--secondary-color);">
+                                <i class="fas fa-heartbeat"></i>
+                            </div>
+                            <div class="sector-info">
+                                <div class="sector-name">Healthcare</div>
+                                <div class="sector-change trend-up">
+                                    <i class="fas fa-arrow-up"></i> +1.8% (5Y CAGR: 12.3%)
+                                </div>
+                            </div>
+                            <div class="segment-share">18.2%</div>
+                        </div>
+                        <div class="sector-item">
+                            <div class="sector-icon" style="background: var(--accent-color);">
+                                <i class="fas fa-building"></i>
+                            </div>
+                            <div class="sector-info">
+                                <div class="sector-name">Real Estate</div>
+                                <div class="sector-change trend-up">
+                                    <i class="fas fa-arrow-up"></i> +2.1% (5Y CAGR: 8.7%)
+                                </div>
+                            </div>
+                            <div class="segment-share">15.8%</div>
+                        </div>
+                        <div class="sector-item">
+                            <div class="sector-icon" style="background: var(--warning-color);">
+                                <i class="fas fa-dollar-sign"></i>
+                            </div>
+                            <div class="sector-info">
+                                <div class="sector-name">Financials</div>
+                                <div class="sector-change trend-up">
+                                    <i class="fas fa-arrow-up"></i> +2.9% (5Y CAGR: 11.2%)
+                                </div>
+                            </div>
+                            <div class="segment-share">22.1%</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="market-segment">
+                        <h5 class="fw-bold mb-4">Market Share Distribution</h5>
+                        <div class="segment-header">
+                            <span class="segment-title">Large Cap Stocks</span>
+                            <span class="segment-share">45.2%</span>
+                        </div>
+                        <div class="progress" style="height: 8px;">
+                            <div class="progress-bar bg-success" style="width: 45.2%;"></div>
+                        </div>
+                        <div class="segment-growth">
+                            <i class="fas fa-arrow-up text-success me-2"></i>
+                            <span class="text-success fw-bold">+2.1%</span>
+                            <span class="text-muted ms-2">vs. previous quarter</span>
+                        </div>
+
+                        <div class="segment-header mt-4">
+                            <span class="segment-title">Mid Cap Stocks</span>
+                            <span class="segment-share">28.7%</span>
+                        </div>
+                        <div class="progress" style="height: 8px;">
+                            <div class="progress-bar bg-primary" style="width: 28.7%;"></div>
+                        </div>
+                        <div class="segment-growth">
+                            <i class="fas fa-arrow-up text-success me-2"></i>
+                            <span class="text-success fw-bold">+1.8%</span>
+                            <span class="text-muted ms-2">vs. previous quarter</span>
+                        </div>
+
+                        <div class="segment-header mt-4">
+                            <span class="segment-title">Small Cap Stocks</span>
+                            <span class="segment-share">16.9%</span>
+                        </div>
+                        <div class="progress" style="height: 8px;">
+                            <div class="progress-bar bg-info" style="width: 16.9%;"></div>
+                        </div>
+                        <div class="segment-growth">
+                            <i class="fas fa-arrow-down text-danger me-2"></i>
+                            <span class="text-danger fw-bold">-0.5%</span>
+                            <span class="text-muted ms-2">vs. previous quarter</span>
+                        </div>
+
+                        <div class="segment-header mt-4">
+                            <span class="segment-title">Alternative Assets</span>
+                            <span class="segment-share">9.2%</span>
+                        </div>
+                        <div class="progress" style="height: 8px;">
+                            <div class="progress-bar bg-warning" style="width: 9.2%;"></div>
+                        </div>
+                        <div class="segment-growth">
+                            <i class="fas fa-arrow-up text-success me-2"></i>
+                            <span class="text-success fw-bold">+3.4%</span>
+                            <span class="text-muted ms-2">vs. previous quarter</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Intelligence Timeline -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center mb-5">
+                    <h2 class="display-5 fw-bold" data-aos="fade-up">Market Intelligence Timeline</h2>
+                    <p class="lead text-muted" data-aos="fade-up" data-aos-delay="100">
+                        Real-time market insights and alerts
+                    </p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-10 mx-auto">
+                    <div class="insight-timeline">
+                        <div class="timeline-item" data-aos="fade-up" data-aos-delay="100">
+                            <div class="timeline-marker marker-insight"></div>
+                            <div class="intelligence-card">
+                                <div class="data-source source-realtime">
+                                    <i class="fas fa-lightning me-1"></i>Live Alert
+                                </div>
+                                <h6 class="fw-bold">Volatility Spike Detected</h6>
+                                <p class="text-muted mb-2">VIX has increased by 15% in the last hour. Consider adjusting risk exposure.</p>
+                                <small class="text-muted">
+                                    <i class="fas fa-clock me-1"></i>5 minutes ago
+                                </small>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item" data-aos="fade-up" data-aos-delay="200">
+                            <div class="timeline-marker marker-trend"></div>
+                            <div class="intelligence-card">
+                                <div class="data-source source-predictive">
+                                    <i class="fas fa-chart-line me-1"></i>Trend Analysis
+                                </div>
+                                <h6 class="fw-bold">Bullish Crossover Signal</h6>
+                                <p class="text-muted mb-2">50-day MA crossed above 200-day MA for S&P 500. Historical success rate: 78%.</p>
+                                <small class="text-muted">
+                                    <i class="fas fa-clock me-1"></i>23 minutes ago
+                                </small>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item" data-aos="fade-up" data-aos-delay="300">
+                            <div class="timeline-marker marker-alert"></div>
+                            <div class="intelligence-card">
+                                <div class="data-source source-social">
+                                    <i class="fas fa-share-alt me-1"></i>Social Alert
+                                </div>
+                                <h6 class="fw-bold">High Social Sentiment</h6>
+                                <p class="text-muted mb-2">Tesla mentions up 340% on social media. Sentiment score: 8.5/10.</p>
+                                <small class="text-muted">
+                                    <i class="fas fa-clock me-1"></i>1 hour ago
+                                </small>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item" data-aos="fade-up" data-aos-delay="400">
+                            <div class="timeline-marker marker-insight"></div>
+                            <div class="intelligence-card">
+                                <div class="data-source source-historical">
+                                    <i class="fas fa-database me-1"></i>Historical
+                                </div>
+                                <h6 class="fw-bold">Seasonal Pattern Recognition</h6>
+                                <p class="text-muted mb-2">Historically strong performance expected in Q4. Average return: +4.2%.</p>
+                                <small class="text-muted">
+                                    <i class="fas fa-clock me-1"></i>2 hours ago
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Predictive Insights -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center mb-5">
+                    <h2 class="display-5 fw-bold" data-aos="fade-up">Predictive Market Insights</h2>
+                    <p class="lead text-muted" data-aos="fade-up" data-aos-delay="100">
+                        AI-powered predictions and market forecasts
+                    </p>
+                </div>
+            </div>
+
+            <div class="alert-predictive" data-aos="zoom-in">
+                <div class="row align-items-center">
+                    <div class="col-lg-8">
+                        <h4 class="fw-bold mb-3">
+                            <i class="fas fa-crystal-ball me-2"></i>Weekly Market Forecast
+                        </h4>
+                        <p class="mb-0">Based on our AI models analyzing 150+ indicators, we predict a 73% probability of continued upward momentum in major indices over the next week.</p>
+                    </div>
+                    <div class="col-lg-4 text-lg-end">
+                        <div class="h3 mb-0">73%</div>
+                        <small>Confidence Level</small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row g-4 mt-4">
+                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="dashboard-panel text-center">
+                        <div class="metric-icon" style="background: var(--gradient-secondary);">
+                            <i class="fas fa-arrow-trend-up"></i>
+                        </div>
+                        <h6 class="fw-bold">S&P 500 Target</h6>
+                        <div class="data-value" style="color: var(--success-color); font-size: 2rem;">4,250</div>
+                        <p class="text-muted mb-0">Projected by EOW</p>
+                        <div class="trend-indicator trend-up">
+                            <i class="fas fa-arrow-up"></i> +3.0% potential upside
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="dashboard-panel text-center">
+                        <div class="metric-icon" style="background: var(--gradient-accent);">
+                            <i class="fas fa-chart-area"></i>
+                        </div>
+                        <h6 class="fw-bold">Volatility Forecast</h6>
+                        <div class="data-value" style="color: var(--warning-color); font-size: 2rem;">18.5</div>
+                        <p class="text-muted mb-0">Expected VIX level</p>
+                        <div class="trend-indicator trend-stable">
+                            <i class="fas fa-minus"></i> Moderate volatility expected
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="dashboard-panel text-center">
+                        <div class="metric-icon" style="background: var(--gradient-warning);">
+                            <i class="fas fa-coins"></i>
+                        </div>
+                        <h6 class="fw-bold">Bitcoin Target</h6>
+                        <div class="data-value" style="color: var(--accent-color); font-size: 2rem;">$45,200</div>
+                        <p class="text-muted mb-0">30-day projection</p>
+                        <div class="trend-indicator trend-up">
+                            <i class="fas fa-arrow-up"></i> +7.2% potential upside
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-5" style="background: var(--gradient-primary);">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center text-white">
+                    <h2 class="display-5 fw-bold mb-4" data-aos="fade-up">Unlock Market Intelligence</h2>
+                    <p class="lead mb-4" data-aos="fade-up" data-aos-delay="100">
+                        Join 5,000+ traders and investors who make informed decisions with our intelligence platform
+                    </p>
+                    <div class="d-flex flex-wrap justify-content-center gap-3" data-aos="fade-up" data-aos-delay="200">
+                        <button class="btn btn-light btn-lg px-5 py-3">
+                            <i class="fas fa-rocket me-2"></i>Start Intelligence Trial
+                        </button>
+                        <button class="btn btn-outline-light btn-lg px-5 py-3">
+                            <i class="fas fa-calendar me-2"></i>Schedule Demo
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-light py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <h5 class="fw-bold mb-3">
+                        <i class="fas fa-chart-bar me-2"></i>MCS Platform
+                    </h5>
+                    <p class="text-muted">Advanced market intelligence platform for financial professionals worldwide.</p>
+                    <div class="d-flex gap-3">
+                        <a href="#" class="text-light"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-light"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="text-light"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h6 class="fw-bold mb-3">Product</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="features.html" class="text-muted text-decoration-none">Features</a></li>
+                        <li><a href="api.html" class="text-muted text-decoration-none">API</a></li>
+                        <li><a href="pricing.html" class="text-muted text-decoration-none">Pricing</a></li>
+                        <li><a href="get-started.html" class="text-muted text-decoration-none">Get Started</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h6 class="fw-bold mb-3">Enterprise</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="banking-integrations.html" class="text-muted text-decoration-none">Banking</a></li>
+                        <li><a href="compliance-suite.html" class="text-muted text-decoration-none">Compliance</a></li>
+                        <li><a href="market-intelligence.html" class="text-muted text-decoration-none">Market Intel</a></li>
+                        <li><a href="global-expansion.html" class="text-muted text-decoration-none">Global</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h6 class="fw-bold mb-3">Support</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-muted text-decoration-none">Documentation</a></li>
+                        <li><a href="#" class="text-muted text-decoration-none">Help Center</a></li>
+                        <li><a href="#" class="text-muted text-decoration-none">Status</a></li>
+                        <li><a href="#" class="text-muted text-decoration-none">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h6 class="fw-bold mb-3">Company</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-muted text-decoration-none">About</a></li>
+                        <li><a href="#" class="text-muted text-decoration-none">Blog</a></li>
+                        <li><a href="#" class="text-muted text-decoration-none">Careers</a></li>
+                        <li><a href="#" class="text-muted text-decoration-none">Press</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <p class="text-muted mb-0">&copy; 2025 MCS Platform. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <a href="#" class="text-muted text-decoration-none me-3">Privacy Policy</a>
+                    <a href="#" class="text-muted text-decoration-none">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100
+        });
+
+        // Interactive elements
+        document.addEventListener('DOMContentLoaded', function() {
+            // Heatmap cell interactions
+            const heatmapCells = document.querySelectorAll('.heatmap-cell');
+            heatmapCells.forEach(cell => {
+                cell.addEventListener('click', function() {
+                    const sector = this.querySelector('div').textContent;
+                    const change = this.querySelector('small').textContent;
+                    alert(`${sector}: ${change} change`);
+                });
+            });
+
+            // News item interactions
+            const newsItems = document.querySelectorAll('.news-item');
+            newsItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const title = this.querySelector('.news-title').textContent;
+                    alert(`Reading: ${title}`);
+                });
+            });
+
+            // Price monitoring with real-time updates
+            const priceItems = document.querySelectorAll('.price-item');
+            priceItems.forEach(item => {
+                setInterval(() => {
+                    const priceValue = item.querySelector('.price-value');
+                    const currentPrice = parseFloat(priceValue.textContent.replace(/[^0-9.-]+/g, ""));
+                    const change = (Math.random() - 0.5) * 0.02; // Random change between -1% and +1%
+                    const newPrice = currentPrice * (1 + change);
+                    priceValue.textContent = priceValue.textContent.includes('$') ? 
+                        `$${newPrice.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}` :
+                        newPrice.toFixed(2);
+                }, 5000);
+            });
+
+            // Timeline marker animations
+            const timelineMarkers = document.querySelectorAll('.timeline-marker');
+            timelineMarkers.forEach((marker, index) => {
+                setTimeout(() => {
+                    marker.style.animation = 'pulse 2s infinite';
+                }, index * 500);
+            });
+
+            // Intelligence card hover effects
+            const intelligenceCards = document.querySelectorAll('.intelligence-card');
+            intelligenceCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    const icon = this.querySelector('.metric-icon');
+                    if (icon) {
+                        icon.style.transform = 'scale(1.1) rotate(5deg)';
+                    }
+                });
+                card.addEventListener('mouseleave', function() {
+                    const icon = this.querySelector('.metric-icon');
+                    if (icon) {
+                        icon.style.transform = 'scale(1) rotate(0deg)';
+                    }
+                });
+            });
+
+            // Sentiment indicator animations
+            const sentimentIndicators = document.querySelectorAll('.sentiment-indicator');
+            sentimentIndicators.forEach(indicator => {
+                indicator.addEventListener('mouseenter', function() {
+                    this.style.transform = 'scale(1.05)';
+                });
+                indicator.addEventListener('mouseleave', function() {
+                    this.style.transform = 'scale(1)';
+                });
+            });
+
+            // News feed scroll effect
+            const newsFeed = document.querySelector('.news-feed');
+            if (newsFeed) {
+                newsFeed.addEventListener('scroll', function() {
+                    const scrolled = this.scrollTop;
+                    const maxScroll = this.scrollHeight - this.clientHeight;
+                    const scrollPercent = scrolled / maxScroll;
+                    
+                    if (scrollPercent > 0.8) {
+                        // Load more news when near bottom
+                        console.log('Load more news...');
+                    }
+                });
+            }
+
+            // Sector overview interactions
+            const sectorItems = document.querySelectorAll('.sector-item');
+            sectorItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const sectorName = this.querySelector('.sector-name').textContent;
+                    const change = this.querySelector('.sector-change').textContent;
+                    alert(`${sectorName} Details:\n${change}`);
+                });
+            });
+
+            // Market share progress bars animation
+            const progressBars = document.querySelectorAll('.progress-bar');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const bar = entry.target;
+                        const width = bar.style.width;
+                        bar.style.width = '0%';
+                        setTimeout(() => {
+                            bar.style.width = width;
+                        }, 200);
+                    }
+                });
+            });
+
+            progressBars.forEach(bar => observer.observe(bar));
+        });
+    </script>
+</body>
+</html>

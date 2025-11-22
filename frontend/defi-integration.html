@@ -1,0 +1,1284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DeFi Integration Hub - Metal Credit Score</title>
+    <meta name="description" content="Seamless DeFi integration with blockchain assets, cross-chain support, and yield farming analytics">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="assets/css/main.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/web3@4.5.0/dist/web3.min.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="fas fa-coins text-warning me-2"></i>MCS DeFi Hub
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="dashboard/index.html">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="ai-analytics.html">AI Analytics</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="defi-integration.html">DeFi Hub</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="white-label.html">Enterprise</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="community.html">Community</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            <i class="fas fa-globe"></i>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#" onclick="setLanguage('en')">English</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="setLanguage('hi')">हिन्दी</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="setLanguage('ta')">தமிழ்</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="setLanguage('te')">తెలుగు</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="setLanguage('bn')">বাংলা</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="setLanguage('mr')">मराठी</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <button class="btn btn-warning btn-sm ms-2" onclick="connectWallet()">
+                            <i class="fas fa-wallet me-1"></i>Connect Wallet
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section py-5 mt-5">
+        <div class="container">
+            <div class="row align-items-center min-vh-50">
+                <div class="col-lg-6" data-aos="fade-right">
+                    <h1 class="display-4 fw-bold text-white mb-4">
+                        <i class="fab fa-ethereum text-warning me-3"></i>
+                        DeFi Integration Hub
+                    </h1>
+                    <p class="lead text-light mb-4">
+                        Connect your DeFi assets across multiple blockchain networks. Track yield farming, 
+                        lending protocols, and cross-chain asset scoring in real-time.
+                    </p>
+                    <div class="d-flex gap-3 flex-wrap">
+                        <button class="btn btn-warning btn-lg" onclick="connectWallet()">
+                            <i class="fas fa-wallet me-2"></i>Connect Wallet
+                        </button>
+                        <button class="btn btn-outline-light btn-lg" onclick="showDeFiDemo()">
+                            <i class="fas fa-play me-2"></i>View Demo
+                        </button>
+                    </div>
+                </div>
+                <div class="col-lg-6" data-aos="fade-left">
+                    <div class="defi-visualization">
+                        <div class="row g-3">
+                            <div class="col-6">
+                                <div class="stat-box">
+                                    <h3 class="text-warning">$2.4M</h3>
+                                    <p class="text-light">Total Value Locked</p>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="stat-box">
+                                    <h3 class="text-success">156</h3>
+                                    <p class="text-light">Active Protocols</p>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="stat-box">
+                                    <h3 class="text-info">8.7%</h3>
+                                    <p class="text-light">Average APY</p>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="stat-box">
+                                    <h3 class="text-primary">5</h3>
+                                    <p class="text-light">Blockchain Networks</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Supported Protocols Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="display-5 fw-bold">Supported DeFi Protocols</h2>
+                <p class="lead text-muted">Connect with leading DeFi platforms across multiple chains</p>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="protocol-card">
+                        <div class="protocol-header">
+                            <img src="https://cryptologos.cc/logos/uniswap-uni-logo.png" alt="Uniswap" class="protocol-logo">
+                            <h5>Uniswap V3</h5>
+                        </div>
+                        <div class="protocol-content">
+                            <p class="protocol-description">Automated liquidity provision and token swaps on Ethereum</p>
+                            <div class="protocol-stats">
+                                <div class="stat">
+                                    <span class="stat-label">TVL</span>
+                                    <span class="stat-value">$3.2B</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-label">APY</span>
+                                    <span class="stat-value text-success">12.5%</span>
+                                </div>
+                            </div>
+                            <button class="btn btn-outline-primary w-100" onclick="connectProtocol('uniswap')">
+                                <i class="fas fa-link me-2"></i>Connect
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="protocol-card">
+                        <div class="protocol-header">
+                            <img src="https://cryptologos.cc/logos/aave-aave-logo.png" alt="Aave" class="protocol-logo">
+                            <h5>Aave V3</h5>
+                        </div>
+                        <div class="protocol-content">
+                            <p class="protocol-description">Lending and borrowing protocol with flash loans</p>
+                            <div class="protocol-stats">
+                                <div class="stat">
+                                    <span class="stat-label">TVL</span>
+                                    <span class="stat-value">$5.8B</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-label">APY</span>
+                                    <span class="stat-value text-success">8.9%</span>
+                                </div>
+                            </div>
+                            <button class="btn btn-outline-primary w-100" onclick="connectProtocol('aave')">
+                                <i class="fas fa-link me-2"></i>Connect
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="protocol-card">
+                        <div class="protocol-header">
+                            <img src="https://cryptologos.cc/logos/compound-comp-logo.png" alt="Compound" class="protocol-logo">
+                            <h5>Compound III</h5>
+                        </div>
+                        <div class="protocol-content">
+                            <p class="protocol-description">Algorithmic money markets across multiple assets</p>
+                            <div class="protocol-stats">
+                                <div class="stat">
+                                    <span class="stat-label">TVL</span>
+                                    <span class="stat-value">$2.1B</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-label">APY</span>
+                                    <span class="stat-value text-success">6.7%</span>
+                                </div>
+                            </div>
+                            <button class="btn btn-outline-primary w-100" onclick="connectProtocol('compound')">
+                                <i class="fas fa-link me-2"></i>Connect
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="400">
+                    <div class="protocol-card">
+                        <div class="protocol-header">
+                            <img src="https://cryptologos.cc/logos/curve-dao-token-curve-dao-logo.png" alt="Curve" class="protocol-logo">
+                            <h5>Curve Finance</h5>
+                        </div>
+                        <div class="protocol-content">
+                            <p class="protocol-description">Low slippage stablecoin and asset trading</p>
+                            <div class="protocol-stats">
+                                <div class="stat">
+                                    <span class="stat-label">TVL</span>
+                                    <span class="stat-value">$4.5B</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-label">APY</span>
+                                    <span class="stat-value text-success">14.2%</span>
+                                </div>
+                            </div>
+                            <button class="btn btn-outline-primary w-100" onclick="connectProtocol('curve')">
+                                <i class="fas fa-link me-2"></i>Connect
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="500">
+                    <div class="protocol-card">
+                        <div class="protocol-header">
+                            <img src="https://cryptologos.cc/logos/yearn-finance-yfi-logo.png" alt="Yearn" class="protocol-logo">
+                            <h5>Yearn Finance</h5>
+                        </div>
+                        <div class="protocol-content">
+                            <p class="protocol-description">Automated yield farming strategies</p>
+                            <div class="protocol-stats">
+                                <div class="stat">
+                                    <span class="stat-label">TVL</span>
+                                    <span class="stat-value">$1.8B</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-label">APY</span>
+                                    <span class="stat-value text-success">18.3%</span>
+                                </div>
+                            </div>
+                            <button class="btn btn-outline-primary w-100" onclick="connectProtocol('yearn')">
+                                <i class="fas fa-link me-2"></i>Connect
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="600">
+                    <div class="protocol-card">
+                        <div class="protocol-header">
+                            <img src="https://cryptologos.cc/logos/pancakeswap-cake-logo.png" alt="PancakeSwap" class="protocol-logo">
+                            <h5>PancakeSwap</h5>
+                        </div>
+                        <div class="protocol-content">
+                            <p class="protocol-description">DEX on Binance Smart Chain with yield farming</p>
+                            <div class="protocol-stats">
+                                <div class="stat">
+                                    <span class="stat-label">TVL</span>
+                                    <span class="stat-value">$3.7B</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-label">APY</span>
+                                    <span class="stat-value text-success">22.1%</span>
+                                </div>
+                            </div>
+                            <button class="btn btn-outline-primary w-100" onclick="connectProtocol('pancakeswap')">
+                                <i class="fas fa-link me-2"></i>Connect
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="700">
+                    <div class="protocol-card">
+                        <div class="protocol-header">
+                            <img src="https://cryptologos.cc/logos/polygon-matic-logo.png" alt="Polygon" class="protocol-logo">
+                            <h5>Polygon</h5>
+                        </div>
+                        <div class="protocol-content">
+                            <p class="protocol-description">Layer 2 scaling solution with DeFi ecosystem</p>
+                            <div class="protocol-stats">
+                                <div class="stat">
+                                    <span class="stat-label">TVL</span>
+                                    <span class="stat-value">$1.2B</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-label">APY</span>
+                                    <span class="stat-value text-success">15.8%</span>
+                                </div>
+                            </div>
+                            <button class="btn btn-outline-primary w-100" onclick="connectProtocol('polygon')">
+                                <i class="fas fa-link me-2"></i>Connect
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="800">
+                    <div class="protocol-card">
+                        <div class="protocol-header">
+                            <img src="https://cryptologos.cc/logos/sushiswap-sushi-logo.png" alt="SushiSwap" class="protocol-logo">
+                            <h5>SushiSwap</h5>
+                        </div>
+                        <div class="protocol-content">
+                            <p class="protocol-description">Multi-chain AMM with additional features</p>
+                            <div class="protocol-stats">
+                                <div class="stat">
+                                    <span class="stat-label">TVL</span>
+                                    <span class="stat-value">$876M</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-label">APY</span>
+                                    <span class="stat-value text-success">11.4%</span>
+                                </div>
+                            </div>
+                            <button class="btn btn-outline-primary w-100" onclick="connectProtocol('sushiswap')">
+                                <i class="fas fa-link me-2"></i>Connect
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cross-Chain Portfolio Section -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="display-5 fw-bold">Cross-Chain Portfolio</h2>
+                <p class="lead text-muted">Manage assets across multiple blockchain networks</p>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-lg-8" data-aos="fade-right">
+                    <div class="card">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <h5 class="mb-0">
+                                <i class="fas fa-network-wired me-2 text-primary"></i>
+                                Portfolio Distribution
+                            </h5>
+                            <div class="btn-group" role="group">
+                                <button class="btn btn-sm btn-outline-secondary active" onclick="updateChart('7d')">7D</button>
+                                <button class="btn btn-sm btn-outline-secondary" onclick="updateChart('30d')">30D</button>
+                                <button class="btn btn-sm btn-outline-secondary" onclick="updateChart('90d')">90D</button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <canvas id="portfolioChart" width="600" height="400"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4" data-aos="fade-left">
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h6 class="mb-0">
+                                <i class="fas fa-coins me-2 text-warning"></i>
+                                Asset Breakdown
+                            </h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="asset-item mb-3">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="d-flex align-items-center">
+                                        <img src="https://cryptologos.cc/logos/ethereum-eth-logo.png" alt="ETH" class="asset-icon me-2">
+                                        <span>Ethereum</span>
+                                    </div>
+                                    <div class="text-end">
+                                        <div class="fw-bold">$125,400</div>
+                                        <div class="text-success small">+8.2%</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="asset-item mb-3">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="d-flex align-items-center">
+                                        <img src="https://cryptologos.cc/logos/binance-coin-bnb-logo.png" alt="BNB" class="asset-icon me-2">
+                                        <span>BNB Chain</span>
+                                    </div>
+                                    <div class="text-end">
+                                        <div class="fw-bold">$89,200</div>
+                                        <div class="text-success small">+12.5%</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="asset-item mb-3">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="d-flex align-items-center">
+                                        <img src="https://cryptologos.cc/logos/polygon-matic-logo.png" alt="MATIC" class="asset-icon me-2">
+                                        <span>Polygon</span>
+                                    </div>
+                                    <div class="text-end">
+                                        <div class="fw-bold">$67,800</div>
+                                        <div class="text-danger small">-2.1%</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="asset-item">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="d-flex align-items-center">
+                                        <img src="https://cryptologos.cc/logos/arbitrum-arb-logo.png" alt="ARB" class="asset-icon me-2">
+                                        <span>Arbitrum</span>
+                                    </div>
+                                    <div class="text-end">
+                                        <div class="fw-bold">$45,600</div>
+                                        <div class="text-success small">+15.3%</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h6 class="mb-0">
+                                <i class="fas fa-chart-line me-2 text-success"></i>
+                                Yield Summary
+                            </h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="row text-center">
+                                <div class="col-6">
+                                    <h4 class="text-success">14.2%</h4>
+                                    <small class="text-muted">Current APY</small>
+                                </div>
+                                <div class="col-6">
+                                    <h4 class="text-primary">$23,458</h4>
+                                    <small class="text-muted">Monthly Yield</small>
+                                </div>
+                            </div>
+                            <div class="mt-3">
+                                <button class="btn btn-success btn-sm w-100" onclick="optimizePortfolio()">
+                                    <i class="fas fa-magic me-1"></i>Optimize Portfolio
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Yield Farming Analytics -->
+    <section class="py-5">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="display-5 fw-bold">Yield Farming Analytics</h2>
+                <p class="lead text-muted">Real-time analysis of DeFi yields and strategies</p>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card h-100">
+                        <div class="card-header">
+                            <h5 class="mb-0">
+                                <i class="fas fa-chart-pie me-2 text-info"></i>
+                                Yield Distribution
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <canvas id="yieldChart" width="400" height="300"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card h-100">
+                        <div class="card-header">
+                            <h5 class="mb-0">
+                                <i class="fas fa-trophy me-2 text-warning"></i>
+                                Top Performing Strategies
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="strategy-item mb-3">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <strong>USDC-ETH LP (Uniswap)</strong>
+                                        <p class="text-muted small mb-0">Low risk, stable yield</p>
+                                    </div>
+                                    <div class="text-end">
+                                        <div class="text-success fw-bold">24.5% APY</div>
+                                        <div class="text-success small">+1.2% today</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="strategy-item mb-3">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <strong>DCA Strategy (Compound)</strong>
+                                        <p class="text-muted small mb-0">Automated compounding</p>
+                                    </div>
+                                    <div class="text-end">
+                                        <div class="text-success fw-bold">18.7% APY</div>
+                                        <div class="text-success small">+0.8% today</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="strategy-item mb-3">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <strong>stETH Rewards (Lido)</strong>
+                                        <p class="text-muted small mb-0">Staked Ethereum yield</p>
+                                    </div>
+                                    <div class="text-end">
+                                        <div class="text-success fw-bold">15.3% APY</div>
+                                        <div class="text-danger small">-0.3% today</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="strategy-item">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <strong>BNB-CAKE Farm</strong>
+                                        <p class="text-muted small mb-0">High yield potential</p>
+                                    </div>
+                                    <div class="text-end">
+                                        <div class="text-success fw-bold">32.1% APY</div>
+                                        <div class="text-success small">+2.1% today</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="card h-100">
+                        <div class="card-header">
+                            <h5 class="mb-0">
+                                <i class="fas fa-exclamation-triangle me-2 text-danger"></i>
+                                Risk Assessment
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="risk-matrix">
+                                <div class="row g-2 text-center">
+                                    <div class="col-4">
+                                        <div class="risk-cell low-risk p-3">
+                                            <h5>Low</h5>
+                                            <p class="small">42% of portfolio</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="risk-cell medium-risk p-3">
+                                            <h5>Medium</h5>
+                                            <p class="small">38% of portfolio</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="risk-cell high-risk p-3">
+                                            <h5>High</h5>
+                                            <p class="small">20% of portfolio</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-4">
+                                <h6>Risk Factors</h6>
+                                <div class="risk-factors">
+                                    <div class="risk-factor mb-2">
+                                        <div class="d-flex justify-content-between">
+                                            <span>Smart Contract Risk</span>
+                                            <span class="text-warning">Medium</span>
+                                        </div>
+                                        <div class="progress" style="height: 5px;">
+                                            <div class="progress-bar bg-warning" style="width: 60%"></div>
+                                        </div>
+                                    </div>
+                                    <div class="risk-factor mb-2">
+                                        <div class="d-flex justify-content-between">
+                                            <span>Impermanent Loss</span>
+                                            <span class="text-success">Low</span>
+                                        </div>
+                                        <div class="progress" style="height: 5px;">
+                                            <div class="progress-bar bg-success" style="width: 30%"></div>
+                                        </div>
+                                    </div>
+                                    <div class="risk-factor mb-2">
+                                        <div class="d-flex justify-content-between">
+                                            <span>Liquidity Risk</span>
+                                            <span class="text-danger">High</span>
+                                        </div>
+                                        <div class="progress" style="height: 5px;">
+                                            <div class="progress-bar bg-danger" style="width: 80%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6" data-aos="fade-up" data-aos-delay="400">
+                    <div class="card h-100">
+                        <div class="card-header">
+                            <h5 class="mb-0">
+                                <i class="fas fa-calendar-alt me-2 text-primary"></i>
+                                Performance Timeline
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <canvas id="performanceChart" width="400" height="300"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blockchain Networks -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="display-5 fw-bold">Supported Networks</h2>
+                <p class="lead text-muted">Multi-chain support for maximum flexibility</p>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-lg-2 col-md-4 col-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="network-card text-center p-3">
+                        <img src="https://cryptologos.cc/logos/ethereum-eth-logo.png" alt="Ethereum" class="network-logo">
+                        <h6>Ethereum</h6>
+                        <p class="small text-muted">Primary network</p>
+                        <div class="network-stats">
+                            <div class="text-success">$125K</div>
+                            <small>Portfolio Value</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-2 col-md-4 col-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="network-card text-center p-3">
+                        <img src="https://cryptologos.cc/logos/binance-coin-bnb-logo.png" alt="BSC" class="network-logo">
+                        <h6>BSC</h6>
+                        <p class="small text-muted">Low fees</p>
+                        <div class="network-stats">
+                            <div class="text-success">$89K</div>
+                            <small>Portfolio Value</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-2 col-md-4 col-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="network-card text-center p-3">
+                        <img src="https://cryptologos.cc/logos/polygon-matic-logo.png" alt="Polygon" class="network-logo">
+                        <h6>Polygon</h6>
+                        <p class="small text-muted">Layer 2 scaling</p>
+                        <div class="network-stats">
+                            <div class="text-warning">$68K</div>
+                            <small>Portfolio Value</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-2 col-md-4 col-6" data-aos="fade-up" data-aos-delay="400">
+                    <div class="network-card text-center p-3">
+                        <img src="https://cryptologos.cc/logos/arbitrum-arb-logo.png" alt="Arbitrum" class="network-logo">
+                        <h6>Arbitrum</h6>
+                        <p class="small text-muted">Fast transactions</p>
+                        <div class="network-stats">
+                            <div class="text-info">$46K</div>
+                            <small>Portfolio Value</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-2 col-md-4 col-6" data-aos="fade-up" data-aos-delay="500">
+                    <div class="network-card text-center p-3">
+                        <img src="https://cryptologos.cc/logos/optimism-ethereum-op-logo.png" alt="Optimism" class="network-logo">
+                        <h6>Optimism</h6>
+                        <p class="small text-muted">EVM compatible</p>
+                        <div class="network-stats">
+                            <div class="text-muted">$23K</div>
+                            <small>Portfolio Value</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-2 col-md-4 col-6" data-aos="fade-up" data-aos-delay="600">
+                    <div class="network-card text-center p-3">
+                        <div class="network-logo-placeholder">
+                            <i class="fas fa-plus"></i>
+                        </div>
+                        <h6>Add Network</h6>
+                        <p class="small text-muted">Request new chain</p>
+                        <button class="btn btn-outline-primary btn-sm w-100" onclick="requestNetwork()">
+                            Request
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DeFi Tools -->
+    <section class="py-5">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="display-5 fw-bold">DeFi Integration Tools</h2>
+                <p class="lead text-muted">Powerful tools for DeFi portfolio management</p>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card h-100">
+                        <div class="card-body text-center">
+                            <div class="tool-icon mb-3">
+                                <i class="fas fa-sync text-primary"></i>
+                            </div>
+                            <h4>Automated Rebalancing</h4>
+                            <p class="card-text">
+                                Set rebalancing rules to maintain optimal portfolio allocation 
+                                across different DeFi protocols and assets.
+                            </p>
+                            <button class="btn btn-primary mt-auto" onclick="setupRebalancing()">
+                                <i class="fas fa-cog me-2"></i>Configure
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card h-100">
+                        <div class="card-body text-center">
+                            <div class="tool-icon mb-3">
+                                <i class="fas fa-shield-alt text-success"></i>
+                            </div>
+                            <h4>Risk Management</h4>
+                            <p class="card-text">
+                                Advanced risk monitoring with automated stop-losses, 
+                                position sizing, and portfolio risk assessment tools.
+                            </p>
+                            <button class="btn btn-success mt-auto" onclick="setupRiskManagement()">
+                                <i class="fas fa-shield me-2"></i>Enable Protection
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="card h-100">
+                        <div class="card-body text-center">
+                            <div class="tool-icon mb-3">
+                                <i class="fas fa-robot text-info"></i>
+                            </div>
+                            <h4>Yield Optimization</h4>
+                            <p class="card-text">
+                                AI-powered yield farming strategies that automatically move 
+                                your assets to the highest-performing protocols.
+                            </p>
+                            <button class="btn btn-info mt-auto" onclick="enableYieldOptimizer()">
+                                <i class="fas fa-magic me-2"></i>Optimize
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="400">
+                    <div class="card h-100">
+                        <div class="card-body text-center">
+                            <div class="tool-icon mb-3">
+                                <i class="fas fa-bell text-warning"></i>
+                            </div>
+                            <h4>Smart Alerts</h4>
+                            <p class="card-text">
+                                Customizable notifications for price movements, yield changes, 
+                                and important protocol updates.
+                            </p>
+                            <button class="btn btn-warning mt-auto" onclick="configureAlerts()">
+                                <i class="fas fa-bell me-2"></i>Set Alerts
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="500">
+                    <div class="card h-100">
+                        <div class="card-body text-center">
+                            <div class="tool-icon mb-3">
+                                <i class="fas fa-chart-line text-purple"></i>
+                            </div>
+                            <h4>Analytics Dashboard</h4>
+                            <p class="card-text">
+                                Comprehensive analytics with P&L tracking, fee analysis, 
+                                and performance benchmarking.
+                            </p>
+                            <button class="btn btn-purple mt-auto" onclick="openAnalytics()">
+                                <i class="fas fa-chart-bar me-2"></i>View Analytics
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="600">
+                    <div class="card h-100">
+                        <div class="card-body text-center">
+                            <div class="tool-icon mb-3">
+                                <i class="fas fa-exchange-alt text-dark"></i>
+                            </div>
+                            <h4>Cross-Chain Bridge</h4>
+                            <p class="card-text">
+                                Seamless asset transfers between different blockchain networks 
+                                with minimal fees and optimal routing.
+                            </p>
+                            <button class="btn btn-dark mt-auto" onclick="openBridge()">
+                                <i class="fas fa-exchange-alt me-2"></i>Bridge Assets
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <h5>MCS DeFi Hub</h5>
+                    <p class="text-muted">Comprehensive DeFi integration with multi-chain support and yield optimization.</p>
+                </div>
+                <div class="col-lg-2 mb-4">
+                    <h6>Protocols</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-muted">Uniswap</a></li>
+                        <li><a href="#" class="text-muted">Aave</a></li>
+                        <li><a href="#" class="text-muted">Compound</a></li>
+                        <li><a href="#" class="text-muted">Curve</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 mb-4">
+                    <h6>Networks</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-muted">Ethereum</a></li>
+                        <li><a href="#" class="text-muted">Polygon</a></li>
+                        <li><a href="#" class="text-muted">BSC</a></li>
+                        <li><a href="#" class="text-muted">Arbitrum</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <h6>DeFi Resources</h6>
+                    <p class="text-muted">Learn about DeFi protocols, yield farming strategies, and risk management.</p>
+                    <div class="input-group">
+                        <input type="email" class="form-control" placeholder="Enter your email">
+                        <button class="btn btn-warning" type="button">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <p class="mb-0">&copy; 2025 Metal Credit Score. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p class="mb-0">Multi-chain DeFi Integration Platform</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="assets/js/i18n.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out'
+        });
+
+        // DeFi Integration JavaScript
+        class DeFiIntegration {
+            constructor() {
+                this.web3 = null;
+                this.currentAccount = null;
+                this.portfolioData = {};
+                this.yieldStrategies = [];
+                this.initializeCharts();
+            }
+
+            async connectWallet() {
+                try {
+                    if (typeof window.ethereum !== 'undefined') {
+                        this.web3 = new Web3(window.ethereum);
+                        const accounts = await window.ethereum.request({ 
+                            method: 'eth_requestAccounts' 
+                        });
+                        this.currentAccount = accounts[0];
+                        
+                        // Update UI
+                        document.querySelector('[onclick="connectWallet()"]').innerHTML = 
+                            '<i class="fas fa-check-circle me-1"></i>Connected';
+                        document.querySelector('[onclick="connectWallet()"]').classList.remove('btn-warning');
+                        document.querySelector('[onclick="connectWallet()"]').classList.add('btn-success');
+                        
+                        alert(`Wallet connected successfully!\nAddress: ${this.currentAccount}`);
+                    } else {
+                        alert('MetaMask not found. Please install it to continue.');
+                    }
+                } catch (error) {
+                    console.error('Error connecting wallet:', error);
+                    alert('Failed to connect wallet. Please try again.');
+                }
+            }
+
+            initializeCharts() {
+                this.createPortfolioChart();
+                this.createYieldChart();
+                this.createPerformanceChart();
+            }
+
+            createPortfolioChart() {
+                const ctx = document.getElementById('portfolioChart').getContext('2d');
+                
+                new Chart(ctx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Ethereum', 'BSC', 'Polygon', 'Arbitrum'],
+                        datasets: [{
+                            data: [35, 25, 19, 21],
+                            backgroundColor: [
+                                '#627EEA',
+                                '#F3BA2F',
+                                '#8247E5',
+                                '#28A0F0'
+                            ]
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                position: 'bottom'
+                            }
+                        }
+                    }
+                });
+            }
+
+            createYieldChart() {
+                const ctx = document.getElementById('yieldChart').getContext('2d');
+                
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Lending', 'Liquidity', 'Staking', 'Farming', 'Derivatives'],
+                        datasets: [{
+                            label: 'Average APY %',
+                            data: [8.5, 15.2, 12.8, 24.5, 18.9],
+                            backgroundColor: [
+                                '#198754',
+                                '#0dcaf0',
+                                '#ffc107',
+                                '#dc3545',
+                                '#6f42c1'
+                            ]
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                max: 30
+                            }
+                        }
+                    }
+                });
+            }
+
+            createPerformanceChart() {
+                const ctx = document.getElementById('performanceChart').getContext('2d');
+                
+                const labels = [];
+                const data = [];
+                const today = new Date();
+                
+                for (let i = 30; i >= 0; i--) {
+                    const date = new Date(today);
+                    date.setDate(date.getDate() - i);
+                    labels.push(date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }));
+                    data.push(100 + Math.random() * 25);
+                }
+                
+                new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Portfolio Value',
+                            data: data,
+                            borderColor: '#0d6efd',
+                            backgroundColor: 'rgba(13, 110, 253, 0.1)',
+                            fill: true,
+                            tension: 0.4
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                display: false
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: false
+                            }
+                        }
+                    }
+                });
+            }
+
+            connectProtocol(protocol) {
+                alert(`Connecting to ${protocol} protocol... This would integrate with the actual protocol APIs.`);
+            }
+
+            optimizePortfolio() {
+                alert('Portfolio optimization in progress... AI is analyzing your current positions for better yield opportunities.');
+            }
+        }
+
+        // Initialize DeFi Integration
+        const defiIntegration = new DeFiIntegration();
+
+        // Global functions
+        function connectWallet() {
+            defiIntegration.connectWallet();
+        }
+
+        function showDeFiDemo() {
+            alert('DeFi Demo would show live portfolio tracking, yield calculations, and protocol integrations.');
+        }
+
+        function updateChart(period) {
+            console.log(`Updating chart for period: ${period}`);
+        }
+
+        function connectProtocol(protocol) {
+            defiIntegration.connectProtocol(protocol);
+        }
+
+        function optimizePortfolio() {
+            defiIntegration.optimizePortfolio();
+        }
+
+        // Tool functions
+        function setupRebalancing() {
+            alert('Rebalancing configuration would open with portfolio rules and thresholds.');
+        }
+
+        function setupRiskManagement() {
+            alert('Risk management setup would allow configuration of stop-losses and risk parameters.');
+        }
+
+        function enableYieldOptimizer() {
+            alert('Yield optimizer enabled! AI will automatically move assets to highest-performing protocols.');
+        }
+
+        function configureAlerts() {
+            alert('Alert configuration would allow setting up notifications for price changes, yield shifts, etc.');
+        }
+
+        function openAnalytics() {
+            window.open('dashboard/index.html#defi-analytics', '_blank');
+        }
+
+        function openBridge() {
+            alert('Cross-chain bridge interface would allow asset transfers between different networks.');
+        }
+
+        function requestNetwork() {
+            alert('Network request form would allow users to request support for new blockchain networks.');
+        }
+    </script>
+
+    <style>
+        .hero-section {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .defi-visualization {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            padding: 2rem;
+        }
+
+        .stat-box {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .protocol-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            overflow: hidden;
+            height: 100%;
+        }
+
+        .protocol-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .protocol-header {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .protocol-logo {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-bottom: 0.5rem;
+        }
+
+        .protocol-content {
+            padding: 1.5rem;
+        }
+
+        .protocol-description {
+            color: #6c757d;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .protocol-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-label {
+            display: block;
+            font-size: 0.8rem;
+            color: #6c757d;
+        }
+
+        .stat-value {
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .asset-icon {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+
+        .strategy-item {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .strategy-item:last-child {
+            border-bottom: none;
+        }
+
+        .risk-matrix {
+            margin: 1rem 0;
+        }
+
+        .risk-cell {
+            border-radius: 10px;
+            color: white;
+            margin: 0.25rem 0;
+        }
+
+        .low-risk {
+            background: #198754;
+        }
+
+        .medium-risk {
+            background: #ffc107;
+        }
+
+        .high-risk {
+            background: #dc3545;
+        }
+
+        .risk-factors {
+            margin-top: 1rem;
+        }
+
+        .risk-factor {
+            margin-bottom: 0.5rem;
+        }
+
+        .network-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .network-card:hover {
+            transform: translateY(-3px);
+        }
+
+        .network-logo {
+            width: 48px;
+            height: 48px;
+            margin-bottom: 0.5rem;
+        }
+
+        .network-logo-placeholder {
+            width: 48px;
+            height: 48px;
+            background: #e9ecef;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 0.5rem;
+            color: #6c757d;
+            font-size: 1.2rem;
+        }
+
+        .network-stats {
+            margin-top: 0.5rem;
+        }
+
+        .tool-icon {
+            font-size: 3rem;
+            color: #0d6efd;
+        }
+
+        .btn-purple {
+            background-color: #6f42c1;
+            border-color: #6f42c1;
+            color: white;
+        }
+
+        .btn-purple:hover {
+            background-color: #5a32a3;
+            border-color: #5a32a3;
+            color: white;
+        }
+
+        .min-vh-50 {
+            min-height: 50vh;
+        }
+    </style>
+</body>
+</html>

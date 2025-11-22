@@ -1,0 +1,1180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Marketplace - Metal Credit Score (MCS) | Developer Resources</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.1/aos.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #1a365d;
+            --secondary-color: #2d5a8e;
+            --accent-color: #ffd700;
+            --success-color: #28a745;
+            --warning-color: #ffc107;
+            --danger-color: #dc3545;
+            --code-bg: #2d3748;
+            --gradient-primary: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            --gradient-gold: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Navigation */
+        .navbar {
+            background: rgba(26, 54, 93, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-brand {
+            font-weight: 800;
+            font-size: 1.8rem;
+            color: var(--accent-color) !important;
+        }
+
+        .nav-link {
+            color: white !important;
+            font-weight: 500;
+            margin: 0 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--accent-color) !important;
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 120px 0 80px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+        }
+
+        /* API Navigation */
+        .api-nav {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 76px;
+            z-index: 100;
+        }
+
+        .api-nav .nav-link {
+            color: var(--primary-color) !important;
+            padding: 1rem 1.5rem;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .api-nav .nav-link:hover,
+        .api-nav .nav-link.active {
+            color: var(--accent-color) !important;
+            border-bottom-color: var(--accent-color);
+            background: rgba(255, 215, 0, 0.1);
+        }
+
+        /* API Playground */
+        .api-playground {
+            padding: 80px 0;
+            background: #f8f9fa;
+        }
+
+        .playground-container {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .playground-header {
+            background: var(--primary-color);
+            color: white;
+            padding: 1.5rem;
+            border-bottom: 3px solid var(--accent-color);
+        }
+
+        .playground-body {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 500px;
+        }
+
+        .playground-input,
+        .playground-output {
+            padding: 2rem;
+        }
+
+        .playground-input {
+            border-right: 1px solid #eee;
+            background: #fafafa;
+        }
+
+        .method-selector {
+            margin-bottom: 1rem;
+        }
+
+        .endpoint-input {
+            margin-bottom: 1rem;
+        }
+
+        .form-control {
+            border-radius: 8px;
+            border: 2px solid #e9ecef;
+            padding: 0.75rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 0.2rem rgba(255, 215, 0, 0.25);
+        }
+
+        /* Code Blocks */
+        .code-block {
+            background: var(--code-bg);
+            color: #e2e8f0;
+            padding: 1.5rem;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            overflow-x: auto;
+            margin: 1rem 0;
+            position: relative;
+        }
+
+        .code-block pre {
+            margin: 0;
+            white-space: pre-wrap;
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(255,255,255,0.1);
+            border: none;
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .copy-btn:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        /* API Documentation */
+        .api-docs {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .endpoint-card {
+            background: white;
+            border: 1px solid #e9ecef;
+            border-radius: 10px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .endpoint-card:hover {
+            border-color: var(--accent-color);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .endpoint-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .method-badge {
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.8rem;
+            margin-right: 1rem;
+            text-transform: uppercase;
+        }
+
+        .method-get { background: #d4edda; color: #155724; }
+        .method-post { background: #d1ecf1; color: #0c5460; }
+        .method-put { background: #fff3cd; color: #856404; }
+        .method-delete { background: #f8d7da; color: #721c24; }
+
+        .endpoint-url {
+            font-family: 'Courier New', monospace;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        /* SDKs Section */
+        .sdks-section {
+            padding: 80px 0;
+            background: #f8f9fa;
+        }
+
+        .sdk-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+
+        .sdk-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .sdk-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+        }
+
+        /* Rate Limiting */
+        .rate-limit-info {
+            background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
+            border: 1px solid #ffeaa7;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .rate-limit-bar {
+            background: #e9ecef;
+            height: 8px;
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+
+        .rate-limit-fill {
+            height: 100%;
+            background: var(--gradient-gold);
+            transition: width 0.3s ease;
+        }
+
+        /* Status Codes */
+        .status-codes {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .status-code {
+            background: white;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .status-code.success { border-color: var(--success-color); }
+        .status-code.error { border-color: var(--danger-color); }
+        .status-code.warning { border-color: var(--warning-color); }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 80px 0;
+            background: var(--gradient-primary);
+            color: white;
+            text-align: center;
+        }
+
+        /* Footer */
+        .footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 60px 0 30px;
+        }
+
+        .footer a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .playground-body {
+                grid-template-columns: 1fr;
+            }
+            
+            .playground-input {
+                border-right: none;
+                border-bottom: 1px solid #eee;
+            }
+        }
+
+        /* Interactive Elements */
+        .try-it-btn {
+            background: var(--gradient-gold);
+            color: var(--primary-color);
+            border: none;
+            padding: 12px 30px;
+            font-weight: 600;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .try-it-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+            color: var(--primary-color);
+        }
+
+        .spinner {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid var(--accent-color);
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 1rem auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="fas fa-coins me-2"></i>MCS
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="features.html">Features</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="pricing.html">Pricing</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="get-started.html">Get Started</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="education.html">Learn</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="api.html">API</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="dashboard/index.html" target="_blank">
+                            <i class="fas fa-tachometer-alt me-1"></i>Dashboard
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h1 data-aos="fade-up">MCS API Marketplace</h1>
+                    <p class="lead" data-aos="fade-up" data-aos-delay="100">
+                        Complete developer resources, interactive playground, and SDKs for seamless integration of asset-backed credit scoring into your applications.
+                    </p>
+                    <div data-aos="fade-up" data-aos-delay="200">
+                        <a href="#playground" class="btn btn-primary-custom me-3">
+                            <i class="fas fa-play me-2"></i>Try API Now
+                        </a>
+                        <a href="#docs" class="btn btn-outline-custom">
+                            <i class="fas fa-book me-2"></i>View Docs
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- API Navigation -->
+    <div class="api-nav">
+        <div class="container">
+            <ul class="nav nav-pills nav-fill">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#overview">Overview</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#authentication">Authentication</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#endpoints">Endpoints</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#sdk">SDKs</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#webhooks">Webhooks</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#examples">Examples</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- API Playground -->
+    <section id="playground" class="api-playground">
+        <div class="container">
+            <div class="row text-center mb-5">
+                <div class="col-lg-8 mx-auto">
+                    <h2 data-aos="fade-up">Interactive API Playground</h2>
+                    <p class="lead" data-aos="fade-up" data-aos-delay="100">
+                        Test MCS API endpoints directly in your browser. No setup required.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="playground-container" data-aos="fade-up" data-aos-delay="200">
+                <div class="playground-header">
+                    <h4><i class="fas fa-code me-2"></i>API Test Console</h4>
+                    <p class="mb-0">Experiment with different endpoints and parameters</p>
+                </div>
+                
+                <div class="playground-body">
+                    <!-- Input Section -->
+                    <div class="playground-input">
+                        <h5>Request</h5>
+                        
+                        <div class="method-selector">
+                            <select class="form-control" id="method">
+                                <option value="GET">GET</option>
+                                <option value="POST">POST</option>
+                                <option value="PUT">PUT</option>
+                                <option value="DELETE">DELETE</option>
+                            </select>
+                        </div>
+                        
+                        <div class="endpoint-input">
+                            <input type="text" class="form-control" id="endpoint" 
+                                   value="https://api.mcs.com/v1/mcs/score/user_123456" 
+                                   placeholder="Enter endpoint URL">
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="form-label">Headers</label>
+                            <textarea class="form-control" id="headers" rows="3" placeholder='{
+  "Authorization": "Bearer YOUR_API_KEY",
+  "Content-Type": "application/json"
+}'></textarea>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="form-label">Request Body (for POST/PUT)</label>
+                            <textarea class="form-control" id="body" rows="4" placeholder='{
+  "userId": "user_123456",
+  "assets": [
+    {
+      "type": "gold",
+      "amount": 125.5
+    }
+  ]
+}'></textarea>
+                        </div>
+                        
+                        <button class="btn try-it-btn" onclick="makeRequest()">
+                            <i class="fas fa-paper-plane me-2"></i>Send Request
+                        </button>
+                    </div>
+                    
+                    <!-- Output Section -->
+                    <div class="playground-output">
+                        <h5>Response</h5>
+                        <div id="response" class="code-block">
+                            <div class="text-muted">Response will appear here...</div>
+                        </div>
+                        
+                        <div class="rate-limit-info">
+                            <h6><i class="fas fa-tachometer-alt me-2"></i>Rate Limits</h6>
+                            <div class="d-flex justify-content-between">
+                                <span>Free Tier: 1000 requests/month</span>
+                                <span><strong>847</strong> remaining</span>
+                            </div>
+                            <div class="rate-limit-bar">
+                                <div class="rate-limit-fill" style="width: 15%;"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="status-codes">
+                            <div class="status-code success">
+                                <div class="h6">200 OK</div>
+                                <small>Success</small>
+                            </div>
+                            <div class="status-code error">
+                                <div class="h6">400 Bad Request</div>
+                                <small>Invalid input</small>
+                            </div>
+                            <div class="status-code error">
+                                <div class="h6">401 Unauthorized</div>
+                                <small>Invalid API key</small>
+                            </div>
+                            <div class="status-code warning">
+                                <div class="h6">429 Too Many</div>
+                                <small>Rate limited</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- API Documentation -->
+    <section id="docs" class="api-docs">
+        <div class="container">
+            <div class="row text-center mb-5">
+                <div class="col-lg-8 mx-auto">
+                    <h2 data-aos="fade-up">API Documentation</h2>
+                    <p class="lead" data-aos="fade-up" data-aos-delay="100">
+                        Comprehensive reference for all MCS API endpoints.
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Authentication Section -->
+            <div id="authentication" class="mb-5" data-aos="fade-up" data-aos-delay="100">
+                <h3>Authentication</h3>
+                <p>All API requests require authentication using Bearer token in the Authorization header.</p>
+                
+                <div class="code-block">
+                    <button class="copy-btn" onclick="copyToClipboard(this)">Copy</button>
+                    <pre><code>curl -X GET "https://api.mcs.com/v1/mcs/score/user_123456" \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -H "Content-Type: application/json"</code></pre>
+                </div>
+                
+                <div class="alert alert-info">
+                    <i class="fas fa-key me-2"></i>
+                    <strong>Get Your API Key:</strong> Sign up for a free account to get your API key with 1000 free requests per month.
+                </div>
+            </div>
+            
+            <!-- Endpoints Section -->
+            <div id="endpoints" data-aos="fade-up" data-aos-delay="200">
+                <h3 class="mb-4">API Endpoints</h3>
+                
+                <!-- Get Score Endpoint -->
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-badge method-get">GET</span>
+                        <code class="endpoint-url">/api/v1/mcs/score/:userId</code>
+                    </div>
+                    
+                    <p>Retrieve the Metal Credit Score for a specific user based on their asset portfolio.</p>
+                    
+                    <h6>Parameters:</h6>
+                    <ul>
+                        <li><code>userId</code> (path) - User identifier</li>
+                        <li><code>includeComponents</code> (query, optional) - Include score breakdown</li>
+                        <li><code>history</code> (query, optional) - Include historical data</li>
+                    </ul>
+                    
+                    <h6>Response:</h6>
+                    <div class="code-block">
+                        <button class="copy-btn" onclick="copyToClipboard(this)">Copy</button>
+                        <pre><code>{
+  "status": "success",
+  "data": {
+    "userId": "user_123456",
+    "finalScore": 742,
+    "assetScore": 398,
+    "behaviorScore": 287,
+    "riskScore": 57,
+    "scoreGrade": "Good",
+    "components": {
+      "gold": { "value": 125000, "weight": 0.6 },
+      "silver": { "value": 45000, "weight": 0.2 },
+      "binr": { "value": 38000, "weight": 0.2 }
+    },
+    "riskFactors": ["moderate_volatility", "good_liquidity"],
+    "lastUpdated": "2025-11-22T09:34:28Z",
+    "confidence": 0.94
+  },
+  "meta": {
+    "requestId": "req_abc123",
+    "timestamp": "2025-11-22T09:34:28Z",
+    "version": "v1"
+  }
+}</code></pre>
+                    </div>
+                </div>
+                
+                <!-- Submit Portfolio Endpoint -->
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-badge method-post">POST</span>
+                        <code class="endpoint-url">/api/v1/portfolio</code>
+                    </div>
+                    
+                    <p>Update user's portfolio with current asset holdings for score calculation.</p>
+                    
+                    <h6>Request Body:</h6>
+                    <div class="code-block">
+                        <button class="copy-btn" onclick="copyToClipboard(this)">Copy</button>
+                        <pre><code>{
+  "userId": "user_123456",
+  "walletAddress": "0x1234...5678",
+  "assets": [
+    {
+      "type": "gold",
+      "amount": 125.5,
+      "tokenAddress": "0x...",
+      "verified": true
+    },
+    {
+      "type": "silver", 
+      "amount": 450,
+      "tokenAddress": "0x...",
+      "verified": true
+    },
+    {
+      "type": "binr",
+      "amount": 38000,
+      "verified": true
+    }
+  ],
+  "signature": "0x...",
+  "timestamp": 1732248868000
+}</code></pre>
+                    </div>
+                </div>
+                
+                <!-- Score History Endpoint -->
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-badge method-get">GET</span>
+                        <code class="endpoint-url">/api/v1/mcs/score/:userId/history</code>
+                    </div>
+                    
+                    <p>Get historical score data for trend analysis and monitoring.</p>
+                    
+                    <h6>Query Parameters:</h6>
+                    <ul>
+                        <li><code>period</code> - Time period (7d, 30d, 90d, 1y)</li>
+                        <li><code>interval</code> - Data interval (daily, weekly, monthly)</li>
+                    </ul>
+                </div>
+                
+                <!-- Webhook Events Endpoint -->
+                <div class="endpoint-card">
+                    <div class="endpoint-header">
+                        <span class="method-badge method-post">POST</span>
+                        <code class="endpoint-url">/api/v1/webhooks</code>
+                    </div>
+                    
+                    <p>Register webhook endpoints to receive real-time score updates and notifications.</p>
+                    
+                    <h6>Webhook Events:</h6>
+                    <ul>
+                        <li><code>score.updated</code> - User's score has changed</li>
+                        <li><code>portfolio.changed</code> - Portfolio assets have been updated</li>
+                        <li><code>score.analyzed</code> - New score analysis completed</li>
+                        <li><code>alert.triggered</code> - Risk alert or threshold exceeded</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SDKs Section -->
+    <section id="sdk" class="sdks-section">
+        <div class="container">
+            <div class="row text-center mb-5">
+                <div class="col-lg-8 mx-auto">
+                    <h2 data-aos="fade-up">SDKs & Libraries</h2>
+                    <p class="lead" data-aos="fade-up" data-aos-delay="100">
+                        Official SDKs for popular programming languages and frameworks.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="row">
+                <!-- JavaScript SDK -->
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="sdk-card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="sdk-icon">
+                            <i class="fab fa-js-square"></i>
+                        </div>
+                        <h5>JavaScript</h5>
+                        <p>For Node.js, React, Vue.js, and browser applications</p>
+                        <div class="code-block">
+                            <button class="copy-btn" onclick="copyToClipboard(this)">Copy</button>
+                            <pre><code>npm install @mcs/sdk-js</code></pre>
+                        </div>
+                        <a href="#" class="btn btn-outline-primary">
+                            <i class="fab fa-github me-2"></i>View on GitHub
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Python SDK -->
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="sdk-card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="sdk-icon">
+                            <i class="fab fa-python"></i>
+                        </div>
+                        <h5>Python</h5>
+                        <p>For Django, Flask, FastAPI, and data science projects</p>
+                        <div class="code-block">
+                            <button class="copy-btn" onclick="copyToClipboard(this)">Copy</button>
+                            <pre><code>pip install mcs-python-sdk</code></pre>
+                        </div>
+                        <a href="#" class="btn btn-outline-primary">
+                            <i class="fab fa-github me-2"></i>View on GitHub
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Go SDK -->
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="sdk-card" data-aos="fade-up" data-aos-delay="300">
+                        <div class="sdk-icon">
+                            <i class="fab fa-golang"></i>
+                        </div>
+                        <h5>Go</h5>
+                        <p>For microservices, APIs, and high-performance applications</p>
+                        <div class="code-block">
+                            <button class="copy-btn" onclick="copyToClipboard(this)">Copy</button>
+                            <pre><code>go get github.com/mcs/sdk-go</code></pre>
+                        </div>
+                        <a href="#" class="btn btn-outline-primary">
+                            <i class="fab fa-github me-2"></i>View on GitHub
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Java SDK -->
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="sdk-card" data-aos="fade-up" data-aos-delay="400">
+                        <div class="sdk-icon">
+                            <i class="fab fa-java"></i>
+                        </div>
+                        <h5>Java</h5>
+                        <p>For Spring Boot, Android, and enterprise applications</p>
+                        <div class="code-block">
+                            <button class="copy-btn" onclick="copyToClipboard(this)">Copy</button>
+                            <pre><code>&lt;dependency&gt;
+  &lt;groupId&gt;com.mcs&lt;/groupId&gt;
+  &lt;artifactId&gt;sdk-java&lt;/artifactId&gt;
+&lt;/dependency&gt;</code></pre>
+                        </div>
+                        <a href="#" class="btn btn-outline-primary">
+                            <i class="fab fa-github me-2"></i>View on GitHub
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Code Examples -->
+    <section id="examples" class="api-docs">
+        <div class="container">
+            <div class="row text-center mb-5">
+                <div class="col-lg-8 mx-auto">
+                    <h2 data-aos="fade-up">Integration Examples</h2>
+                    <p class="lead" data-aos="fade-up" data-aos-delay="100">
+                        Complete code examples for common integration scenarios.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-6 mb-4" data-aos="fade-up" data-aos-delay="100">
+                    <h5>Node.js Integration</h5>
+                    <div class="code-block">
+                        <button class="copy-btn" onclick="copyToClipboard(this)">Copy</button>
+                        <pre><code>const MCS = require('@mcs/sdk-js');
+
+const client = new MCS({
+  apiKey: 'your-api-key',
+  environment: 'production'
+});
+
+// Get user score
+const score = await client.getScore('user_123456');
+console.log(`Score: ${score.finalScore}`);
+
+// Update portfolio
+await client.updatePortfolio({
+  userId: 'user_123456',
+  assets: [
+    { type: 'gold', amount: 125.5 },
+    { type: 'silver', amount: 450 }
+  ]
+});</code></pre>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6 mb-4" data-aos="fade-up" data-aos-delay="200">
+                    <h5>Python Integration</h5>
+                    <div class="code-block">
+                        <button class="copy-btn" onclick="copyToClipboard(this)">Copy</button>
+                        <pre><code>from mcs import MCSClient
+
+client = MCSClient(
+    api_key='your-api-key',
+    environment='production'
+)
+
+# Get user score
+score = client.get_score('user_123456')
+print(f"Score: {score.final_score}")
+
+# Update portfolio
+portfolio_data = {
+    'user_id': 'user_123456',
+    'assets': [
+        {'type': 'gold', 'amount': 125.5},
+        {'type': 'silver', 'amount': 450}
+    ]
+}
+client.update_portfolio(portfolio_data)</code></pre>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6 mb-4" data-aos="fade-up" data-aos-delay="300">
+                    <h5>React Hook Integration</h5>
+                    <div class="code-block">
+                        <button class="copy-btn" onclick="copyToClipboard(this)">Copy</button>
+                        <pre><code>import { useMCS } from '@mcs/sdk-react';
+
+function CreditScoreCard({ userId }) {
+  const { score, loading, error } = useMCS(userId);
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error.message}</div>;
+
+  return (
+    &lt;div className="score-card"&gt;
+      &lt;h3&gt;Your Credit Score&lt;/h3&gt;
+      &lt;div className="score"&gt;{score.finalScore}&lt;/div&gt;
+    &lt;/div&gt;
+  );
+}</code></pre>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6 mb-4" data-aos="fade-up" data-aos-delay="400">
+                    <h5>Webhook Handler</h5>
+                    <div class="code-block">
+                        <button class="copy-btn" onclick="copyToClipboard(this)">Copy</button>
+                        <pre><code>app.post('/webhook/mcs', (req, res) => {
+  const { event, data } = req.body;
+  
+  switch (event) {
+    case 'score.updated':
+      console.log(`Score updated: ${data.finalScore}`);
+      // Update user interface
+      updateUserInterface(data.userId, data.finalScore);
+      break;
+      
+    case 'alert.triggered':
+      console.log(`Alert: ${data.message}`);
+      // Send notification
+      sendNotification(data.userId, data.message);
+      break;
+  }
+  
+  res.status(200).json({ received: true });
+});</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h2 data-aos="fade-up">Ready to Build with MCS API?</h2>
+                    <p class="lead mb-4" data-aos="fade-up" data-aos-delay="100">
+                        Join thousands of developers building the future of credit scoring.
+                    </p>
+                    <div data-aos="fade-up" data-aos-delay="200">
+                        <a href="#" class="btn btn-primary-custom me-3">
+                            <i class="fas fa-key me-2"></i>Get API Key
+                        </a>
+                        <a href="education.html" class="btn btn-outline-custom">
+                            <i class="fas fa-graduation-cap me-2"></i>Learn Integration
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <h5><i class="fas fa-coins me-2"></i>MCS</h5>
+                    <p class="mb-3">India's first asset-backed credit scoring system.</p>
+                    <div>
+                        <a href="#" class="me-3"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="me-3"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="me-3"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h6>Developers</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="api.html">API Documentation</a></li>
+                        <li><a href="#">SDKs</a></li>
+                        <li><a href="#">Examples</a></li>
+                        <li><a href="#">Status Page</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h6>Support</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="#">Developer Portal</a></li>
+                        <li><a href="#">Community Forum</a></li>
+                        <li><a href="#">Contact Support</a></li>
+                        <li><a href="#">Bug Reports</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h6>Product</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="features.html">Features</a></li>
+                        <li><a href="pricing.html">Pricing</a></li>
+                        <li><a href="get-started.html">Get Started</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h6>Legal</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="#">API Terms</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Security</a></li>
+                        <li><a href="#">Compliance</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="my-4" style="border-color: #333;">
+            <div class="row">
+                <div class="col-md-6">
+                    <p class="mb-0">&copy; 2025 Metal Credit Score (MCS). All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p class="mb-0">API v1.0.0 • Last updated: Nov 22, 2025</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.1/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
+        });
+
+        // API Playground functionality
+        function makeRequest() {
+            const method = document.getElementById('method').value;
+            const endpoint = document.getElementById('endpoint').value;
+            const headers = document.getElementById('headers').value;
+            const body = document.getElementById('body').value;
+            
+            const responseDiv = document.getElementById('response');
+            
+            // Show loading
+            responseDiv.innerHTML = '<div class="spinner"></div><div class="text-center">Making request...</div>';
+            
+            // Simulate API call
+            setTimeout(() => {
+                let response;
+                
+                if (endpoint.includes('/score/')) {
+                    response = {
+                        status: 'success',
+                        data: {
+                            userId: 'user_123456',
+                            finalScore: 742,
+                            assetScore: 398,
+                            behaviorScore: 287,
+                            riskScore: 57,
+                            scoreGrade: 'Good',
+                            components: {
+                                gold: { value: 125000, weight: 0.6 },
+                                silver: { value: 45000, weight: 0.2 },
+                                binr: { value: 38000, weight: 0.2 }
+                            },
+                            riskFactors: ['moderate_volatility', 'good_liquidity'],
+                            lastUpdated: '2025-11-22T09:34:28Z',
+                            confidence: 0.94
+                        },
+                        meta: {
+                            requestId: 'req_abc123',
+                            timestamp: '2025-11-22T09:34:28Z',
+                            version: 'v1'
+                        }
+                    };
+                } else {
+                    response = {
+                        status: 'success',
+                        message: 'Request processed successfully',
+                        timestamp: new Date().toISOString()
+                    };
+                }
+                
+                responseDiv.innerHTML = `
+                    <div class="badge bg-success mb-2">HTTP 200 OK</div>
+                    <pre><code>${JSON.stringify(response, null, 2)}</code></pre>
+                `;
+                
+                // Update rate limit
+                const currentUsage = parseInt(document.querySelector('.rate-limit-info strong').textContent);
+                const newUsage = Math.max(currentUsage - Math.floor(Math.random() * 5), 0);
+                document.querySelector('.rate-limit-info strong').textContent = newUsage;
+                const percentage = ((1000 - newUsage) / 1000) * 100;
+                document.querySelector('.rate-limit-fill').style.width = percentage + '%';
+                
+            }, 2000);
+        }
+
+        // Copy to clipboard functionality
+        function copyToClipboard(button) {
+            const codeBlock = button.nextElementSibling;
+            const text = codeBlock.textContent;
+            
+            navigator.clipboard.writeText(text).then(() => {
+                const originalText = button.textContent;
+                button.textContent = 'Copied!';
+                button.style.background = 'rgba(40, 167, 69, 0.8)';
+                
+                setTimeout(() => {
+                    button.textContent = originalText;
+                    button.style.background = 'rgba(255,255,255,0.1)';
+                }, 2000);
+            });
+        }
+
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Active navigation highlighting
+        function updateActiveNav() {
+            const sections = document.querySelectorAll('[id]');
+            const navLinks = document.querySelectorAll('.api-nav .nav-link');
+            
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (window.scrollY >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', updateActiveNav);
+
+        // Initialize tooltips and other Bootstrap components
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add copy buttons to all code blocks
+            const codeBlocks = document.querySelectorAll('.code-block pre');
+            codeBlocks.forEach(block => {
+                const button = document.createElement('button');
+                button.className = 'copy-btn';
+                button.textContent = 'Copy';
+                button.onclick = () => copyToClipboard(button);
+                
+                block.parentNode.insertBefore(button, block);
+                block.parentNode.style.position = 'relative';
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community & Social Features - Metal Credit Score</title>
+    <meta name="description" content="Join the MCS community, compete with peers, earn rewards, and share credit score achievements">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="assets/css/main.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="fas fa-coins text-warning me-2"></i>MCS Community
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="dashboard/index.html">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="ai-analytics.html">AI Analytics</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="defi-integration.html">DeFi Hub</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="white-label.html">Enterprise</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="community.html">Community</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            <i class="fas fa-globe"></i>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#" onclick="setLanguage('en')">English</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="setLanguage('hi')">हिन्दी</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="setLanguage('ta')">தமிழ்</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="setLanguage('te')">తెలుగు</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="setLanguage('bn')">বাংলা</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="setLanguage('mr')">मराठी</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <button class="btn btn-warning btn-sm ms-2" onclick="joinCommunity()">
+                            <i class="fas fa-users me-1"></i>Join Now
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section py-5 mt-5">
+        <div class="container">
+            <div class="row align-items-center min-vh-50">
+                <div class="col-lg-6" data-aos="fade-right">
+                    <h1 class="display-4 fw-bold text-white mb-4">
+                        <i class="fas fa-users text-warning me-3"></i>
+                        Join the MCS Community
+                    </h1>
+                    <p class="lead text-light mb-4">
+                        Connect with fellow credit enthusiasts, share achievements, compete in challenges, 
+                        and unlock rewards. Be part of the most innovative credit scoring community.
+                    </p>
+                    <div class="d-flex gap-3 flex-wrap">
+                        <button class="btn btn-warning btn-lg" onclick="joinCommunity()">
+                            <i class="fas fa-user-plus me-2"></i>Join Community
+                        </button>
+                        <button class="btn btn-outline-light btn-lg" onclick="exploreChallenges()">
+                            <i class="fas fa-trophy me-2"></i>View Challenges
+                        </button>
+                    </div>
+                </div>
+                <div class="col-lg-6" data-aos="fade-left">
+                    <div class="community-stats">
+                        <div class="row g-3">
+                            <div class="col-6">
+                                <div class="stat-card">
+                                    <h3 class="text-warning">12.5K</h3>
+                                    <p class="text-light">Active Members</p>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="stat-card">
+                                    <h3 class="text-success">2.4M</h3>
+                                    <p class="text-light">Posts Shared</p>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="stat-card">
+                                    <h3 class="text-info">156</h3>
+                                    <p class="text-light">Daily Challenges</p>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="stat-card">
+                                    <h3 class="text-primary">89%</h3>
+                                    <p class="text-light">Engagement Rate</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Community Features -->
+    <section class="py-5">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="display-5 fw-bold">Community Features</h2>
+                <p class="lead text-muted">Engage, compete, and grow together</p>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="feature-card">
+                        <div class="feature-header">
+                            <i class="fas fa-trophy text-warning"></i>
+                            <h4>Challenges & Competitions</h4>
+                        </div>
+                        <div class="feature-content">
+                            <p class="mb-3">Participate in daily, weekly, and monthly challenges to improve your credit score and win rewards.</p>
+                            <ul class="feature-list">
+                                <li>Score improvement challenges</li>
+                                <li>Portfolio optimization contests</li>
+                                <li>DeFi yield farming competitions</li>
+                                <li>Educational quiz tournaments</li>
+                            </ul>
+                            <button class="btn btn-outline-primary w-100" onclick="joinChallenge()">
+                                <i class="fas fa-play me-2"></i>Join Challenge
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-card">
+                        <div class="feature-header">
+                            <i class="fas fa-medal text-success"></i>
+                            <h4>Achievement System</h4>
+                        </div>
+                        <div class="feature-content">
+                            <p class="mb-3">Unlock badges, earn points, and climb the leaderboards as you achieve your financial goals.</p>
+                            <ul class="feature-list">
+                                <li>Bronze, Silver, Gold, Platinum tiers</li>
+                                <li>Special event badges</li>
+                                <li>Milestone celebrations</li>
+                                <li>Peer recognition system</li>
+                            </ul>
+                            <button class="btn btn-outline-primary w-100" onclick="viewAchievements()">
+                                <i class="fas fa-star me-2"></i>View Achievements
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="feature-card">
+                        <div class="feature-header">
+                            <i class="fas fa-share-alt text-info"></i>
+                            <h4>Social Sharing</h4>
+                        </div>
+                        <div class="feature-content">
+                            <p class="mb-3">Share your achievements, strategies, and insights with the community while protecting your privacy.</p>
+                            <ul class="feature-list">
+                                <li>Anonymous progress sharing</li>
+                                <li>Strategy discussion forums</li>
+                                <li>Success story highlights</li>
+                                <li>Privacy-first design</li>
+                            </ul>
+                            <button class="btn btn-outline-primary w-100" onclick="shareAchievement()">
+                                <i class="fas fa-share me-2"></i>Share Now
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
+                    <div class="feature-card">
+                        <div class="feature-header">
+                            <i class="fas fa-comments text-primary"></i>
+                            <h4>Discussion Forums</h4>
+                        </div>
+                        <div class="feature-content">
+                            <p class="mb-3">Engage in meaningful discussions about credit strategies, market insights, and financial planning.</p>
+                            <ul class="feature-list">
+                                <li>Topic-based discussions</li>
+                                <li>Expert AMAs</li>
+                                <li>Q&A sections</li>
+                                <li>Regional language forums</li>
+                            </ul>
+                            <button class="btn btn-outline-primary w-100" onclick="joinDiscussion()">
+                                <i class="fas fa-comments me-2"></i>Join Discussion
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="500">
+                    <div class="feature-card">
+                        <div class="feature-header">
+                            <i class="fas fa-user-friends text-purple"></i>
+                            <h4>Mentorship Program</h4>
+                        </div>
+                        <div class="feature-content">
+                            <p class="mb-3">Connect with experienced members for personalized guidance and accelerate your financial journey.</p>
+                            <ul class="feature-list">
+                                <li>One-on-one mentoring</li>
+                                <li>Group mentoring sessions</li>
+                                <li>Skill development workshops</li>
+                                <li>Career guidance</li>
+                            </ul>
+                            <button class="btn btn-outline-primary w-100" onclick="findMentor()">
+                                <i class="fas fa-user-tie me-2"></i>Find Mentor
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="600">
+                    <div class="feature-card">
+                        <div class="feature-header">
+                            <i class="fas fa-gift text-danger"></i>
+                            <h4>Reward Marketplace</h4>
+                        </div>
+                        <div class="feature-content">
+                            <p class="mb-3">Redeem your earned points for exclusive rewards, premium features, and community perks.</p>
+                            <ul class="feature-list">
+                                <li>Premium platform features</li>
+                                <li>Exclusive educational content</li>
+                                <li>Partner discounts</li>
+                                <li>Physical merchandise</li>
+                            </ul>
+                            <button class="btn btn-outline-primary w-100" onclick="exploreRewards()">
+                                <i class="fas fa-shopping-cart me-2"></i>Explore Rewards
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Leaderboards -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="display-5 fw-bold">Community Leaderboards</h2>
+                <p class="lead text-muted">See how you rank among your peers</p>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card leaderboard-card">
+                        <div class="card-header">
+                            <h5 class="mb-0">
+                                <i class="fas fa-crown text-warning me-2"></i>
+                                Top Performers This Month
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="leaderboard-item mb-3">
+                                <div class="d-flex align-items-center">
+                                    <div class="rank-badge gold">1</div>
+                                    <img src="https://via.placeholder.com/40x40/ffd700/ffffff?text=U" alt="User" class="user-avatar me-3">
+                                    <div class="flex-grow-1">
+                                        <h6 class="mb-0">CreditMaster2024</h6>
+                                        <small class="text-muted">Score: 875 | +45 points</small>
+                                    </div>
+                                    <div class="badge bg-warning">🏆</div>
+                                </div>
+                            </div>
+                            <div class="leaderboard-item mb-3">
+                                <div class="d-flex align-items-center">
+                                    <div class="rank-badge silver">2</div>
+                                    <img src="https://via.placeholder.com/40x40/c0c0c0/ffffff?text=U" alt="User" class="user-avatar me-3">
+                                    <div class="flex-grow-1">
+                                        <h6 class="mb-0">DeFiGuru</h6>
+                                        <small class="text-muted">Score: 868 | +38 points</small>
+                                    </div>
+                                    <div class="badge bg-secondary">🥈</div>
+                                </div>
+                            </div>
+                            <div class="leaderboard-item mb-3">
+                                <div class="d-flex align-items-center">
+                                    <div class="rank-badge bronze">3</div>
+                                    <img src="https://via.placeholder.com/40x40/cd7f32/ffffff?text=U" alt="User" class="user-avatar me-3">
+                                    <div class="flex-grow-1">
+                                        <h6 class="mb-0">AssetAnalyst</h6>
+                                        <small class="text-muted">Score: 862 | +32 points</small>
+                                    </div>
+                                    <div class="badge bg-warning">🥉</div>
+                                </div>
+                            </div>
+                            <div class="leaderboard-item mb-3">
+                                <div class="d-flex align-items-center">
+                                    <div class="rank-badge">4</div>
+                                    <img src="https://via.placeholder.com/40x40/007bff/ffffff?text=U" alt="User" class="user-avatar me-3">
+                                    <div class="flex-grow-1">
+                                        <h6 class="mb-0">PortfolioPro</h6>
+                                        <small class="text-muted">Score: 856 | +28 points</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="leaderboard-item">
+                                <div class="d-flex align-items-center">
+                                    <div class="rank-badge">5</div>
+                                    <img src="https://via.placeholder.com/40x40/28a745/ffffff?text=U" alt="User" class="user-avatar me-3">
+                                    <div class="flex-grow-1">
+                                        <h6 class="mb-0">RiskOptimizer</h6>
+                                        <small class="text-muted">Score: 851 | +25 points</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <button class="btn btn-outline-primary btn-sm w-100" onclick="viewFullLeaderboard()">
+                                <i class="fas fa-list me-2"></i>View Full Rankings
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card leaderboard-card">
+                        <div class="card-header">
+                            <h5 class="mb-0">
+                                <i class="fas fa-chart-line text-success me-2"></i>
+                                Most Improved This Week
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="leaderboard-item mb-3">
+                                <div class="d-flex align-items-center">
+                                    <div class="rank-badge gold">1</div>
+                                    <img src="https://via.placeholder.com/40x40/28a745/ffffff?text=U" alt="User" class="user-avatar me-3">
+                                    <div class="flex-grow-1">
+                                        <h6 class="mb-0">RisingStar22</h6>
+                                        <small class="text-muted">+67 points improvement</small>
+                                    </div>
+                                    <div class="badge bg-success">📈</div>
+                                </div>
+                            </div>
+                            <div class="leaderboard-item mb-3">
+                                <div class="d-flex align-items-center">
+                                    <div class="rank-badge silver">2</div>
+                                    <img src="https://via.placeholder.com/40x40/0dcaf0/ffffff?text=U" alt="User" class="user-avatar me-3">
+                                    <div class="flex-grow-1">
+                                        <h6 class="mb-0">NewcomerPro</h6>
+                                        <small class="text-muted">+52 points improvement</small>
+                                    </div>
+                                    <div class="badge bg-info">🚀</div>
+                                </div>
+                            </div>
+                            <div class="leaderboard-item mb-3">
+                                <div class="d-flex align-items-center">
+                                    <div class="rank-badge bronze">3</div>
+                                    <img src="https://via.placeholder.com/40x40/ffc107/ffffff?text=U" alt="User" class="user-avatar me-3">
+                                    <div class="flex-grow-1">
+                                        <h6 class="mb-0">TurnaroundKing</h6>
+                                        <small class="text-muted">+48 points improvement</small>
+                                    </div>
+                                    <div class="badge bg-warning">⚡</div>
+                                </div>
+                            </div>
+                            <div class="leaderboard-item mb-3">
+                                <div class="d-flex align-items-center">
+                                    <div class="rank-badge">4</div>
+                                    <img src="https://via.placeholder.com/40x40/dc3545/ffffff?text=U" alt="User" class="user-avatar me-3">
+                                    <div class="flex-grow-1">
+                                        <h6 class="mb-0">RebuildMaster</h6>
+                                        <small class="text-muted">+41 points improvement</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="leaderboard-item">
+                                <div class="d-flex align-items-center">
+                                    <div class="rank-badge">5</div>
+                                    <img src="https://via.placeholder.com/40x40/6f42c1/ffffff?text=U" alt="User" class="user-avatar me-3">
+                                    <div class="flex-grow-1">
+                                        <h6 class="mb-0">SteadyClimber</h6>
+                                        <small class="text-muted">+38 points improvement</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <button class="btn btn-outline-success btn-sm w-100" onclick="viewImprovementLeaderboard()">
+                                <i class="fas fa-trophy me-2"></i>View Improvement Rankings
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="card leaderboard-card">
+                        <div class="card-header">
+                            <h5 class="mb-0">
+                                <i class="fas fa-heart text-danger me-2"></i>
+                                Most Helpful Community Members
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="leaderboard-item mb-3">
+                                <div class="d-flex align-items-center">
+                                    <div class="rank-badge gold">1</div>
+                                    <img src="https://via.placeholder.com/40x40/007bff/ffffff?text=U" alt="User" class="user-avatar me-3">
+                                    <div class="flex-grow-1">
+                                        <h6 class="mb-0">WiseCounselor</h6>
+                                        <small class="text-muted">247 helpful responses</small>
+                                    </div>
+                                    <div class="badge bg-danger">❤️</div>
+                                </div>
+                            </div>
+                            <div class="leaderboard-item mb-3">
+                                <div class="d-flex align-items-center">
+                                    <div class="rank-badge silver">2</div>
+                                    <img src="https://via.placeholder.com/40x40/28a745/ffffff?text=U" alt="User" class="user-avatar me-3">
+                                    <div class="flex-grow-1">
+                                        <h6 class="mb-0">MentorMike</h6>
+                                        <small class="text-muted">198 helpful responses</small>
+                                    </div>
+                                    <div class="badge bg-warning">🎓</div>
+                                </div>
+                            </div>
+                            <div class="leaderboard-item mb-3">
+                                <div class="d-flex align-items-center">
+                                    <div class="rank-badge bronze">3</div>
+                                    <img src="https://via.placeholder.com/40x40/6f42c1/ffffff?text=U" alt="User" class="user-avatar me-3">
+                                    <div class="flex-grow-1">
+                                        <h6 class="mb-0">SupportiveSarah</h6>
+                                        <small class="text-muted">176 helpful responses</small>
+                                    </div>
+                                    <div class="badge bg-info">💡</div>
+                                </div>
+                            </div>
+                            <div class="leaderboard-item mb-3">
+                                <div class="d-flex align-items-center">
+                                    <div class="rank-badge">4</div>
+                                    <img src="https://via.placeholder.com/40x40/ffc107/ffffff?text=U" alt="User" class="user-avatar me-3">
+                                    <div class="flex-grow-1">
+                                        <h6 class="mb-0">KnowledgeNinja</h6>
+                                        <small class="text-muted">154 helpful responses</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="leaderboard-item">
+                                <div class="d-flex align-items-center">
+                                    <div class="rank-badge">5</div>
+                                    <img src="https://via.placeholder.com/40x40/dc3545/ffffff?text=U" alt="User" class="user-avatar me-3">
+                                    <div class="flex-grow-1">
+                                        <h6 class="mb-0">GuideGuru</h6>
+                                        <small class="text-muted">142 helpful responses</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <button class="btn btn-outline-danger btn-sm w-100" onclick="viewCommunityChampions()">
+                                <i class="fas fa-award me-2"></i>View Community Champions
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Active Challenges -->
+    <section class="py-5">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="display-5 fw-bold">Active Challenges</h2>
+                <p class="lead text-muted">Join ongoing competitions and earn rewards</p>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="challenge-card">
+                        <div class="challenge-header">
+                            <div class="challenge-badge daily">Daily</div>
+                            <h4>Portfolio Diversification Challenge</h4>
+                            <p class="challenge-subtitle">Improve your asset allocation score</p>
+                        </div>
+                        <div class="challenge-content">
+                            <div class="challenge-stats">
+                                <div class="stat">
+                                    <span class="stat-label">Participants</span>
+                                    <span class="stat-value">1,247</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-label">Prize Pool</span>
+                                    <span class="stat-value">$5,000</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-label">Days Left</span>
+                                    <span class="stat-value">12</span>
+                                </div>
+                            </div>
+                            <div class="progress-section">
+                                <label class="form-label">Your Progress</label>
+                                <div class="progress">
+                                    <div class="progress-bar bg-success" style="width: 73%">73%</div>
+                                </div>
+                                <small class="text-muted">2 assets away from target diversification</small>
+                            </div>
+                            <div class="challenge-rewards">
+                                <h6>Rewards</h6>
+                                <div class="reward-items">
+                                    <span class="reward-badge">🏆 1st Place: $1,000</span>
+                                    <span class="reward-badge">🥈 2nd Place: $500</span>
+                                    <span class="reward-badge">🥉 3rd Place: $250</span>
+                                    <span class="reward-badge">📊 Top 10: Premium Features</span>
+                                </div>
+                            </div>
+                            <button class="btn btn-primary w-100" onclick="joinChallenge()">
+                                <i class="fas fa-play me-2"></i>Join Challenge
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="challenge-card">
+                        <div class="challenge-header">
+                            <div class="challenge-badge weekly">Weekly</div>
+                            <h4>DeFi Yield Master</h4>
+                            <p class="challenge-subtitle">Maximize your DeFi returns this week</p>
+                        </div>
+                        <div class="challenge-content">
+                            <div class="challenge-stats">
+                                <div class="stat">
+                                    <span class="stat-label">Participants</span>
+                                    <span class="stat-value">892</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-label">Prize Pool</span>
+                                    <span class="stat-value">$2,500</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-label">Days Left</span>
+                                    <span class="stat-value">4</span>
+                                </div>
+                            </div>
+                            <div class="progress-section">
+                                <label class="form-label">Your Progress</label>
+                                <div class="progress">
+                                    <div class="progress-bar bg-info" style="width: 45%">45%</div>
+                                </div>
+                                <small class="text-muted">Current rank: 23rd place</small>
+                            </div>
+                            <div class="challenge-rewards">
+                                <h6>Rewards</h6>
+                                <div class="reward-items">
+                                    <span class="reward-badge">🏆 Winner: $800</span>
+                                    <span class="reward-badge">🥈 Runner-up: $400</span>
+                                    <span class="reward-badge">🥉 Third: $200</span>
+                                    <span class="reward-badge">🎯 Top 5: Exclusive NFT</span>
+                                </div>
+                            </div>
+                            <button class="btn btn-primary w-100" onclick="joinChallenge()">
+                                <i class="fas fa-play me-2"></i>Join Challenge
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="challenge-card">
+                        <div class="challenge-header">
+                            <div class="challenge-badge monthly">Monthly</div>
+                            <h4>Credit Score Mountain</h4>
+                            <p class="challenge-subtitle">Climb to new credit score heights</p>
+                        </div>
+                        <div class="challenge-content">
+                            <div class="challenge-stats">
+                                <div class="stat">
+                                    <span class="stat-label">Participants</span>
+                                    <span class="stat-value">2,156</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-label">Prize Pool</span>
+                                    <span class="stat-value">$10,000</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-label">Days Left</span>
+                                    <span class="stat-value">18</span>
+                                </div>
+                            </div>
+                            <div class="progress-section">
+                                <label class="form-label">Your Progress</label>
+                                <div class="progress">
+                                    <div class="progress-bar bg-warning" style="width: 28%">28%</div>
+                                </div>
+                                <small class="text-muted">Score improved by 15 points this month</small>
+                            </div>
+                            <div class="challenge-rewards">
+                                <h6>Rewards</h6>
+                                <div class="reward-items">
+                                    <span class="reward-badge">🏆 Grand Prize: $3,000</span>
+                                    <span class="reward-badge">🥈 Second: $1,500</span>
+                                    <span class="reward-badge">🥉 Third: $1,000</span>
+                                    <span class="reward-badge">🎊 Top 20: Premium Subscription</span>
+                                </div>
+                            </div>
+                            <button class="btn btn-primary w-100" onclick="joinChallenge()">
+                                <i class="fas fa-play me-2"></i>Join Challenge
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6" data-aos="fade-up" data-aos-delay="400">
+                    <div class="challenge-card">
+                        <div class="challenge-header">
+                            <div class="challenge-badge special">Special</div>
+                            <h4>Education Excellence</h4>
+                            <p class="challenge-subtitle">Complete learning modules for rewards</p>
+                        </div>
+                        <div class="challenge-content">
+                            <div class="challenge-stats">
+                                <div class="stat">
+                                    <span class="stat-label">Participants</span>
+                                    <span class="stat-value">3,421</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-label">Prize Pool</span>
+                                    <span class="stat-value">$3,000</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-label">Days Left</span>
+                                    <span class="stat-value">25</span>
+                                </div>
+                            </div>
+                            <div class="progress-section">
+                                <label class="form-label">Your Progress</label>
+                                <div class="progress">
+                                    <div class="progress-bar bg-purple" style="width: 85%">85%</div>
+                                </div>
+                                <small class="text-muted">3 modules remaining</small>
+                            </div>
+                            <div class="challenge-rewards">
+                                <h6>Rewards</h6>
+                                <div class="reward-items">
+                                    <span class="reward-badge">🎓 Completion: $500</span>
+                                    <span class="reward-badge">📚 Master: $300</span>
+                                    <span class="reward-badge">📖 Advanced: $200</span>
+                                    <span class="reward-badge">🎯 All Participants: Points</span>
+                                </div>
+                            </div>
+                            <button class="btn btn-primary w-100" onclick="joinChallenge()">
+                                <i class="fas fa-play me-2"></i>Join Challenge
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Achievement Showcase -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="display-5 fw-bold">Achievement Showcase</h2>
+                <p class="lead text-muted">Celebrate your financial milestones</p>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="achievement-card">
+                        <div class="achievement-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <h5>First Steps</h5>
+                        <p>Joined the MCS community</p>
+                        <div class="achievement-badge">Bronze</div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="achievement-card">
+                        <div class="achievement-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h5>Score Improver</h5>
+                        <p>Increased score by 50 points</p>
+                        <div class="achievement-badge">Silver</div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="achievement-card">
+                        <div class="achievement-icon">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <h5>Challenge Winner</h5>
+                        <p>Won your first competition</p>
+                        <div class="achievement-badge">Gold</div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="400">
+                    <div class="achievement-card">
+                        <div class="achievement-icon">
+                            <i class="fas fa-medal"></i>
+                        </div>
+                        <h5>Community Leader</h5>
+                        <p>Reached top 10 leaderboard</p>
+                        <div class="achievement-badge">Platinum</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-5" data-aos="fade-up" data-aos-delay="500">
+                <button class="btn btn-primary btn-lg me-3" onclick="viewAllAchievements()">
+                    <i class="fas fa-trophy me-2"></i>View All Achievements
+                </button>
+                <button class="btn btn-outline-primary btn-lg" onclick="shareAchievements()">
+                    <i class="fas fa-share me-2"></i>Share Progress
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Community Stats -->
+    <section class="py-5">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="display-5 fw-bold">Community Impact</h2>
+                <p class="lead text-muted">See the collective achievements of our community</p>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="impact-stat">
+                        <div class="stat-icon">
+                            <i class="fas fa-arrow-up text-success"></i>
+                        </div>
+                        <h2 class="text-success">2.4M</h2>
+                        <h5>Total Score Improvements</h5>
+                        <p class="text-muted">Combined points earned by all members</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="impact-stat">
+                        <div class="stat-icon">
+                            <i class="fas fa-handshake text-primary"></i>
+                        </div>
+                        <h2 class="text-primary">45K</h2>
+                        <h5>Helpful Responses</h5>
+                        <p class="text-muted">Community members helping each other</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="impact-stat">
+                        <div class="stat-icon">
+                            <i class="fas fa-graduation-cap text-info"></i>
+                        </div>
+                        <h2 class="text-info">156K</h2>
+                        <h5>Modules Completed</h5>
+                        <p class="text-muted">Educational content consumed</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="400">
+                    <div class="impact-stat">
+                        <div class="stat-icon">
+                            <i class="fas fa-heart text-danger"></i>
+                        </div>
+                        <h2 class="text-danger">89%</h2>
+                        <h5>Member Satisfaction</h5>
+                        <p class="text-muted">Would recommend to friends</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <h5>MCS Community</h5>
+                    <p class="text-muted">Join thousands of members improving their financial health together.</p>
+                </div>
+                <div class="col-lg-2 mb-4">
+                    <h6>Community</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="#leaderboard" class="text-muted">Leaderboards</a></li>
+                        <li><a href="#challenges" class="text-muted">Challenges</a></li>
+                        <li><a href="#forums" class="text-muted">Discussion Forums</a></li>
+                        <li><a href="#mentorship" class="text-muted">Mentorship</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 mb-4">
+                    <h6>Resources</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="education.html" class="text-muted">Learning Hub</a></li>
+                        <li><a href="api.html" class="text-muted">API Docs</a></li>
+                        <li><a href="#" class="text-muted">Help Center</a></li>
+                        <li><a href="#" class="text-muted">Community Guidelines</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <h6>Join the Community</h6>
+                    <p class="text-muted">Connect with fellow credit enthusiasts and grow together.</p>
+                    <div class="input-group">
+                        <input type="email" class="form-control" placeholder="Enter your email">
+                        <button class="btn btn-warning" type="button">Join Now</button>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <p class="mb-0">&copy; 2025 Metal Credit Score. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p class="mb-0">Building Better Financial Futures Together</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="assets/js/i18n.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out'
+        });
+
+        // Community JavaScript
+        class CommunityFeatures {
+            constructor() {
+                this.userPoints = 1250;
+                this.userRank = 47;
+                this.activeChallenges = 4;
+                this.achievements = 12;
+            }
+
+            joinCommunity() {
+                // Simulate community joining process
+                const button = event.target;
+                const originalText = button.innerHTML;
+                
+                button.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Joining...';
+                button.disabled = true;
+                
+                setTimeout(() => {
+                    button.innerHTML = '<i class="fas fa-check me-2"></i>Joined!';
+                    button.classList.remove('btn-warning');
+                    button.classList.add('btn-success');
+                    
+                    setTimeout(() => {
+                        button.innerHTML = originalText;
+                        button.disabled = false;
+                        button.classList.remove('btn-success');
+                        button.classList.add('btn-warning');
+                    }, 3000);
+                }, 2000);
+            }
+
+            joinChallenge() {
+                alert('Challenge joined! Check your dashboard for progress tracking.');
+            }
+
+            shareAchievement() {
+                if (navigator.share) {
+                    navigator.share({
+                        title: 'My MCS Achievement',
+                        text: 'I just improved my credit score and joined the MCS community!',
+                        url: window.location.href
+                    });
+                } else {
+                    // Fallback for browsers that don't support Web Share API
+                    const shareText = `I just improved my credit score and joined the MCS community! ${window.location.href}`;
+                    navigator.clipboard.writeText(shareText).then(() => {
+                        alert('Achievement link copied to clipboard!');
+                    });
+                }
+            }
+        }
+
+        // Initialize Community Features
+        const community = new CommunityFeatures();
+
+        // Global functions
+        function joinCommunity() {
+            community.joinCommunity();
+        }
+
+        function exploreChallenges() {
+            alert('Challenge browser would open with filtering and categorization options.');
+        }
+
+        function joinChallenge() {
+            community.joinChallenge();
+        }
+
+        function viewAchievements() {
+            alert('Achievement gallery would show all earned badges and milestones.');
+        }
+
+        function shareAchievement() {
+            community.shareAchievement();
+        }
+
+        function joinDiscussion() {
+            alert('Discussion forum would open with topic categories and real-time chat.');
+        }
+
+        function findMentor() {
+            alert('Mentor matching system would pair you with experienced community members.');
+        }
+
+        function exploreRewards() {
+            alert('Reward marketplace would show available items and redemption options.');
+        }
+
+        function viewFullLeaderboard() {
+            alert('Full leaderboard would show comprehensive rankings with filters and search.');
+        }
+
+        function viewImprovementLeaderboard() {
+            alert('Improvement leaderboard would highlight fastest growing members.');
+        }
+
+        function viewCommunityChampions() {
+            alert('Community champions page would showcase most helpful members.');
+        }
+
+        function viewAllAchievements() {
+            alert('Complete achievement catalog would show all available badges and how to earn them.');
+        }
+
+        function shareAchievements() {
+            community.shareAchievement();
+        }
+    </script>
+
+    <style>
+        .hero-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="dots" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="2" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23dots)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .community-stats {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            padding: 2rem;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .feature-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            overflow: hidden;
+            height: 100%;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .feature-header {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .feature-header i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-content {
+            padding: 2rem;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-list li {
+            padding: 0.25rem 0;
+            color: #6c757d;
+        }
+
+        .feature-list li:before {
+            content: "✓";
+            color: #28a745;
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+
+        .leaderboard-card {
+            border: none;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border-radius: 15px;
+        }
+
+        .leaderboard-item {
+            padding: 0.75rem;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+        }
+
+        .leaderboard-item:hover {
+            background-color: #f8f9fa;
+        }
+
+        .rank-badge {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: #6c757d;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 0.75rem;
+        }
+
+        .rank-badge.gold {
+            background: #ffd700;
+            color: #333;
+        }
+
+        .rank-badge.silver {
+            background: #c0c0c0;
+            color: #333;
+        }
+
+        .rank-badge.bronze {
+            background: #cd7f32;
+            color: white;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid #fff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .challenge-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+            height: 100%;
+        }
+
+        .challenge-header {
+            background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+            color: white;
+            padding: 1.5rem;
+            position: relative;
+        }
+
+        .challenge-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 15px;
+            font-size: 0.75rem;
+            font-weight: bold;
+        }
+
+        .challenge-badge.daily {
+            background: #28a745;
+        }
+
+        .challenge-badge.weekly {
+            background: #17a2b8;
+        }
+
+        .challenge-badge.monthly {
+            background: #ffc107;
+            color: #333;
+        }
+
+        .challenge-badge.special {
+            background: #6f42c1;
+        }
+
+        .challenge-subtitle {
+            margin: 0.5rem 0 0 0;
+            opacity: 0.9;
+        }
+
+        .challenge-content {
+            padding: 1.5rem;
+        }
+
+        .challenge-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-label {
+            display: block;
+            font-size: 0.8rem;
+            color: #6c757d;
+            margin-bottom: 0.25rem;
+        }
+
+        .stat-value {
+            font-weight: bold;
+            font-size: 1.1rem;
+            color: #333;
+        }
+
+        .progress-section {
+            margin-bottom: 1.5rem;
+        }
+
+        .challenge-rewards {
+            margin-bottom: 1.5rem;
+        }
+
+        .reward-items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .reward-badge {
+            background: #f8f9fa;
+            padding: 0.25rem 0.75rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            border: 1px solid #dee2e6;
+        }
+
+        .achievement-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            padding: 2rem;
+            text-align: center;
+            transition: transform 0.3s ease;
+            height: 100%;
+        }
+
+        .achievement-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .achievement-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #007bff, #0056b3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            color: white;
+            font-size: 2rem;
+        }
+
+        .achievement-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 15px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            margin-top: 0.5rem;
+        }
+
+        .impact-stat {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            padding: 2rem;
+            text-align: center;
+            transition: transform 0.3s ease;
+            height: 100%;
+        }
+
+        .impact-stat:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .bg-purple {
+            background-color: #6f42c1 !important;
+        }
+
+        .min-vh-50 {
+            min-height: 50vh;
+        }
+    </style>
+</body>
+</html>

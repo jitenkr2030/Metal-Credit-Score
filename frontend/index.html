@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#ffd700">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="MCS">
+    <link rel="apple-touch-icon" href="assets/icons/icon-192x192.png">
+    
+    <!-- Multi-language support -->
+    <meta name="language" content="en">
+    <meta name="geo.region" content="IN">
+    <meta name="geo.country" content="India">
+    
+    <title>Metal Credit Score (MCS) - India's First Asset-Backed Credit Scoring</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.1/aos.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Fonts for Indian languages -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Tamil:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Telugu:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- i18n CSS -->
+    <style>
+        /* Language-specific font families */
+        [lang="hi"] body, [lang="mr"] body {
+            font-family: 'Noto Sans Devanagari', 'Inter', sans-serif;
+        }
+        [lang="bn"] body {
+            font-family: 'Noto Sans Bengali', 'Inter', sans-serif;
+        }
+        [lang="ta"] body {
+            font-family: 'Noto Sans Tamil', 'Inter', sans-serif;
+        }
+        [lang="te"] body {
+            font-family: 'Noto Sans Telugu', 'Inter', sans-serif;
+        }
+        
+        /* RTL Support */
+        body.rtl {
+            direction: rtl;
+            text-align: right;
+        }
+        
+        body.rtl .navbar-nav {
+            flex-direction: row-reverse;
+        }
+        
+        body.rtl .hero h1,
+        body.rtl .hero .subtitle {
+            text-align: center;
+        }
+    </style>
+    <style>
+        :root {
+            --primary-color: #1a365d;
+            --secondary-color: #2d5a8e;
+            --accent-color: #ffd700;
+            --gold: #ffd700;
+            --silver: #c0c0c0;
+            --platinum: #e5e4e2;
+            --success-color: #28a745;
+            --gradient-primary: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            --gradient-gold: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+            --gradient-silver: linear-gradient(135deg, #c0c0c0 0%, #f0f0f0 100%);
+            --gradient-platinum: linear-gradient(135deg, #e5e4e2 0%, #ffffff 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Navigation */
+        .navbar {
+            background: rgba(26, 54, 93, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-brand {
+            font-weight: 800;
+            font-size: 1.8rem;
+            color: var(--accent-color) !important;
+        }
+
+        .nav-link {
+            color: white !important;
+            font-weight: 500;
+            margin: 0 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--accent-color) !important;
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 120px 0 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .hero .subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .btn-primary-custom {
+            background: var(--gradient-gold);
+            color: var(--primary-color);
+            border: none;
+            padding: 15px 35px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+        }
+
+        .btn-primary-custom:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 215, 0, 0.4);
+            color: var(--primary-color);
+        }
+
+        .btn-outline-custom {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+            padding: 13px 35px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-outline-custom:hover {
+            background: white;
+            color: var(--primary-color);
+            transform: translateY(-3px);
+        }
+
+        /* Value Proposition */
+        .value-prop {
+            padding: 80px 0;
+            background: #f8f9fa;
+        }
+
+        .value-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+            height: 100%;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .value-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .value-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+        }
+
+        /* How It Works */
+        .how-it-works {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .step-card {
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-gold);
+            color: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 1.5rem;
+            margin: 0 auto 1.5rem;
+        }
+
+        /* Asset Showcase */
+        .asset-showcase {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        }
+
+        .asset-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+
+        .asset-card:hover {
+            transform: scale(1.05);
+        }
+
+        .asset-icon {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 1.5rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+        }
+
+        .gold-icon {
+            background: var(--gradient-gold);
+        }
+
+        .silver-icon {
+            background: var(--gradient-silver);
+        }
+
+        .platinum-icon {
+            background: var(--gradient-platinum);
+        }
+
+        .binr-icon {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            color: white;
+        }
+
+        /* Score Scale */
+        .score-scale {
+            padding: 80px 0;
+            background: var(--gradient-primary);
+            color: white;
+        }
+
+        .score-display {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .score-number {
+            font-size: 4rem;
+            font-weight: 800;
+            background: var(--gradient-gold);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Benefits */
+        .benefits {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .benefit-item {
+            padding: 1.5rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .benefit-item:last-child {
+            border-bottom: none;
+        }
+
+        .benefit-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            margin-right: 1rem;
+            flex-shrink: 0;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 80px 0;
+            background: var(--gradient-primary);
+            color: white;
+            text-align: center;
+        }
+
+        /* Footer */
+        .footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 60px 0 30px;
+        }
+
+        .footer a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero .subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .score-number {
+                font-size: 3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-coins me-2"></i>MCS
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#how-it-works" data-translate="nav.howItWorks">How It Works</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#assets" data-translate="nav.assets">Supported Assets</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#benefits" data-translate="nav.benefits">Benefits</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="education.html" data-translate="nav.learn">Learn</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="api.html" data-translate="nav.api">API</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            <i class="fas fa-rocket me-1"></i>Features
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><h6 class="dropdown-header">AI & Analytics</h6></li>
+                            <li><a class="dropdown-item" href="ai-analytics.html"><i class="fas fa-brain me-2"></i>AI/ML Analytics</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><h6 class="dropdown-header">Blockchain & Finance</h6></li>
+                            <li><a class="dropdown-item" href="defi-integration.html"><i class="fab fa-ethereum me-2"></i>DeFi Integration</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><h6 class="dropdown-header">Enterprise Solutions</h6></li>
+                            <li><a class="dropdown-item" href="white-label.html"><i class="fas fa-building me-2"></i>White-Label Solutions</a></li>
+                            <li><a class="dropdown-item" href="banking-integrations.html"><i class="fas fa-university me-2"></i>Banking Integrations</a></li>
+                            <li><a class="dropdown-item" href="compliance-suite.html"><i class="fas fa-balance-scale me-2"></i>Compliance Suite</a></li>
+                            <li><a class="dropdown-item" href="market-intelligence.html"><i class="fas fa-chart-line me-2"></i>Market Intelligence</a></li>
+                            <li><a class="dropdown-item" href="business-intelligence.html"><i class="fas fa-chart-pie me-2"></i>Business Intelligence</a></li>
+                            <li><a class="dropdown-item" href="global-expansion.html"><i class="fas fa-globe me-2"></i>Global Expansion</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><h6 class="dropdown-header">Community & Security</h6></li>
+                            <li><a class="dropdown-item" href="community.html"><i class="fas fa-users me-2"></i>Community Hub</a></li>
+                            <li><a class="dropdown-item" href="advanced-security.html"><i class="fas fa-shield-alt me-2"></i>Advanced Security</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact" data-translate="nav.contact">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="dashboard/index.html" target="_blank">
+                            <i class="fas fa-tachometer-alt me-1"></i><span data-translate="nav.dashboard">Dashboard</span>
+                        </a>
+                    </li>
+                    <!-- Language Selector -->
+                    <li class="nav-item">
+                        <div class="dropdown">
+                            <button class="btn nav-link dropdown-toggle language-btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fas fa-globe me-1"></i>English
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li><a class="dropdown-item" href="#" data-lang="en">🇺🇸 English</a></li>
+                                <li><a class="dropdown-item" href="#" data-lang="hi">🇮🇳 हिन्दी (Hindi)</a></li>
+                                <li><a class="dropdown-item" href="#" data-lang="ta">🇮🇳 தமிழ் (Tamil)</a></li>
+                                <li><a class="dropdown-item" href="#" data-lang="te">🇮🇳 తెలుగు (Telugu)</a></li>
+                                <li><a class="dropdown-item" href="#" data-lang="bn">🇮🇳 বাংলা (Bengali)</a></li>
+                                <li><a class="dropdown-item" href="#" data-lang="mr">🇮🇳 मराठी (Marathi)</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 hero-content">
+                    <h1 data-aos="fade-up" data-translate="hero.title">India's First<br>Asset-Backed Credit Score</h1>
+                    <p class="subtitle" data-aos="fade-up" data-aos-delay="100" data-translate="hero.subtitle">
+                        Revolutionary credit scoring based on real collateral assets: Gold (BGT), Silver (BST), Platinum (BPT), and BINR stablecoin holdings instead of traditional credit history.
+                    </p>
+                    <div data-aos="fade-up" data-aos-delay="200">
+                        <a href="#contact" class="btn btn-primary-custom me-3" data-translate="hero.ctaPrimary">Get Started Today</a>
+                        <a href="#how-it-works" class="btn btn-outline-custom" data-translate="hero.ctaSecondary">Learn More</a>
+                    </div>
+                </div>
+                <div class="col-lg-6 text-center" data-aos="fade-left">
+                    <div class="floating">
+                        <i class="fas fa-coins" style="font-size: 8rem; color: var(--accent-color); opacity: 0.9;"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Value Proposition -->
+    <section class="value-prop">
+        <div class="container">
+            <div class="row text-center mb-5">
+                <div class="col-lg-8 mx-auto">
+                    <h2 data-aos="fade-up">Why Metal Credit Score?</h2>
+                    <p class="lead" data-aos="fade-up" data-aos-delay="100">
+                        Traditional credit scoring excludes millions. MCS empowers everyone with real asset value.
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="value-card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="value-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h4>Asset-Backed Security</h4>
+                        <p>Your credit score is secured by real, tangible assets with intrinsic value that appreciates over time.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="value-card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="value-icon">
+                            <i class="fas fa-universal-access"></i>
+                        </div>
+                        <h4>Financial Inclusion</h4>
+                        <p>Perfect for first-time borrowers, gig workers, and anyone without traditional credit history.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="value-card" data-aos="fade-up" data-aos-delay="300">
+                        <div class="value-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h4>Better Rates</h4>
+                        <p>Lower interest rates and better terms based on your actual asset portfolio and financial behavior.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section id="how-it-works" class="how-it-works">
+        <div class="container">
+            <div class="row text-center mb-5">
+                <div class="col-lg-8 mx-auto">
+                    <h2 data-aos="fade-up">How Metal Credit Score Works</h2>
+                    <p class="lead" data-aos="fade-up" data-aos-delay="100">
+                        Simple, transparent, and revolutionary credit assessment process.
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="step-card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="step-number">1</div>
+                        <h4>Asset Verification</h4>
+                        <p>Connect your wallet and verify ownership of Gold, Silver, Platinum, or BINR holdings.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="step-card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="step-number">2</div>
+                        <h4>Portfolio Analysis</h4>
+                        <p>Our AI analyzes your asset composition, value, and diversification.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="step-card" data-aos="fade-up" data-aos-delay="300">
+                        <div class="step-number">3</div>
+                        <h4>Behavior Scoring</h4>
+                        <p>We assess your financial behavior, transaction patterns, and investment consistency.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="step-card" data-aos="fade-up" data-aos-delay="400">
+                        <div class="step-number">4</div>
+                        <h4>Risk Assessment</h4>
+                        <p>Advanced algorithms evaluate market risks and calculate your final MCS score.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Asset Showcase -->
+    <section id="assets" class="asset-showcase">
+        <div class="container">
+            <div class="row text-center mb-5">
+                <div class="col-lg-8 mx-auto">
+                    <h2 data-aos="fade-up">Supported Asset Classes</h2>
+                    <p class="lead" data-aos="fade-up" data-aos-delay="100">
+                        Build your credit score with diverse, appreciating asset portfolio.
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="asset-card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="asset-icon gold-icon">
+                            <i class="fas fa-coins"></i>
+                        </div>
+                        <h4>Gold (BGT)</h4>
+                        <p><strong>Bullion Gold Token</strong></p>
+                        <p>1 BGT = 1 gram of 24k gold, fully backed and audited.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="asset-card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="asset-icon silver-icon">
+                            <i class="fas fa-medal"></i>
+                        </div>
+                        <h4>Silver (BST)</h4>
+                        <p><strong>Bullion Silver Token</strong></p>
+                        <p>1 BST = 10 grams of 999 fine silver, vault secured.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="asset-card" data-aos="fade-up" data-aos-delay="300">
+                        <div class="asset-icon platinum-icon">
+                            <i class="fas fa-gem"></i>
+                        </div>
+                        <h4>Platinum (BPT)</h4>
+                        <p><strong>Bullion Platinum Token</strong></p>
+                        <p>Premium precious metal with industrial and investment demand.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="asset-card" data-aos="fade-up" data-aos-delay="400">
+                        <div class="asset-icon binr-icon">
+                            <i class="fas fa-coins"></i>
+                        </div>
+                        <h4>BINR Stablecoin</h4>
+                        <p><strong>Reserve-Backed Currency</strong></p>
+                        <p>Fully collateralized stablecoin with transparent reserves.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Score Scale -->
+    <section class="score-scale">
+        <div class="container">
+            <div class="row text-center mb-5">
+                <div class="col-lg-8 mx-auto">
+                    <h2 data-aos="fade-up">Metal Credit Score Range</h2>
+                    <p class="lead" data-aos="fade-up" data-aos-delay="100">
+                        Our advanced algorithm provides scores from 300-900, similar to traditional credit scores but backed by real assets.
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <div class="score-display" data-aos="fade-up" data-aos-delay="100">
+                        <div class="score-number">300-599</div>
+                        <h4>Building</h4>
+                        <p>Starting your asset portfolio journey</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <div class="score-display" data-aos="fade-up" data-aos-delay="200">
+                        <div class="score-number">600-749</div>
+                        <h4>Good</h4>
+                        <p>Solid asset foundation with good behavior</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <div class="score-display" data-aos="fade-up" data-aos-delay="300">
+                        <div class="score-number">750-900</div>
+                        <h4>Excellent</h4>
+                        <p>Premium creditworthiness with asset security</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits -->
+    <section id="benefits" class="benefits">
+        <div class="container">
+            <div class="row text-center mb-5">
+                <div class="col-lg-8 mx-auto">
+                    <h2 data-aos="fade-up">Benefits for Everyone</h2>
+                    <p class="lead" data-aos="fade-up" data-aos-delay="100">
+                        Revolutionary approach to creditworthiness that benefits all stakeholders.
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <h4 class="mb-4">For Individuals</h4>
+                    <div class="benefit-item d-flex align-items-center" data-aos="fade-right" data-aos-delay="100">
+                        <div class="benefit-icon">
+                            <i class="fas fa-user-check"></i>
+                        </div>
+                        <div>
+                            <h6>No Credit History Required</h6>
+                            <p>Get approved based on your assets, not your past borrowing history.</p>
+                        </div>
+                    </div>
+                    <div class="benefit-item d-flex align-items-center" data-aos="fade-right" data-aos-delay="200">
+                        <div class="benefit-icon">
+                            <i class="fas fa-percentage"></i>
+                        </div>
+                        <div>
+                            <h6>Lower Interest Rates</h6>
+                            <p>Better rates due to asset-backed security and lower default risk.</p>
+                        </div>
+                    </div>
+                    <div class="benefit-item d-flex align-items-center" data-aos="fade-right" data-aos-delay="300">
+                        <div class="benefit-icon">
+                            <i class="fas fa-chart-bar"></i>
+                        </div>
+                        <div>
+                            <h6>Transparent Scoring</h6>
+                            <p>Clear visibility into how your assets affect your credit score.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <h4 class="mb-4">For Financial Institutions</h4>
+                    <div class="benefit-item d-flex align-items-center" data-aos="fade-left" data-aos-delay="100">
+                        <div class="benefit-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div>
+                            <h6>Reduced Risk</h6>
+                            <p>Asset-backed lending minimizes default risk and losses.</p>
+                        </div>
+                    </div>
+                    <div class="benefit-item d-flex align-items-center" data-aos="fade-left" data-aos-delay="200">
+                        <div class="benefit-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div>
+                            <h6>New Customer Segments</h6>
+                            <p>Reach previously excluded customers with asset-based criteria.</p>
+                        </div>
+                    </div>
+                    <div class="benefit-item d-flex align-items-center" data-aos="fade-left" data-aos-delay="300">
+                        <div class="benefit-icon">
+                            <i class="fas fa-cogs"></i>
+                        </div>
+                        <div>
+                            <h6>API Integration</h6>
+                            <p>Easy integration with existing lending and risk management systems.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="contact" class="cta-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h2 data-aos="fade-up">Ready to Transform Credit Scoring?</h2>
+                    <p class="lead mb-4" data-aos="fade-up" data-aos-delay="100">
+                        Join the revolution in credit assessment. Experience the power of asset-backed credit scoring today.
+                    </p>
+                    <div data-aos="fade-up" data-aos-delay="200">
+                        <a href="dashboard/index.html" class="btn btn-primary-custom me-3" target="_blank">
+                            <i class="fas fa-tachometer-alt me-2"></i>Access Dashboard
+                        </a>
+                        <a href="mailto:contact@mcscredit.com" class="btn btn-outline-custom">
+                            <i class="fas fa-envelope me-2"></i>Contact Us
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <h5><i class="fas fa-coins me-2"></i>MCS</h5>
+                    <p class="mb-3">India's first asset-backed credit scoring system, revolutionizing financial inclusion through real asset valuation.</p>
+                    <div>
+                        <a href="#" class="me-3"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="me-3"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="me-3"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h6>Product</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="#how-it-works">How It Works</a></li>
+                        <li><a href="#assets">Supported Assets</a></li>
+                        <li><a href="#benefits">Benefits</a></li>
+                        <li><a href="dashboard/index.html" target="_blank">Dashboard</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h6>Resources</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">API Reference</a></li>
+                        <li><a href="#">Support</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h6>Company</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Press</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h6>Legal</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Cookie Policy</a></li>
+                        <li><a href="#">Compliance</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="my-4" style="border-color: #333;">
+            <div class="row">
+                <div class="col-md-6">
+                    <p class="mb-0">&copy; 2025 Metal Credit Score (MCS). All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p class="mb-0">Powered by RWA Tokenization Ecosystem</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.1/aos.js"></script>
+    
+    <!-- i18n Multi-language Support -->
+    <script src="assets/js/i18n.js"></script>
+    
+    <script>
+        // Initialize AOS (Animate On Scroll)
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
+        });
+
+        // Service Worker registration for PWA
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(function(registration) {
+                        console.log('ServiceWorker registration successful');
+                        
+                        // Check for updates
+                        registration.addEventListener('updatefound', function() {
+                            const newWorker = registration.installing;
+                            newWorker.addEventListener('statechange', function() {
+                                if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                                    // New update available
+                                    if (confirm('New version available! Reload to update?')) {
+                                        window.location.reload();
+                                    }
+                                }
+                            });
+                        });
+                    })
+                    .catch(function(err) {
+                        console.log('ServiceWorker registration failed: ', err);
+                    });
+            });
+        }
+
+        // Install prompt for PWA
+        let deferredPrompt;
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            
+            // Show install button
+            const installButton = document.getElementById('installButton');
+            if (installButton) {
+                installButton.style.display = 'block';
+                installButton.addEventListener('click', () => {
+                    deferredPrompt.prompt();
+                    deferredPrompt.userChoice.then((choiceResult) => {
+                        if (choiceResult.outcome === 'accepted') {
+                            console.log('User accepted the install prompt');
+                        }
+                        deferredPrompt = null;
+                    });
+                });
+            }
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navbar background change on scroll
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.background = 'rgba(26, 54, 93, 0.98)';
+            } else {
+                navbar.style.background = 'rgba(26, 54, 93, 0.95)';
+            }
+        });
+
+        // Language switching with animation
+        function switchLanguage(lang) {
+            document.body.style.opacity = '0.5';
+            setTimeout(() => {
+                window.languageManager.changeLanguage(lang);
+                document.body.style.opacity = '1';
+            }, 200);
+        }
+
+        // Add keyboard shortcuts for language switching
+        document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey && e.shiftKey) {
+                const langs = ['en', 'hi', 'ta', 'te', 'bn', 'mr'];
+                const currentIndex = langs.indexOf(window.languageManager.currentLanguage);
+                const nextIndex = (currentIndex + 1) % langs.length;
+                switchLanguage(langs[nextIndex]);
+            }
+        });
+
+        // Push notification subscription
+        if ('Notification' in window && 'serviceWorker' in navigator) {
+            navigator.serviceWorker.ready.then(function(registration) {
+                if (Notification.permission === 'default') {
+                    // Request permission after user interaction
+                    setTimeout(() => {
+                        if (confirm('Enable score update notifications?')) {
+                            Notification.requestPermission().then(function(permission) {
+                                if (permission === 'granted') {
+                                    registration.pushManager.subscribe({
+                                        userVisibleOnly: true,
+                                        applicationServerKey: urlBase64ToUint8Array('YOUR_VAPID_PUBLIC_KEY')
+                                    });
+                                }
+                            });
+                        }
+                    }, 5000);
+                }
+            });
+        }
+
+        // Helper function for VAPID key conversion
+        function urlBase64ToUint8Array(base64String) {
+            const padding = '='.repeat((4 - base64String.length % 4) % 4);
+            const base64 = (base64String + padding)
+                .replace(/\-/g, '+')
+                .replace(/_/g, '/');
+            const rawData = window.atob(base64);
+            const outputArray = new Uint8Array(rawData.length);
+            for (let i = 0; i < rawData.length; ++i) {
+                outputArray[i] = rawData.charCodeAt(i);
+            }
+            return outputArray;
+        }
+    </script>
+</body>
+</html>
